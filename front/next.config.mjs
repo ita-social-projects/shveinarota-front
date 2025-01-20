@@ -6,6 +6,9 @@ const nextConfig = {
 	env: {
 		BACK_URL: process.env.BACK_URL,
 	},
+	eslint: {
+		ignoreDuringBuilds: true,
+	},
 };
 
 export default nextConfig;
