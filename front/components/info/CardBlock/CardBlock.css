@@ -1,0 +1,105 @@
+/* Контейнер для карточек */
+.cardbox {
+	background: #2e2e35;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 40px 15px;
+	border-bottom: 12px solid #404046;
+	border-top: 12px solid #404046;
+
+}
+
+.cardbox__container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 25px;
+	max-width: 1200px;
+	width: 100%;
+	padding: 0px 15px;
+	overflow: hidden;
+}
+
+/* Стили для карточек */
+/* Карточка */
+.card {
+	position: relative;
+	flex: 1 1 25%;
+	min-width: 290px;
+	background: #E8DCD0;
+	padding: 35px 20px;
+	border-radius: 5px;
+	display: flex;
+	width: 100%;
+	gap: 20px;
+	align-items: center;
+	justify-content: center;
+}
+
+/* .card::after, .card::before {
+	content: "";
+	display: block;
+	height: 5px;
+	position: absolute;
+	background-color: #2e2e35;
+	width: 130px;
+}
+
+.card::after {
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%,0);
+	border-radius: 5px 5px 0px 0px;
+}
+
+.card::before {
+	
+	top: 0;
+	left: 50%;
+	transform: translate(-50%,0);
+	border-radius: 0px 0px 5px 5px;
+} */
+
+.card__top {
+	color: #2e2e35;
+	font-size: 24px;
+}
+
+.card__top .iconshveya {
+	width: 75px;
+}
+
+.card__top .iconshveya img {
+	width: 75px;
+}
+
+.card__title {
+	font-family: 'anonymousprobold', sans-serif;
+	font-size: 22px;
+	font-weight: bold;
+	text-align: center;
+	font-weight: bold;
+	margin: 0px 0px 12px 0px;
+}
+
+/* Нижняя часть карточки */
+.card__bottom {
+	font-family: 'intro', sans-serif;
+	font-size: 24px;
+	color: #2e2e35;
+	text-align: center;
+}
+
+/* Адаптивный стиль */
+/* @media (max-width: 901px) {
+	.cardbox__container {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.card {
+		flex: 1 1 100%;
+		width: 100%;
+	}
+} */

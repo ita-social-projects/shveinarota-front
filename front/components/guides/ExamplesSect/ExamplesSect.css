@@ -1,0 +1,14 @@
+.examples {
+    margin: 0px 0px 40px 0px;
+}
+
+@media (max-width: 900px) {
+    .main-content {
+        padding: 15px;
+    }
+
+    .main-content .gallery img {
+        max-width: 100%;
+        /* Увеличение размера изображений */
+    }
+}

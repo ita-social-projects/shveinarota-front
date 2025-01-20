@@ -1,0 +1,36 @@
+.partners {
+	background: #ebddd0;
+	position: relative;
+	z-index: 2;
+	border-bottom: 12px solid #404046;
+}
+
+.partners__wrapper {
+	background-color: #2e2e35;
+}
+
+.partners__container {
+	max-width: 1200px;
+	padding: 55px 15px;
+	margin: 0 auto;
+}
+
+.partners__box {
+	display: flex;
+	gap: 30px;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.partners__partner img {
+	max-height: 130px;
+	max-width: 300px;
+}
+
+.partners__title {
+	color: #ebddd0;
+	padding: 20px 0px 0px 0px;
+	background-color: #2e2e35;
+	border-top: 12px solid #404046;
+}
