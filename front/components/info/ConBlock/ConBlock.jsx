@@ -2,20 +2,24 @@ import { useEffect, useRef } from "react";
 import "./ConBlock.css"
 import Image from "next/image";
 import Link from "next/link";
+import { useScrollbarWidth } from "$hooks/useScrollbarWidth";
 
 const ConBlock = () => {
 	const popup = useRef()
+	const scrollbarWidth = useScrollbarWidth()
 
 	// Открытие окна 
 	function openPopup() {
 		document.body.classList.add("menu-active")
 		popup.current.style.display = 'block';
+		document.querySelector('.wrapper').style.paddingRight = scrollbarWidth + "px";
 	};
 
 	// Закрытие окна при нажатии на крестик 
 	function closePopup() {
 		document.body.classList.remove("menu-active")
 		popup.current.style.display = 'none';
+		document.querySelector('.wrapper').style.paddingRight = "0px";
 	};
 
 	useEffect(e => {
@@ -26,6 +30,7 @@ const ConBlock = () => {
 					popup.current.style.display = 'none';
 				}
 			});
+			document.querySelector('.header').style.paddingRight = scrollbarWidth + "px";
 		}
 	}, [])
 

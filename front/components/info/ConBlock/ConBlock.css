@@ -83,7 +83,7 @@
 @media (max-width: 676px) {
 	.conbox {
 		flex-direction: column;
-		gap: 30px;
+		gap: 60px;
 	}
 	.conbox .column {
 		background-color: black;

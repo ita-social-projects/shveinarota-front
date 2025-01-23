@@ -142,11 +142,29 @@
 	align-self: flex-end;
 }
 
+@media (max-width: 768px) {
+	.infobox__container1 h1 {
+		font-size: 26px;
+	}
+	.infobox__container1 {
+		padding: 60px 15px;
+	}
+	.infobox__container1 h2 p {
+		font-size: 20px;
+	}
+}
+
 @media (max-width: 900px) {
 	.infobox__slide {
 		flex-direction: column-reverse;
 		gap: 30px;
 		padding: 20px 15px;
+	}
+	.right h1 {
+		font-size: 26px;
+	}
+	.right h2 {
+		font-size: 22px;
 	}
 }
 

@@ -27,7 +27,7 @@ const InfoBlock = () => {
 	}, [])
 
 	return (
-		<div className="infobox">
+		<div className="infobox _swiper">
 			<div className="infobox__container">
 				<Swiper
 					modules={[Pagination, Autoplay]}

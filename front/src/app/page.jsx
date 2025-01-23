@@ -1,14 +1,13 @@
 "use client";
 
-import Image from 'next/image';
 import { motion } from "framer-motion"
 import '$style/infoPage/Popup.css'
 import InfoBlock from '$component/info/InfoBlock/InfoBlock';
 import CardBlock from '$component/info/CardBlock/CardBlock';
 import ConBlock from '$component/info/ConBlock/ConBlock';
-import MediaLinksBlock from '$component/info/MediaLinksBlock/MediaLinksBlock';
 import OrderBlock from '$component/info/OrderBlock/OrderBlock';
 import PartnersBlock from '$component/info/PartnersBlock/PartnersBlock';
+import MapBlock from '$component/info/MapBlock/MapBlock';
 
 export default function InfoPage() {
 
@@ -89,6 +88,7 @@ export default function InfoPage() {
           </h2>
         </div>
       </div>
+      <MapBlock/>
     </main>
   );
 }

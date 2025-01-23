@@ -4,7 +4,7 @@ import Spoller from "$component/guides/Aside/Spoiler/Spoller";
 import "$style/questions/Questions.css"
 
 
-export default function InfoPage() {
+export default function QuestionsPage() {
 
 	return (
 		<main className='main'>

@@ -143,7 +143,12 @@ option {
   line-height: inherit;
 }
 
+body {
+  padding: 75px 0px 0px 0px;
+}
+
 .wrapper {
+  position: relative;
   overflow-x: hidden;
   height: 100%;
   background-color: #e8dcd0;
@@ -160,6 +165,11 @@ option {
   color: #2e2e35;
 }
 
+@media (max-width: 678px) {
+  ._main-title {
+    font-size: 24px;
+  }
+}
 
 
 @font-face {

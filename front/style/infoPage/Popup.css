@@ -25,6 +25,16 @@
 	}
 }
 
+@keyframes popupContentAnim {
+	from {
+		transform: translate(-50%, -100%);
+	}
+
+	to {
+		transform: translate(-50%, -50%);
+	}
+}
+
 /* Стили для содержимого окна */
 .popup-content {
 	background-color: #E8DCD0;
@@ -37,11 +47,13 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -200%);
 	gap: 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	border: 8px solid #404046;
+	animation: popupContentAnim 0.3s ease-out forwards;
 }
 
 .paypal {
@@ -98,10 +110,8 @@
 
 /* Стили для кнопки открытия окна */
 #openBtn {
-	padding: 10px 20px;
 	cursor: pointer;
 	border: none;
-
 	border-radius: 5px;
 }
 
@@ -109,5 +119,18 @@
 	font-size: 22px;
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	gap: 20px;
+	font-family: "anonymousprobold", sans-serif;
+}
+
+@media (max-width: 652px) {
+	.popup-content {
+		width: 95%;
+	}
+}
+
+@media (max-width: 492px) {
+	.paypal {
+		flex-direction: column;
+	}
 }
