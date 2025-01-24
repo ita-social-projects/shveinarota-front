@@ -1,30 +1,24 @@
 import * as React from 'react';
 
 export const useScrollbarWidth = () => {
-	const didCompute = React.useRef(false);
-	const widthRef = React.useRef(0);
+  const [scrollbarWidth, setScrollbarWidth] = React.useState(0);
 
-	if (didCompute.current) return widthRef.current;
+  React.useEffect(() => {
+    const outer = document.createElement('div');
+    outer.style.visibility = 'hidden';
+    outer.style.overflow = 'scroll';
+    outer.style.msOverflowStyle = 'scrollbar';
+    document.body.appendChild(outer);
 
-	// Creating invisible container
-	const outer = document.createElement('div');
-	outer.style.visibility = 'hidden';
-	outer.style.overflow = 'scroll'; // forcing scrollbar to appear
-	outer.style.msOverflowStyle = 'scrollbar'; // needed for WinJS apps
-	document.body.appendChild(outer);
+    const inner = document.createElement('div');
+    outer.appendChild(inner);
 
-	// Creating inner element and placing it in the container
-	const inner = document.createElement('div');
-	outer.appendChild(inner);
+    const calculatedWidth = outer.offsetWidth - inner.offsetWidth;
 
-	// Calculating difference between container's full width and the child width
-	const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
+    outer.parentNode.removeChild(outer);
 
-	// Removing temporary elements from the DOM
-	outer.parentNode.removeChild(outer);
+    setScrollbarWidth(calculatedWidth);
+  }, []);
 
-	didCompute.current = true;
-	widthRef.current = scrollbarWidth;
-
-	return scrollbarWidth;
+  return scrollbarWidth;
 };

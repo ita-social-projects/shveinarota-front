@@ -45,11 +45,11 @@ export default function CardsPage() {
 				</div>
 				<div className="list-group">
 					{cards.map((card) => (
-						<DatabaseItem setSelectedId={setSelectedCardId} key={card.id} title={`Картка ${card.id} (${card.title})`} link={`/dashboard/cards/add/${card.id}`} id={card.id}/>
+						<DatabaseItem setSelectedId={setSelectedCardId} key={card.id} title={`Картка ${card.id} (${card.title})`} link={`/dashboard/cards/add/${card.id}`} id={card.id} />
 					))}
 				</div>
 			</div>
-			<Bootstrap/>
+			<Bootstrap />
 		</main>
 	);
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "$style/bootstrap.min.css";
 import "$style/admin/Admin.css";
@@ -80,7 +80,7 @@ export default function ChangePage() {
           <button type="submit" className="btn btn-primary">Save</button>
         </form>
       </div>
-      <Bootstrap/>
+      <Bootstrap />
     </main>
   );
 }

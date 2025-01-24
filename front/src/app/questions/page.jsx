@@ -24,7 +24,7 @@ export default function QuestionsPage() {
 						<li className="spoller__link link-modified">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nunc est, sollicitudin a dui sit amet, posuere congue ligula. Donec non luctus nibh. Curabitur malesuada lobortis tempor. Nulla viverra commodo urna, nec mollis nisi fermentum ut. Sed odio justo, molestie euismod interdum id</li>
 					</Spoller>
 				</div>
-			</div>
+			</div>  
 		</main>
 	);
 }

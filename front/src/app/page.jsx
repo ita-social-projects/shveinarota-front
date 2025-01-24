@@ -7,7 +7,8 @@ import CardBlock from '$component/info/CardBlock/CardBlock';
 import ConBlock from '$component/info/ConBlock/ConBlock';
 import OrderBlock from '$component/info/OrderBlock/OrderBlock';
 import PartnersBlock from '$component/info/PartnersBlock/PartnersBlock';
-import MapBlock from '$component/info/MapBlock/MapBlock';
+import dynamic from "next/dynamic";
+const MapBlock = dynamic(() => import('$component/info/MapBlock/MapBlock'), { ssr: false });
 
 export default function InfoPage() {
 
@@ -88,7 +89,7 @@ export default function InfoPage() {
           </h2>
         </div>
       </div>
-      <MapBlock/>
+      <MapBlock />
     </main>
   );
 }
