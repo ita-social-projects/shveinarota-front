@@ -7,7 +7,7 @@ import "$style/admin/Admin.css"
 import Link from "next/link";
 import DatabaseItem from "$component/dashboard/DatabaseItem/DatabaseItem";
 import { useEffect, useRef, useState } from "react";
-import getData, { deleteDataById } from "api";
+import { deleteDataById, getData } from "api";
 
 export default function CardsPage() {
 	const [media, setMedia] = useState([]);

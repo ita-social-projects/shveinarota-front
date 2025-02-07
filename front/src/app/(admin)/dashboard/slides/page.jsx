@@ -7,7 +7,7 @@ import Link from "next/link";
 import DatabaseItem from "$component/dashboard/DatabaseItem/DatabaseItem";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import getData, { deleteDataById } from "api";
+import { deleteDataById, getData } from "api";
 import dynamic from 'next/dynamic';
 const Bootstrap = dynamic(() => import('$component/guides/Bootstrap/Bootstrap'), { ssr: false });
 

@@ -11,6 +11,7 @@ import { postData } from "api";
 
 export default function ChangePage() {
   const [title, setTitle] = useState("");
+  const [title_en, setTitleEn] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
@@ -25,7 +26,9 @@ export default function ChangePage() {
 
     const formData = new FormData();
     formData.append("title", title);
+    formData.append("title_en", title_en);
     formData.append("description", description);
+    formData.append("description_en", description);
     formData.append("path", file);
 
     postData("cards", formData, setShowAlert)
@@ -75,6 +78,18 @@ export default function ChangePage() {
               aria-describedby="inputGroup-sizing-default"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">Заголовок (англ):</span>
+            <input
+              required
+              type="text"
+              className="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              value={title_en}
+              onChange={(e) => setTitleEn(e.target.value)}
             />
           </div>
           <button type="submit" className="btn btn-primary">Save</button>

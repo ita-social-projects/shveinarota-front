@@ -6,11 +6,33 @@ import '$style/Header.css'
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import { useScrollbarWidth } from '$hooks/useScrollbarWidth';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
+import { useLang } from '$hooks/useLang';
+
 
 const Header = () => {
 	const location = usePathname();
 	const menuIcon = useRef()
-	const scrollbarWidth = useScrollbarWidth();
+
+	const router = useRouter();
+
+	const [currentLang, setLang] = useLang();
+
+	const changeLanguage = (lang) => {
+		let currentPath = location;
+
+		if (lang === "ua") {
+			currentPath = location.replace(/^\/en/, '') || '/';
+		} else {
+			currentPath = location.startsWith('/en') ? location : `/en${location}`;
+		}
+
+		Cookies.set("lang", lang, { expires: 365 });
+		setLang(lang);
+		router.push(currentPath);
+	};
+
 
 	function openMenu(e) {
 		e.stopPropagation()
@@ -29,12 +51,6 @@ const Header = () => {
 		document.body.classList.remove("menu-active")
 	}
 
-	useEffect(e => {
-		if (typeof window !== 'undefined') {
-			document.querySelector('.header').style.paddingRight = scrollbarWidth + "px";
-		}
-	}, [])
-
 	return (
 		<header className="header">
 			<div className="header__container">
@@ -42,15 +58,14 @@ const Header = () => {
 					<Link className='header__link' onClick={closeMenu} href="/">
 						<div className="logo_shveya">
 							<Image
-								src="/images/headerlogo.png"
+								src="/images/logo.png"
 								alt="Logo"
-								width={60}
+								width={200}
 								height={60}
 								className="logo-img"
 								priority
 							/>
 						</div>
-						Швейна рота
 					</Link>
 				</div>
 
@@ -60,14 +75,14 @@ const Header = () => {
 
 				<div className="right _menu">
 					<nav className="menu">
-						<Link onClick={closeMenu} className={location == '/' ? 'menu__link link-active' : 'menu__link'} href="/">Головна сторінка</Link>
-						<Link onClick={closeMenu} className={location == '/guides' ? 'menu__link link-active' : 'menu__link'} href="/guides">Навчальний центр</Link>
-						<Link onClick={closeMenu} className={location == '/about' ? 'menu__link link-active' : 'menu__link'} href="/about">Про нас</Link>
+						<Link onClick={closeMenu} className={location == "/" || location == "/en" ? 'menu__link link-active' : 'menu__link'} href={currentLang == "ua" ? "/" : "/en"}>{currentLang == "ua" ? "Головна сторінка" : "Home page"}</Link>
+						<Link onClick={closeMenu} className={location.includes("guides") ? 'menu__link link-active' : 'menu__link'} href={currentLang == "ua" ? "/guides" : "/en/guides"}>{currentLang == "ua" ? "Навчальний центр" : "Training center"}</Link>
+						<Link onClick={closeMenu} className={location.includes('/about') ? 'menu__link link-active' : 'menu__link'} href={currentLang == "ua" ? "/about" : "/en/about"}>{currentLang == "ua" ? "Про нас" : "About us"}</Link>
 					</nav>
 					<div className="menulang">
-						<button>EN</button>
+						<button onClick={() => changeLanguage("en")}>EN</button>
 						<div className="_line"></div>
-						<button>UK</button>
+						<button onClick={() => changeLanguage("ua")}>UA</button>
 					</div>
 				</div>
 			</div>

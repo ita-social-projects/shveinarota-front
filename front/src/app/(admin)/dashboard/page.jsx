@@ -15,9 +15,6 @@ export default function AdminPage() {
           <div className="main__column lead-column">
             <Management />
           </div>
-          <div className="main__column">
-            <LatestActions />
-          </div>
         </div>
         <Bootstrap/>
       </main>

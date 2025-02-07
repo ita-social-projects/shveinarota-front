@@ -7,14 +7,14 @@ import "$style/admin/Admin.css"
 import Link from "next/link";
 import DatabaseItem from "$component/dashboard/DatabaseItem/DatabaseItem";
 import { useEffect, useRef, useState } from "react";
-import getCards, { deleteDataById } from "api";
+import { deleteDataById, getData } from "api";
 
 export default function CardsPage() {
 	const [cards, setCards] = useState([]);
 	const [selectedCardId, setSelectedCardId] = useState(null);
 
 	useEffect(() => {
-		getCards("cards", setCards);
+		getData("cards", setCards);
 	}, []);
 
 	return (

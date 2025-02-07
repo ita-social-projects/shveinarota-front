@@ -17,7 +17,7 @@ export default function ChangePage() {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("categoryname", title);
+    formData.append("category", title);
 
     postData("categories", formData, setShowAlert)
   };
@@ -26,7 +26,7 @@ export default function ChangePage() {
     <main className="main">
       {showAlert && (
         <Alert
-          message="Картка була додана успішно!"
+          message="Категорія була додана успішно!"
           onClose={() => setShowAlert(false)}
         />
       )}

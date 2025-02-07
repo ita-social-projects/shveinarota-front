@@ -7,7 +7,8 @@ import "$style/admin/Admin.css"
 import Link from "next/link";
 import DatabaseItem from "$component/dashboard/DatabaseItem/DatabaseItem";
 import { useEffect, useRef, useState } from "react";
-import getCards, { deleteDataById } from "api";
+import { deleteDataById, getData } from 'api';
+
 
 export default function CardsPage() {
 	const [categories, setCategories] = useState([]);
@@ -16,13 +17,11 @@ export default function CardsPage() {
 	const [selectedCategoryId, setSelectedCategoryId] = useState(null);
 
 	useEffect(() => {
-		getCards("categories", setCategories);
+		getData("categories", setCategories);
 	}, []);
 
 	useEffect(() => {
-		if (categories.length > 0) {
-			setGuides(categories.flatMap(item => item.subcategories.map(subcategory => ({...subcategory, categoryId: item.id}))))
-		}
+		setGuides(categories.flatMap(item => item.subcategories.map(subcategory => ({ ...subcategory, categoryId: item.id }))))
 	}, [categories]);
 
 	return (
@@ -39,7 +38,17 @@ export default function CardsPage() {
 						</div>
 						<div className="modal-footer">
 							<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Відмінити</button>
-							<button type="button" data-bs-dismiss="modal" onClick={() => selectedCardId && deleteDataById(`categories/${selectedCategoryId}/subcategories`, selectedCardId, setGuides)} className="btn btn-outline-danger">Видалити</button>
+							<button
+								type="button"
+								data-bs-dismiss="modal"
+								onClick={() => {
+									if (selectedCardId && selectedCategoryId) {
+										deleteDataById(`subcategories`, selectedCardId, setGuides);
+									}
+								}}
+								className="btn btn-outline-danger">
+								Видалити
+							</button>
 						</div>
 					</div>
 				</div>
@@ -53,11 +62,11 @@ export default function CardsPage() {
 				</div>
 				<div className="list-group">
 					{guides.map((guide, index) => (
-						<DatabaseItem setSelectedId={setSelectedCardId} key={guide.id} categoryId={guide.categoryId} title={`Майстер-клас ${index + 1} (${guide.subcategory_name})`} link={`/dashboard/masterclass/add/${guide.id}`} id={guide.id} setSelectedCategoryId={setSelectedCategoryId} />
+						<DatabaseItem setSelectedId={setSelectedCardId} key={guide.id} categoryId={guide.categoryId} title={`Майстер-клас ${index + 1} (${guide.subcategory})`} link={`/dashboard/masterclass/add/${guide.id}`} id={guide.id} setSelectedCategoryId={setSelectedCategoryId} />
 					))}
 				</div>
 			</div>
-			<Bootstrap/>
+			<Bootstrap />
 		</main>
 	);
 }

@@ -9,9 +9,9 @@ const Aside = ({ categories }) => {
 		<aside className="aside">
 			{categories.map((category, index) => {
 				return category.subcategories.length > 0 &&
-					<Spoller key={category.id} disabled={index == 0 ? "spoller-active" : ""} title={category.categoryname}>
+					<Spoller key={category.id} disabled={index == 0 ? "spoller-active" : ""} title={category.category}>
 						{category.subcategories.map(sub =>
-							<Link key={sub.id} href={"/guides/" + category.id + "/" + sub.id} className="spoller__link">{sub.subcategory_name}</Link>
+							<Link key={sub.id} href={"/guides/" + sub.subcategory.toLowerCase() + "/" + sub.id} className="spoller__link">{sub.subcategory}</Link>
 						)}
 					</Spoller>
 			}

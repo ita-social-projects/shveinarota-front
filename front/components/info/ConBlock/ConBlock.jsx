@@ -1,18 +1,20 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./ConBlock.css"
 import Image from "next/image";
 import Link from "next/link";
 import { useScrollbarWidth } from "$hooks/useScrollbarWidth";
+import PopupLink from "./PopupLink/PopupLink";
 
 const ConBlock = () => {
 	const popup = useRef()
-	const scrollbarWidth = useScrollbarWidth()
+	const scrollbarWidth = useScrollbarWidth();
 
 	// Открытие окна 
 	function openPopup() {
 		document.body.classList.add("menu-active")
 		popup.current.style.display = 'block';
 		document.querySelector('.wrapper').style.paddingRight = scrollbarWidth + "px";
+		document.querySelector('.header').style.paddingRight = scrollbarWidth + "px";
 	};
 
 	// Закрытие окна при нажатии на крестик 
@@ -20,6 +22,7 @@ const ConBlock = () => {
 		document.body.classList.remove("menu-active")
 		popup.current.style.display = 'none';
 		document.querySelector('.wrapper').style.paddingRight = "0px";
+		document.querySelector('.header').style.paddingRight = "0px";
 	};
 
 	useEffect(e => {
@@ -30,7 +33,6 @@ const ConBlock = () => {
 					popup.current.style.display = 'none';
 				}
 			});
-			document.querySelector('.header').style.paddingRight = scrollbarWidth + "px";
 		}
 	}, [])
 
@@ -45,31 +47,8 @@ const ConBlock = () => {
 				<div ref={popup} id="popup" className="popup">
 					<div className="popup-content">
 						<span onClick={closePopup} id="closeBtn" className="popup__close">&times;</span>
-						<div className="paypal _paypal">
-							<div className="paypalimg">
-								<Image
-									src="/images/paypal.jpg"
-									alt="logo"
-									width={85}
-									height={85}
-									className="logo-img"
-								/>
-							</div>
-							marishka.polo@gmail.com
-						</div>
-						<a href="https://send.monobank.ua/jar/5VV7zhDJGY"
-							className="paypal _paypal">
-							<div className="paypalimg">
-							<Image
-									src="/images/mono.jpg"
-									alt="logo"
-									width={85}
-									height={85}
-									className="logo-img"
-								/>
-							</div>
-							5375 4112 0381 7304
-						</a>
+						<PopupLink href="https://www.paypal.com" text="marishka.polo@gmail.com" img="/images/paypal.jpg" />
+						<PopupLink href="https://send.monobank.ua/jar/5VV7zhDJGY" text="5375 4112 0381 7304" img="/images/mono.jpg" />
 					</div>
 				</div>
 			</div>

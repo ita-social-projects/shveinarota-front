@@ -61,8 +61,8 @@ const MapBlock = () => {
 				<SearchMarkers markers={markers} handleZoom={handleZoom} />
 				<div className="map__body">
 					<MapContainer
-						center={[50.4501, 30.5234]}
-						zoom={4.5}
+						center={[0, 0]}
+						zoom={2}
 						style={{ height: '100%', width: '100%', borderRadius: "5px" }}
 					>
 						<TileLayer

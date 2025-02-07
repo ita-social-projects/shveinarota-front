@@ -13,19 +13,12 @@
 	max-width: 1200px;
 	padding: 55px 15px;
 	margin: 0 auto;
-}
-
-.partners__box {
-	display: flex;
-	gap: 30px;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
+	cursor: pointer;
 }
 
 .partners__partner img {
 	max-height: 130px;
-	max-width: 300px;
+	max-width: 200px;
 }
 
 .partners__title {
@@ -33,4 +26,12 @@
 	padding: 20px 0px 0px 0px;
 	background-color: #2e2e35;
 	border-top: 12px solid #404046;
+}
+
+.partners__slide {
+	width: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	user-select: none;
 }

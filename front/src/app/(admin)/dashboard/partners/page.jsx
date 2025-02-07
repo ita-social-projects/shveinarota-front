@@ -9,7 +9,7 @@ import Link from "next/link";
 import DatabaseItem from "$component/dashboard/DatabaseItem/DatabaseItem";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import getData, { deleteDataById } from "api";
+import { deleteDataById, getData } from "api";
 
 export default function CardsPage() {
 	const [partners, setPartners] = useState([]);
