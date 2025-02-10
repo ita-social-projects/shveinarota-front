@@ -1,5 +1,5 @@
 /* Главный контейнер, центрирующий содержимое */
-.wrapper {
+.guides-container {
     display: flex;
     justify-content: center; /* Центрирует контент по горизонтали */
     width: 100%;
