@@ -4,10 +4,12 @@ import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import SearchMarkers from "$component/info/MapBlock/Search/Search";
-import Image from "next/image";
+import { useLang } from "$component/Context/LangContext";
 
 const MapBlock = () => {
 	const [selectedPoint, setSelectedPoint] = useState(null);
+
+	const { lang } = useLang();
 
 	// отримані данні із серверу
 	const markers = [
@@ -57,7 +59,7 @@ const MapBlock = () => {
 	return (
 		<div className="map">
 			<div className="map__container">
-				<h2 className="map__title _main-title">Знайти нас на мапі</h2>
+				<h2 className="map__title _main-title">{lang == "ua" ? "Знайти нас на мапі" : "Find us on the map"}</h2>
 				<SearchMarkers markers={markers} handleZoom={handleZoom} />
 				<div className="map__body">
 					<MapContainer

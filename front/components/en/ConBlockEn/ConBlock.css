@@ -1,0 +1,123 @@
+.conboxcontainer {
+	height: 500px;
+	width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 70px 0px 70px 0px;
+}
+
+.conboxcontainer .conbox {
+	height: 100%;
+	max-width: 1200px;
+	padding: 0px 15px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.conbox .left,
+.conbox .right {
+	height: 100%;
+	width: 49.8%;
+	display: flex;
+	/* Flexbox для центрирования текста */
+	justify-content: center;
+	/* Горизонтальное центрирование */
+	align-items: center;
+	/* Вертикальное центрирование */
+	position: relative;
+	/* Для управления содержимым */
+	color: #2e2e35;
+	/* Цвет текста */
+	font-size: 32px;
+	text-align: center;
+	/* Выравнивание текста */
+	transition: background 0.3s ease;
+	/* Анимация для плавности */
+}
+.conbox .right span {
+	display: block;
+	max-width: 454px;
+	font-size: 32px;
+}
+
+.conbox .column {
+	background-color: black;
+	width: 5px;
+	height: 80%;
+	border-radius: 10px;
+}
+
+@media (hover: hover) {
+	.conbox .left:hover {
+		background: url('/images/conblock/bg2.jpg') center center no-repeat;
+		background-size: cover;
+	}
+	
+	.conbox .right:hover {
+		background: url('/images/conblock/bg1.jpg') center center no-repeat;
+		background-size: cover;
+	}
+}
+
+.conbox .left::before, .conbox .right::before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: #e8dcd0a2;
+	pointer-events: none;
+	filter: blur(1px);
+}
+
+/* Стили для заголовков */
+
+.conbox .right span {
+	position: relative;
+	z-index: 1;
+}
+
+.conbox .left h1 {
+	max-width: 394px !important;
+	font-size: 32px;
+	/* Относительный размер шрифта */
+	color: #2e2e35;
+	font-family: 'intro', sans-serif;
+	text-align: center;
+	/* Дополнительное центрирование текста */
+	font-size: 2rem;
+	/* Размер шрифта */
+	margin: 0;
+	/* Убираем отступы */
+	z-index: 1;
+	/* Убедитесь, что текст выше фона */
+}
+
+@media (max-width: 676px) {
+	.conbox {
+		flex-direction: column;
+		gap: 60px;
+	}
+	.conbox .column {
+		background-color: black;
+		width: 100%;
+		height: 5px;
+		border-radius: 10px;
+	}
+	.conbox .right span {
+		display: block;
+		max-width: 454px;
+		font-size: 24px;
+	}
+	.conbox .left h1 {
+		font-size: 24px;
+	}
+	.conboxcontainer {
+		height: auto;
+	}
+}

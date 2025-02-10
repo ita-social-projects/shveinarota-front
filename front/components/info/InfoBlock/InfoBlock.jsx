@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css"
 import { useEffect, useState } from "react";
 import { getData } from "api";
-import { useLang } from "$hooks/useLang";
 
 const InfoBlock = () => {
 	const blockAnitmation = {
@@ -22,8 +21,6 @@ const InfoBlock = () => {
 	}
 
 	const [slides, setSlides] = useState([]);
-
-	const [currentLang, setLang] = useLang();
 
 	useEffect(e => {
 		getData("slides", setSlides)

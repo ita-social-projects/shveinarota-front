@@ -9,7 +9,6 @@ export default function AboutPage() {
 	return (
 		<main className='main'>
 			<div className="main__heading heading">
-				<div className="_background"></div>
 				<div className="heading__container">
 					<h1 className='heading__title _main-title'>
 						Що таке Швейна рота?

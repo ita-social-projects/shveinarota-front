@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css"
 import { useEffect, useState } from "react";
 import { getData, getEnData } from "api";
-import { useLang } from "$hooks/useLang";
 
 const InfoBlockEn = () => {
 	const blockAnitmation = {
