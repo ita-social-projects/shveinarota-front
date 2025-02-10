@@ -1,26 +1,26 @@
-"use client"; // Если используются клиентские функции
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import '$style/Guides.css'
-import Aside from '$component/guides/Aside/Aside';
-import MasterClassSect from '$component/guides/MasterClassSect/MasterClassSect';
-import VideoSect from '$component/guides/VideoSect/VideoSect';
-import ExamplesSect from '$component/guides/ExamplesSect/ExamplesSect';
-import DetailsSect from '$component/guides/DetailsSect/DetailsSect';
-import AuthorSect from '$component/guides/AuthorSect/AuthorSect';
-import ComSect from '$component/guides/ComSect/ComSect';
-import Questions from '$component/guides/Questions/Questions';
-import { useParams } from 'next/navigation';
-import { getData } from 'api';
+import { useEffect, useRef, useState } from "react";
+import "$style/Guides.css";
+import Aside from "$component/guides/Aside/Aside";
+import MasterClassSect from "$component/guides/MasterClassSect/MasterClassSect";
+import VideoSect from "$component/guides/VideoSect/VideoSect";
+import ExamplesSect from "$component/guides/ExamplesSect/ExamplesSect";
+import DetailsSect from "$component/guides/DetailsSect/DetailsSect";
+import AuthorSect from "$component/guides/AuthorSect/AuthorSect";
+import Questions from "$component/guides/Questions/Questions";
+import { useParams } from "next/navigation";
+import { getData } from "api";
 
 export default function MasterClassPage() {
-
   const [categories, setCategories] = useState([]);
   const [guidesData, setGuidesData] = useState({});
   const firstCategory = useRef();
 
+  const sigma = "52";
+
   const params = useParams();
-  const { slug } = params
+  const { slug } = params;
 
   useEffect(() => {
     getData("categories", setCategories);
@@ -41,17 +41,11 @@ export default function MasterClassPage() {
     }
   }, [categories, slug]);
 
-  useEffect(e => {
-    console.log(getData);
-  }, [guidesData])
-
   return (
-    <main className='main'>
-      <div className="content">
+    <div className="wrapper">
+      <Aside categories={categories} className="aside" />
+      <div className="container">
         <Questions />
-        {/* Ліва колонка */}
-        <Aside categories={categories} />
-        {/* Основний контент */}
         <main className="main-content">
           {guidesData.authors ? (
             <>
@@ -68,6 +62,7 @@ export default function MasterClassPage() {
           )}
         </main>
       </div>
-    </main>
+    </div>
   );
+  
 }
