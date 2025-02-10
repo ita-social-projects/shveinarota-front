@@ -17,6 +17,8 @@ export default function MasterClassPage() {
   const [guidesData, setGuidesData] = useState({});
   const firstCategory = useRef();
 
+  const sigma = "52";
+
   const params = useParams();
   const { slug } = params;
 
