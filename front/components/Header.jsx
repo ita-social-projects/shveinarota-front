@@ -91,9 +91,9 @@ const Header = () => {
 						</Link>
 					</nav>
 					<div className="menulang">
-						<button onClick={() => handleLanguageChange("en")}>EN</button>
+						<button onClick={() => {handleLanguageChange("en"); closeMenu()}}>EN</button>
 						<div className="_line"></div>
-						<button onClick={() => handleLanguageChange("ua")}>UA</button>
+						<button onClick={() => {handleLanguageChange("ua"); closeMenu()}}>UA</button>
 					</div>
 				</div>
 			</div>

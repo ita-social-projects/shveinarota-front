@@ -27,11 +27,11 @@ export default function ChangePage() {
     }
 
     const formData = new FormData();
-    formData.append("lat", Number(lat));
-    formData.append("lng", Number(lng));
+    formData.append("lat", lat.replace(',', '.'));
+    formData.append("lng", lng.replace(',', '.'));
     formData.append("title", title);
     formData.append("title_en", title_en);
-    formData.append("phone", phone);
+    formData.append("link", phone);
     formData.append("path", file);
 
     console.log(formData);

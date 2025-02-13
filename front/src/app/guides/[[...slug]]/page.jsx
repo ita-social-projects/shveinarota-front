@@ -15,9 +15,6 @@ import { getData } from "api";
 export default function MasterClassPage() {
   const [categories, setCategories] = useState([]);
   const [guidesData, setGuidesData] = useState({});
-  const firstCategory = useRef();
-
-  const sigma = "52";
 
   const params = useParams();
   const { slug } = params;
@@ -43,7 +40,6 @@ export default function MasterClassPage() {
 
   return (
     <div className="guides-container">
-      <Aside categories={categories} className="aside" />
       <div className="container">
         <Questions />
         <main className="main-content">

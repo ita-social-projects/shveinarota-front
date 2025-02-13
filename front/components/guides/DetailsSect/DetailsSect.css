@@ -24,7 +24,7 @@
     align-items: center;
     justify-content: center; /* Центрируем текст внутри */
     width: 350px; /* Фон не слишком широкий */
-    height: 50px;
+    padding: 10px;
     border-radius: 5px;
     margin-bottom: 20px;
   }

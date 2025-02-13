@@ -2,7 +2,7 @@
 
 import '$style/infoPage/Popup.css'
 import dynamic from "next/dynamic";
-const MapBlock = dynamic(() => import('$component/info/MapBlock/MapBlock'), { ssr: false });
+const MapBlockEn = dynamic(() => import('$component/en/MapBlockEn/MapBlockEn'), { ssr: false });
 import MediaBlock from "$component/info/MediaBlock/MediaBlock";
 import InfoBlockEn from "$component/en/InfoBlockEn/InfoBlockEn";
 import CardBlockEn from '$component/en/CardBlockEn/CardBlockEn';
@@ -45,7 +45,7 @@ export default function InfoPage() {
       <ConBlockEn />
       <PartnersBlockEn />
       <MediaBlock />
-      <MapBlock />
+      <MapBlockEn />
     </main>
   );
 }

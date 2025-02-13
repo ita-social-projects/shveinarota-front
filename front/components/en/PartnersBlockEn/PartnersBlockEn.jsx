@@ -7,10 +7,14 @@ import { Autoplay } from "swiper/modules";
 
 const PartnersBlockEn = () => {
 	const [partners, setPartners] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		getData("partners", setPartners)
-	},[])
+		getData("partners", (data) => {
+			setPartners(data)
+			setLoading(false)
+		})
+	}, [])
 
 	return (
 		<div className="partners">
@@ -18,25 +22,32 @@ const PartnersBlockEn = () => {
 			<div className="partners__wrapper">
 				<div className="partners__container">
 					<div className="partners__box">
-						<Swiper
-							slidesPerView="auto"
-							spaceBetween={30}
-							freeMode={true}
-							speed={900}
-							modules={[Autoplay]}
-							autoplay={{
-								delay: 1000,
-								disableOnInteraction: false,
-							}}
-						>
-							{partners.map(partner =>
-								<SwiperSlide className="partners__slide" key={partner.id}>
-									<div className="partners__partner">
-										<img src={process.env.BACK_URL_IMG + partner.path} alt="img" />
-									</div>
-								</SwiperSlide>
-							)}
-						</Swiper>
+						{loading
+							?
+							<div className="spinner-border" role="status">
+								<span className="visually-hidden">Loading...</span>
+							</div>
+							: <Swiper
+								slidesPerView="auto"
+								spaceBetween={30}
+								freeMode={true}
+								speed={900}
+								modules={[Autoplay]}
+								autoplay={{
+									delay: 1000,
+									disableOnInteraction: false,
+								}}
+							>
+								{partners.map(partner =>
+									<SwiperSlide className="partners__slide" key={partner.id}>
+										<div className="partners__partner">
+											<img src={process.env.BACK_URL_IMG + partner.path} alt="img" />
+										</div>
+									</SwiperSlide>
+								)}
+							</Swiper>
+						}
+
 					</div>
 				</div>
 			</div>

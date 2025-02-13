@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
               <Header></Header>
             }
             {children}
-            {!path.includes('dashboard') && !path.includes('guides') &&
+            {!path.includes('dashboard') && !path.includes('guides') && !path.includes('auth') &&
               <Footer></Footer>
             }
           </div>

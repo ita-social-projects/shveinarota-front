@@ -1,10 +1,13 @@
+import { useLang } from "$component/Context/LangContext";
 import "./VideoSect.css"
 
 const VideoSect = ({ masterClassData }) => {
+  const { lang } = useLang();
+
   return (
     <section className="video">
       <div className="video__container">
-        <h2>Майстер-клас</h2>
+        <h2>{lang == "ua" ? "Майстер-клас" : "Master class" }</h2>
         <div className="video__body">
           <div className="spinner-border" role="status">
             <span className="visually-hidden">Loading...</span>
