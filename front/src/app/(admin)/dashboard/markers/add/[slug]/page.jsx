@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "$style/bootstrap.min.css";
 import "$style/admin/Admin.css";
 import dynamic from 'next/dynamic';
 const Bootstrap = dynamic(() => import('$component/guides/Bootstrap/Bootstrap'), { ssr: false });
 import Alert from "$component/dashboard/Alert/Alert";
-import { postData } from "api";
+import { changeData, getData, postData } from "api";
+import { useParams } from "next/navigation";
 
 export default function ChangePage() {
 	const [lat, setLat] = useState("");
@@ -18,32 +19,46 @@ export default function ChangePage() {
 	const [file, setFile] = useState(null);
 	const [showAlert, setShowAlert] = useState(false);
 
+	const [element, setElement] = useState([]);
+
+	const params = useParams();
+	const { slug } = params
+
+	useEffect(() => {
+		getData('markers/' + slug, setElement);
+	}, []);
+
+	useEffect(() => {
+		if (element && Object.keys(element).length > 0) {
+			setLat(element.lat || "");
+			setLng(element.lng || "");
+			setTitle(element.title || "");
+			setTitleEn(element.title_en || "");
+			setPhone(element.link ? element.link : "");
+		}
+	}, [element]);
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
-		if (!file) {
-			alert("Будь ласка, оберіть файл");
-			return;
-		}
 
 		const formData = new FormData();
 		formData.append("lat", Number(lat));
 		formData.append("lng", Number(lng));
 		formData.append("title", title);
 		formData.append("title_en", title_en);
-		formData.append("phone", phone);
+		formData.append("link", phone);
 		formData.append("path", file);
 
 		console.log(formData);
 
-		postData("markers", formData, setShowAlert)
+		changeData("markers", slug, formData, setShowAlert)
 	};
 
 	return (
 		<main className="main">
 			{showAlert && (
 				<Alert
-					message="Маркер був доданий успішно!"
+					message="Маркер був успішно змінений!"
 					onClose={() => setShowAlert(false)}
 				/>
 			)}
@@ -109,17 +124,6 @@ export default function ChangePage() {
 							value={phone}
 							onChange={(e) => setPhone(e.target.value)}
 						/>
-					</div>
-					<div className="input-group mb-3">
-						<input
-							required
-							type="file"
-							className="form-control"
-							id="inputGroupFile02"
-							onChange={(e) => setFile(e.target.files[0])}
-							accept="image/*"
-						/>
-						<label className="input-group-text" htmlFor="inputGroupFile02">Зображення</label>
 					</div>
 					<button type="submit" className="btn btn-primary">Save</button>
 				</form>

@@ -4,8 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 import "./MediaBlock.css";
+import { useLang } from "$component/Context/LangContext";
 
 const MediaBlock = () => {
+
+	const { lang } = useLang();
 
 	const media = [
 		{
@@ -45,6 +48,44 @@ const MediaBlock = () => {
 		},
 	]
 
+	const media_en = [
+		{
+			link: "https://youtu.be/uPhcQOn7pRg?si=p_iuGRwRJt8zgkEU",
+			img: "/images/media/shv.jpg",
+			logo: "/images/media/neym.jpg",
+			title: `“Shveina rota” - how volunteers dress Ukrainian defenders`,
+			author: "НЕЙМОВІРНІ_UA",
+		},
+		{
+			link: "https://www.dw.com/uk/svejna-rota-ak-volonterki-siut-kiberodag-dla-poranenih-vijskovih-19072023/video-66287066",
+			img: "/images/media/dw.png",
+			logo: "/images/media/dw_logo.png",
+			title: `“Shveina rota": volunteers sew ‘cyber boots’ for the wounded`,
+			author: "DW.com",
+		},
+		{
+			link: "https://www.dw.com/uk/svejna-rota-ak-volonterki-siut-kiberodag-dla-poranenih-vijskovih-19072023/video-66287066",
+			img: "/images/media/dw.png",
+			logo: "/images/media/dw_logo.png",
+			title: `“Shveina rota": volunteers sew ‘cyber boots’ for the wounded`,
+			author: "DW.com",
+		},
+		{
+			link: "https://www.dw.com/uk/svejna-rota-ak-volonterki-siut-kiberodag-dla-poranenih-vijskovih-19072023/video-66287066",
+			img: "/images/media/dw.png",
+			logo: "/images/media/dw_logo.png",
+			title: `“Shveina rota": volunteers sew ‘cyber boots’ for the wounded`,
+			author: "DW.com",
+		},
+		{
+			link: "https://www.dw.com/uk/svejna-rota-ak-volonterki-siut-kiberodag-dla-poranenih-vijskovih-19072023/video-66287066",
+			img: "/images/media/dw.png",
+			logo: "/images/media/dw_logo.png",
+			title: `“Shveina rota": volunteers sew ‘cyber boots’ for the wounded`,
+			author: "DW.com",
+		},
+	]
+
 	return (
 		<div className="main__media media">
 			<Swiper
@@ -52,7 +93,7 @@ const MediaBlock = () => {
 				effect="coverflow"
 				centeredSlides={true}
 				loop={true}
-				
+
 				pagination={{
 					el: ".media-pagination",
 					type: "bullets",
@@ -81,22 +122,41 @@ const MediaBlock = () => {
 				}}
 				className="media__container"
 			>
-				{media.map((item, index) => (
-					<SwiperSlide key={index} className="media__slide">
-						<Link href={item.link} target="_blank" className="media__story story">
-							<div className="story__background">
-								<Image src={item.img} alt="media image" width={1920} height={1080} className="story-img" />
-							</div>
-							<div className="story__body">
-								<div className="story__title">{item.title}</div>
-								<div className="story__logo">
-									<Image src={item.logo} alt="logo" width={48} height={48} className="story-logo _round" />
-									{item.author}
+				{lang == "ua"
+					? <>{media.map((item, index) => (
+						<SwiperSlide key={index} className="media__slide">
+							<Link href={item.link} target="_blank" className="media__story story">
+								<div className="story__background">
+									<Image src={item.img} alt="media image" width={1920} height={1080} className="story-img" />
 								</div>
-							</div>
-						</Link>
-					</SwiperSlide>
-				))}
+								<div className="story__body">
+									<div className="story__title">{item.title}</div>
+									<div className="story__logo">
+										<Image src={item.logo} alt="logo" width={48} height={48} className="story-logo _round" />
+										{item.author}
+									</div>
+								</div>
+							</Link>
+						</SwiperSlide>
+					))}</>
+					: <>{media_en.map((item, index) => (
+						<SwiperSlide key={index} className="media__slide">
+							<Link href={item.link} target="_blank" className="media__story story">
+								<div className="story__background">
+									<Image src={item.img} alt="media image" width={1920} height={1080} className="story-img" />
+								</div>
+								<div className="story__body">
+									<div className="story__title">{item.title}</div>
+									<div className="story__logo">
+										<Image src={item.logo} alt="logo" width={48} height={48} className="story-logo _round" />
+										{item.author}
+									</div>
+								</div>
+							</Link>
+						</SwiperSlide>
+					))}</>
+				}
+
 			</Swiper>
 			<div className="swiper-pagination media-pagination"></div>
 		</div>

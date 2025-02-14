@@ -62,7 +62,7 @@ const MapBlock = () => {
 							>
 								<Popup>
 									<h1 className="marker__title">{marker.title}</h1>
-									<div className="marker__number">Зв'язатися з нами:<br /><Link href={marker.link}>{marker.link}</Link></div>
+									<div className="marker__number">Зв'язатися з нами:<br /><Link href={marker.link ? marker.link : "#"}>{marker.link ? marker.link : "Посилання відсутнє"}</Link></div>
 								</Popup>
 							</Marker>
 						)}

@@ -76,17 +76,12 @@ const Footer = () => {
 							<div className="column-footer__body">
 								<div className="column-footer__row">
 									<Link className="column-footer__link" href="#">
-										Кіберодяг
+										{lang == "ua" ? "Кіберодяг" : "Cyberclothing"}
 									</Link>
 								</div>
 								<div className="column-footer__row">
 									<Link className="column-footer__link" href="#">
-										Бронеодяг
-									</Link>
-								</div>
-								<div className="column-footer__row">
-									<Link className="column-footer__link" href="#">
-										Аксесуари
+										{lang == "ua" ? "Бронеодяг" : "Broneodyag"}
 									</Link>
 								</div>
 							</div>

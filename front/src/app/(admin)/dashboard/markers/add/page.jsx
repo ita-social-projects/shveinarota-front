@@ -21,11 +21,6 @@ export default function ChangePage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!file) {
-      alert("Будь ласка, оберіть файл");
-      return;
-    }
-
     const formData = new FormData();
     formData.append("lat", lat.replace(',', '.'));
     formData.append("lng", lng.replace(',', '.'));
@@ -109,17 +104,6 @@ export default function ChangePage() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
-          </div>
-          <div className="input-group mb-3">
-            <input
-              required
-              type="file"
-              className="form-control"
-              id="inputGroupFile02"
-              onChange={(e) => setFile(e.target.files[0])}
-              accept="image/*"
-            />
-            <label className="input-group-text" htmlFor="inputGroupFile02">Зображення</label>
           </div>
           <button type="submit" className="btn btn-primary">Save</button>
         </form>

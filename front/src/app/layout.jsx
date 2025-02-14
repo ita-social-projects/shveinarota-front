@@ -5,10 +5,15 @@ import Header from '$component/Header'
 import { usePathname } from 'next/navigation';
 import Footer from '$component/Footer';
 import { LangProvider } from '$component/Context/LangContext';
+import { useEffect } from 'react';
 
 export default function RootLayout({ children }) {
 
   const path = usePathname()
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [path]);
 
   return (
 
