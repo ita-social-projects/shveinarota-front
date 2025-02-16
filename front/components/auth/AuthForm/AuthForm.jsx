@@ -10,12 +10,9 @@ const AuthForm = () => {
     const [error, setError] = useState("");
     const router = useRouter();
 
-    // Явно указываем ссылку на бэкенд (NestJS)
-    const BACKEND_URL = "http://localhost:3007"; // Измени на свой адрес
-
     // Авторизация через Google
     const Google = () => {
-        router.push(`${BACKEND_URL}/auth/google`);
+        router.push(`${process.env.BACK_URL}/auth/google`);
     };
 
     // Авторизация через базу данных
@@ -27,7 +24,7 @@ const AuthForm = () => {
 
         try {
             await axios.post(
-                `${BACKEND_URL}/auth/login`,
+                `${process.env.BACK_URL}/auth/login`,
                 { username, password }, 
                 {
                     headers: { "Content-Type": "application/json" },
