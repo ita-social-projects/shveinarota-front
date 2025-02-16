@@ -12,7 +12,7 @@ const AuthForm = () => {
 
     // Авторизация через Google
     const Google = () => {
-        router.push(`${process.env.BACK_URL}auth/google`);
+        router.push(`${process.env.BACK_URL_IMG}auth/google`);
     };
 
     // Авторизация через базу данных
@@ -24,7 +24,7 @@ const AuthForm = () => {
 
         try {
             await axios.post(
-                `${process.env.BACK_URL}auth/login`,
+                `${process.env.BACK_URL_IMG}auth/login`,
                 { username, password }, 
                 {
                     headers: { "Content-Type": "application/json" },
