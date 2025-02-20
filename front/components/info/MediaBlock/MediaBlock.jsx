@@ -141,7 +141,6 @@ const MediaBlock = () => {
 					effect="coverflow"
 					centeredSlides={true}
 					loop={true}
-					allowTouchMove={false}
 					pagination={{
 						el: ".media-pagination",
 						type: "bullets",
@@ -162,11 +161,10 @@ const MediaBlock = () => {
 							}
 						},
 						0: {
-							allowTouchMove: true,
 							effect: "slide",
 							slidesPerView: 1,
 							centeredSlides: false,
-							spaceBetween: 30
+							spaceBetween: 10
 						},
 					}}
 				>
