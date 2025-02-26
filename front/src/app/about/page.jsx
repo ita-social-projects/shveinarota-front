@@ -5,7 +5,7 @@ import Link from "next/link";
 import "$style/AboutPage.css"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { Pagination, Navigation } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 
 export default function AboutPage() {
 
