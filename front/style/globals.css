@@ -186,6 +186,10 @@ body {
   background-color: #2e2e3575;
 }
 
+.popup {
+  display: none;
+}
+
 @media (max-width: 678px) {
   ._main-title {
     font-size: 24px;
