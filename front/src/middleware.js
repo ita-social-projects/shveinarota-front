@@ -35,7 +35,7 @@ export async function middleware(request) {
   const isEnglish = lang === "en";
   const isAlreadyEnglishRoute = url.pathname.startsWith("/en");
   const baseRoutes = ["/", "/guides", "/about", "/questions"];
-  const shouldHaveEnPrefix = baseRoutes.some((route) => url.pathname.startsWith(route));
+  const shouldHaveEnPrefix = baseRoutes.some((route) => url.pathname.startsWith(route)) && !url.pathname.startsWith("/dashboard");
 
   if (!isEnglish && isAlreadyEnglishRoute) {
     return NextResponse.redirect(new URL(url.pathname.replace(/^\/en/, ""), request.url));
