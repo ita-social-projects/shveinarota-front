@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
 
   // Закрытие окна при нажатии на крестик
   function closePopup() {
-    document.body.classList.remove("menu-active");
+    document.body.classList.remove("popup-active");
     document.querySelector(".wrapper").style.paddingRight = "0px";
     document.querySelector(".header").style.paddingRight = "0px";
   }
@@ -28,7 +28,8 @@ export default function RootLayout({ children }) {
     if (typeof window !== "undefined") {
       window.addEventListener("click", (event) => {
         if (event.target === popup.current) {
-          document.body.classList.remove("menu-active");
+          document.body.classList.remove("popup-active");
+          console.log("pidaras");
           document.querySelector(".wrapper").style.paddingRight = "0px";
           document.querySelector(".header").style.paddingRight = "0px";
         }

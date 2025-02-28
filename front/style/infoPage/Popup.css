@@ -14,7 +14,7 @@
 	animation: popupAnim 0.1s linear forwards;
 }
 
-.menu-active .popup {
+.popup-active .popup {
 	display: block;
 }
 

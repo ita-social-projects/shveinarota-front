@@ -58,7 +58,7 @@
 
 .column-footer__row {
 	color: #E8DCD0;
-	font-size: 18px;
+	font-size: 18px !important;
 	position: relative;
 	display: inline-block;
 	width: 100%;

@@ -157,6 +157,10 @@ body {
   overflow-y: hidden;
 }
 
+.popup-active {
+  overflow-y: hidden;
+}
+
 ._main-title {
   text-align: center;
   font-size: 28px;

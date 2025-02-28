@@ -10,7 +10,7 @@ const ConBlock = () => {
 
     // Открытие окна
     function openPopup() {
-        document.body.classList.add("menu-active");
+        document.body.classList.add("popup-active");
         document.querySelector(".wrapper").style.paddingRight = scrollbarWidth + "px";
         document.querySelector(".header").style.paddingRight = scrollbarWidth + "px";
     }

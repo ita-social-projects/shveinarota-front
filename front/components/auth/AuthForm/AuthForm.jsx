@@ -14,12 +14,12 @@ const AuthForm = () => {
 
     const [showPassword, setShowPassword] = useState(false);
 
-    // Авторизация через Google
+    // Авторизація через Google
     const Google = () => {
         router.push(`${process.env.BACK_URL_IMG}auth/google`);
     };
 
-    // Авторизация через базу данных
+    // Авторизація через базу даних
     const DataBase = async () => {
         if (!username || !password) {
             setError("Будь ласка, заповніть всі поля");
@@ -32,11 +32,14 @@ const AuthForm = () => {
                 { username, password },
                 {
                     headers: { "Content-Type": "application/json" },
-                    withCredentials: true, // Включаем поддержку cookies
+                    withCredentials: true,
                 }
             );
 
-            router.push("/dashboard"); // Перенаправление после успешного входа
+            // Встановлюємо кукі logged_in
+            document.cookie = "logged_in=true; path=/; max-age=86400; Secure; SameSite=Lax";
+
+            router.push("/dashboard");
         } catch (err) {
             setError("Неправильне ім'я користувача або пароль");
             console.error("Помилка авторизації:", err);

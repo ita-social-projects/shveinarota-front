@@ -221,7 +221,7 @@
 	.right .menu {
 		flex-direction: column;
 	}
-	.menu .menu__link, button {
+	.menu .menu__link, .menulang button {
 		font-size: 24px;
 	}
 	._menu {

@@ -128,9 +128,11 @@
 	.infobox__container1 h1 {
 		font-size: 26px;
 	}
+
 	.infobox__container1 {
 		padding: 60px 15px;
 	}
+
 	.infobox__container1 h2 p {
 		font-size: 20px;
 	}
@@ -142,11 +144,28 @@
 		gap: 30px;
 		padding: 20px 15px;
 	}
+
 	.right h1 {
 		font-size: 26px;
 	}
+
 	.right h2 {
 		font-size: 22px;
+	}
+}
+
+@media (max-width: 768px) {
+	.right h1 {
+		font-size: 22px;
+	}
+
+	.right h2 {
+		font-size: 18px;
+	}
+
+	.infobox .left {
+		min-width: 0;
+		width: 200px;
 	}
 }
 
@@ -201,10 +220,14 @@
 
 @media (max-width: 900px) {
 	.infobox__container {
-		padding: 20px 15px 45px 15px;
+		padding: 20px 8px 45px 8px;
 	}
 
 	.order__link {
 		font-size: 24px;
+	}
+
+	.infobox__slide {
+		padding: 0px;
 	}
 }
