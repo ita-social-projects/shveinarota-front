@@ -1,50 +1,79 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
-import { forwardRef } from "react";
+import { useEffect, useState, useRef } from "react";
+import "./Card.css";
 
+const Card = ({ title, number, img }) => {
+	const [count, setCount] = useState(0);
+	const [fontSize, setFontSize] = useState('20px'); // Состояние для размера шрифта
+	const ref = useRef(null);
+	const hasAnimated = useRef(false); // Флаг, чтобы не перезапускать анимацию
 
+	useEffect(() => {
+		const handleScroll = () => {
+			if (ref.current && !hasAnimated.current) {
+				const rect = ref.current.getBoundingClientRect();
+				if (rect.top < window.innerHeight - 100) {
+					hasAnimated.current = true;
+					animateNumber();
+				}
+			}
+		};
 
-const Card = forwardRef(({ title, number, img }, ref) => {
+		const animateNumber = () => {
+			let start = 0;
+			const end = parseInt(number.replace(/\D/g, ""), 10) || 0; // Оставляем только цифры
+			const duration = 1500; // Длительность анимации (мс)
+			const startTime = performance.now();
 
-	const blockAnitmation = {
-		hidden: {
-			y: 70,
-			opacity: 0,
-		},
-		visible: custom => ({
-			y: 0,
-			opacity: 1,
-			transition: { delay: custom * 0.2 },
-		}),
-	}
+			const updateNumber = (currentTime) => {
+				const elapsedTime = currentTime - startTime;
+				const progress = Math.min(elapsedTime / duration, 1); // Ограничиваем от 0 до 1
+				const currentValue = Math.floor(progress * end);
+
+				setCount(currentValue);
+
+				if (progress < 1) {
+					requestAnimationFrame(updateNumber);
+				}
+			};
+
+			requestAnimationFrame(updateNumber);
+		};
+
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, [number]);
+
+	const blockAnimation = {
+		hidden: { y: 70, opacity: 0 },
+		visible: { y: 0, opacity: 1, transition: { delay: 0.2 } },
+	};
 
 	return (
-		<motion.div initial="hidden"
+		<motion.div
+			initial="hidden"
 			whileInView="visible"
-			viewport={{ amount: 0, once: true }}
+			viewport={{ once: true, amount: 0.3 }}
 			ref={ref}
 			className="card"
-
-			custom={1}
-			variants={blockAnitmation}
+			variants={blockAnimation}
 		>
-			<div className="card__top">
-				<p className="card__number">{number}</p>
-				<Image
-					src={'http://drive.google.com/uc?export=view&id=' + img}
-					height={30}
-					width={30}
-					alt="icon"
-				/>
-			</div>
-			<div className="card__bottom">
-				<h1 className="card__title">{title}</h1>
+			<div className="card__content">
+				<div className="card_top">
+					<Image
+						src={'http://drive.google.com/uc?export=view&id=' + img}
+						height={55}
+						width={55}
+						alt="icon"
+					/>
+					<p className="card__number">{count.toLocaleString()}+</p>
+				</div>
+
+				<h1 className="card__title" style={{ fontSize: fontSize }}>{title}</h1> {/* Применяем динамический размер шрифта */}
 			</div>
 		</motion.div>
 	);
-});
+};
 
-Card.displayName = 'Card';
 export default Card;
-
-export const MCard = motion(Card)

@@ -24,6 +24,7 @@ export default function AdminLayout({ children }) {
 										<li><Link className="dropdown-item" href="/dashboard/cards">Статистичні картки</Link></li>
 										<li><Link className="dropdown-item" href="/dashboard/media">Медіа посилання</Link></li>
 										<li><Link className="dropdown-item" href="/dashboard/partners">Партнери</Link></li>
+										<li><Link className="dropdown-item" href="/dashboard/plots">Cлайди-сюжети</Link></li>
 										<li><Link className="dropdown-item" href="/dashboard/markers">Маркери на мапі</Link></li>
 										<li><Link className="dropdown-item" href="/dashboard/categories">Категорії кібер-одягу</Link></li>
 										<li><Link className="dropdown-item" href="/dashboard/masterclass">Майстер-класи</Link></li>

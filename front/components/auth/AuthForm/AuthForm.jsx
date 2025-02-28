@@ -37,7 +37,7 @@ const AuthForm = () => {
             );
 
             // Встановлюємо кукі logged_in
-            document.cookie = "logged_in=true; path=/; max-age=86400; Secure; SameSite=Lax";
+            document.cookie = `logged_in=${process.env.LOGGED_IN_SECRET}; path=/; max-age=3600; Secure; SameSite=Lax`;
 
             router.push("/dashboard");
         } catch (err) {

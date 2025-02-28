@@ -4,7 +4,7 @@ export async function middleware(request) {
   const url = request.nextUrl;
   const cookies = request.cookies;
   const lang = cookies.get("lang")?.value || "ua"; // Проверка на язык
-  const isLoggedIn = cookies.get("logged_in")?.value === "true";
+  const isLoggedIn = cookies.get("logged_in")?.value === process.env.LOGGED_IN_SECRET;
 
   // Пропускаем системные файлы и маршруты авторизации
   if (
