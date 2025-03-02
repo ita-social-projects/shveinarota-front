@@ -76,6 +76,22 @@
 	color: rgb(82, 223, 129);
 }
 
+.header__support {
+	background-color: rgb(82, 223, 129);
+	padding: 5px 9px;
+	border-radius: 5px;
+	color: #2e2e35;
+	display: flex;
+	flex-direction: row-reverse;
+	gap: 8px;
+	align-items: center;
+	transition: all 0.3s ease 0s;
+}
+
+.header__support:hover {
+	background-color: rgb(62, 185, 103);
+}
+
 ._line {
 	position: absolute;
 	left: 50%;
@@ -87,7 +103,7 @@
 }
 
 .menu .menu__link, button {
-	font-size: 18px; 
+	font-size: 16px; 
 	font-family: 'intro', sans-serif; 
 	color: #E8DCD0;
 	text-decoration: none;
@@ -199,17 +215,19 @@
 	padding: 0;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1050px) {
 	.header {
 		height: 75px;
 	}
 	.menu .menu__link, button {
-		font-size: 18px;
+		font-size: 15px;
 	}
 	.logo_shveya {
 		max-width: 146px;
 	}
-	
+	.right .menu {
+		gap: 24px;
+	}
 }
 
 

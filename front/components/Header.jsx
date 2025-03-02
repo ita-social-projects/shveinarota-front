@@ -6,6 +6,7 @@ import "$style/Header.css";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useLang } from "./Context/LangContext";
+import { useScrollbarWidth } from "$hooks/useScrollbarWidth";
 
 const Header = () => {
 	const location = usePathname();
@@ -13,6 +14,16 @@ const Header = () => {
 	const router = useRouter();
 
 	const { lang, changeLanguage } = useLang();
+
+	const scrollbarWidth = useScrollbarWidth();
+
+	// Открытие окна
+	function openPopup() {
+		console.log("Попап відкривається");
+		document.body.classList.add("popup-active");
+		document.querySelector(".wrapper").style.paddingRight = scrollbarWidth + "px";
+		document.querySelector(".header").style.paddingRight = scrollbarWidth + "px";
+	}
 
 	const handleLanguageChange = (language) => {
 		let currentPath = location;
@@ -89,11 +100,22 @@ const Header = () => {
 						>
 							{lang == "ua" ? "Про нас" : "About us"}
 						</Link>
+						<button onClick={openPopup} className="header__support">
+							<Image
+								src="/images/header/donate.svg"
+								alt="Logo"
+								width={24}
+								height={24}
+								className="logo-img"
+								priority
+							/>
+							Підтримати
+						</button>
 					</nav>
 					<div className="menulang">
-						<button onClick={() => {handleLanguageChange("en"); closeMenu()}}>EN</button>
+						<button onClick={() => { handleLanguageChange("en"); closeMenu() }}>EN</button>
 						<div className="_line"></div>
-						<button onClick={() => {handleLanguageChange("ua"); closeMenu()}}>UA</button>
+						<button onClick={() => { handleLanguageChange("ua"); closeMenu() }}>UA</button>
 					</div>
 				</div>
 			</div>

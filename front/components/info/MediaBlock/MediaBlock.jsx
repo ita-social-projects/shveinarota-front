@@ -6,87 +6,23 @@ import Image from "next/image";
 import "./MediaBlock.css";
 import { useLang } from "$component/Context/LangContext";
 import { useEffect, useState } from "react";
+import { getData } from "api";
 
 const MediaBlock = () => {
 
 	const { lang } = useLang();
 	const [isMobileView, setIsMobileView] = useState(false);
+	const [media, setMedia] = useState([]);
 
-	const media = [
-		{
-			link: "https://youtu.be/uPhcQOn7pRg?si=p_iuGRwRJt8zgkEU",
-			img: "/images/media/shv.jpg",
-			logo: "/images/media/neym.jpg",
-			title: `"Швейна рота" - як волонтери одягають українських захисників`,
-			author: "НЕЙМОВІРНІ_UA",
-		},
-		{
-			link: "https://www.dw.com/uk/svejna-rota-ak-volonterki-siut-kiberodag-dla-poranenih-vijskovih-19072023/video-66287066",
-			img: "/images/media/dw.png",
-			logo: "/images/media/dw_logo.png",
-			title: `"Швейна рота": волонтерки шиють "кіберодяг" для поранених`,
-			author: "DW.com",
-		},
-		{
-			link: "https://www.dw.com/uk/svejna-rota-ak-volonterki-siut-kiberodag-dla-poranenih-vijskovih-19072023/video-66287066",
-			img: "/images/media/dw.png",
-			logo: "/images/media/dw_logo.png",
-			title: `"Швейна рота": волонтерки шиють "кіберодяг" для поранених`,
-			author: "DW.com",
-		},
-		{
-			link: "https://www.dw.com/uk/svejna-rota-ak-volonterki-siut-kiberodag-dla-poranenih-vijskovih-19072023/video-66287066",
-			img: "/images/media/dw.png",
-			logo: "/images/media/dw_logo.png",
-			title: `"Швейна рота": волонтерки шиють "кіберодяг" для поранених`,
-			author: "DW.com",
-		},
-		{
-			link: "https://www.dw.com/uk/svejna-rota-ak-volonterki-siut-kiberodag-dla-poranenih-vijskovih-19072023/video-66287066",
-			img: "/images/media/dw.png",
-			logo: "/images/media/dw_logo.png",
-			title: `"Швейна рота": волонтерки шиють "кіберодяг" для поранених`,
-			author: "DW.com",
-		},
-	]
+	const getYoutubeThumbnail = (url) => {
+		const regex = /(?:youtu\.be\/|youtube\.com\/(?:.*v=|embed\/|v\/|.+&v=))([^&?/]+)/;
+		const match = url.match(regex);
+		return match ? `https://img.youtube.com/vi/${match[1]}/maxresdefault.jpg` : null;
+	};
 
-	const media_en = [
-		{
-			link: "https://youtu.be/uPhcQOn7pRg?si=p_iuGRwRJt8zgkEU",
-			img: "/images/media/shv.jpg",
-			logo: "/images/media/neym.jpg",
-			title: `“Shveina rota” - how volunteers dress Ukrainian defenders`,
-			author: "НЕЙМОВІРНІ_UA",
-		},
-		{
-			link: "https://www.dw.com/uk/svejna-rota-ak-volonterki-siut-kiberodag-dla-poranenih-vijskovih-19072023/video-66287066",
-			img: "/images/media/dw.png",
-			logo: "/images/media/dw_logo.png",
-			title: `“Shveina rota": volunteers sew ‘cyber boots’ for the wounded`,
-			author: "DW.com",
-		},
-		{
-			link: "https://www.dw.com/uk/svejna-rota-ak-volonterki-siut-kiberodag-dla-poranenih-vijskovih-19072023/video-66287066",
-			img: "/images/media/dw.png",
-			logo: "/images/media/dw_logo.png",
-			title: `“Shveina rota": volunteers sew ‘cyber boots’ for the wounded`,
-			author: "DW.com",
-		},
-		{
-			link: "https://www.dw.com/uk/svejna-rota-ak-volonterki-siut-kiberodag-dla-poranenih-vijskovih-19072023/video-66287066",
-			img: "/images/media/dw.png",
-			logo: "/images/media/dw_logo.png",
-			title: `“Shveina rota": volunteers sew ‘cyber boots’ for the wounded`,
-			author: "DW.com",
-		},
-		{
-			link: "https://www.dw.com/uk/svejna-rota-ak-volonterki-siut-kiberodag-dla-poranenih-vijskovih-19072023/video-66287066",
-			img: "/images/media/dw.png",
-			logo: "/images/media/dw_logo.png",
-			title: `“Shveina rota": volunteers sew ‘cyber boots’ for the wounded`,
-			author: "DW.com",
-		},
-	]
+	useEffect(() => {
+		getData("plots/all", setMedia);
+	}, []);
 
 	useEffect(() => {
 		if (window != undefined) {
@@ -124,7 +60,7 @@ const MediaBlock = () => {
 					{media.map((item, index) => (
 						<SwiperSlide key={index} className="media-background__slide">
 							<div className="media__background story__background">
-								<Image src={item.img} alt="media image" width={1920} height={1080} className="media-img" />
+								<Image src={getYoutubeThumbnail(item.url)} alt="media image" width={1920} height={1080} className="media-img" />
 							</div>
 						</SwiperSlide>
 					))}
@@ -168,41 +104,22 @@ const MediaBlock = () => {
 						},
 					}}
 				>
-					{lang == "ua"
-						? <>{media.map((item, index) => (
-							<SwiperSlide key={index} className="media__slide">
-								<Link href={item.link} target="_blank" className="media__story story">
-									<div className="story__background">
-										<Image src={item.img} alt="media image" width={1920} height={1080} className="story-img" />
+					{media.map((item, index) => (
+						<SwiperSlide key={index} className="media__slide">
+							<Link href={item.url} target="_blank" className="media__story story">
+								<div className="story__background">
+									<Image src={getYoutubeThumbnail(item.url)} alt="media image" width={1920} height={1080} className="story-img" />
+								</div>
+								<div className="story__body">
+									<div className="story__title">{item.title}</div>
+									<div className="story__logo">
+										<Image src={'http://drive.google.com/uc?export=view&id=' + item.path} alt="logo" width={48} height={48} className="story-logo _round" />
+										{item.title_en}
 									</div>
-									<div className="story__body">
-										<div className="story__title">{item.title}</div>
-										<div className="story__logo">
-											<Image src={item.logo} alt="logo" width={48} height={48} className="story-logo _round" />
-											{item.author}
-										</div>
-									</div>
-								</Link>
-							</SwiperSlide>
-						))}</>
-						: <>{media_en.map((item, index) => (
-							<SwiperSlide key={index} className="media__slide">
-								<Link href={item.link} target="_blank" className="media__story story">
-									<div className="story__background">
-										<Image src={item.img} alt="media image" width={1920} height={1080} className="story-img" />
-									</div>
-									<div className="story__body">
-										<div className="story__title">{item.title}</div>
-										<div className="story__logo">
-											<Image src={item.logo} alt="logo" width={48} height={48} className="story-logo _round" />
-											{item.author}
-										</div>
-									</div>
-								</Link>
-							</SwiperSlide>
-						))}</>
-					}
-
+								</div>
+							</Link>
+						</SwiperSlide>
+					))}
 				</Swiper>
 				{/* Кнопки слайдера */}
 				<div className="swiper-buttons__container">
