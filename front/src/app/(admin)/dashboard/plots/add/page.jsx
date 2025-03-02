@@ -52,7 +52,7 @@ export default function ChangePage() {
         <h1 className="form-title admin-title mb-4">Додати сюжет</h1>
         <form className="form needs-validation" onSubmit={handleSubmit}>
           <div className="ua">
-            <ImageInput image={file} setImage={setFile}/>
+            <ImageInput placeholder="Посиланн на логотип каналу з Google Drive" image={file} setImage={setFile} />
             <div className="input-group mb-3">
               <span className="input-group-text" id="inputGroup-sizing-default">Заголовок:</span>
               <input
@@ -65,8 +65,22 @@ export default function ChangePage() {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
+            <div className="en">
+              <div className="input-group mb-3">
+                <span className="input-group-text" id="inputGroup-sizing-default">Назва каналу:</span>
+                <input
+                  required
+                  type="text"
+                  className="form-control"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-default"
+                  value={title_en}
+                  onChange={(e) => setTitleEn(e.target.value)}
+                />
+              </div>
+            </div>
             <div className="input-group mb-3">
-              <span className="input-group-text" id="inputGroup-sizing-default">Url</span>
+              <span className="input-group-text" id="inputGroup-sizing-default">Посилання на відео</span>
               <input
                 required
                 type="text"
@@ -75,20 +89,6 @@ export default function ChangePage() {
                 aria-describedby="inputGroup-sizing-default"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="en">
-            <div className="input-group mb-3">
-              <span className="input-group-text" id="inputGroup-sizing-default">Заголовок (англ):</span>
-              <input
-                required
-                type="text"
-                className="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
-                value={title_en}
-                onChange={(e) => setTitleEn(e.target.value)}
               />
             </div>
           </div>

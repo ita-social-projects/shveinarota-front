@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ['localhost', 'drive.google.com', 'shveya.onrender.com'], // Укажите домены, которые можно использовать
+		domains: ['localhost', 'drive.google.com', 'shveya.onrender.com', 'img.youtube.com'], // Укажите домены, которые можно использовать
 	},
 	env: {
 		BACK_URL: process.env.BACK_URL,

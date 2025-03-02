@@ -42,6 +42,8 @@ const Card = ({ title, number, img }) => {
 		};
 
 		window.addEventListener("scroll", handleScroll);
+		handleScroll(); // Вызываем сразу, чтобы проверить, в зоне видимости ли элемент
+
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, [number]);
 

@@ -97,6 +97,8 @@
 
 .story__background {
 	position: relative;
+	display: flex;
+	justify-content: center;
 }
 
 .story__background::before {
@@ -121,9 +123,16 @@
 .story__logo {
 	display: flex;
 	align-items: center;
-	gap: 6px;
-	color: #eee;
+	gap: 12px;
+	color: #2e2e35;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 18px;
+	color: #eee;
+}
+
+.story__logo img {
+	height: 48px;
+	width: 48px;
 }
 
 ._round {

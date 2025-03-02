@@ -10,12 +10,8 @@
 	background-color: #2e2e35;
 }
 
-.partners__box {
-	position: relative;
-}
-
 .partners__container {
-	max-width: 80%;
+	max-width: 1200px;
 	padding: 55px 15px;
 	margin: 0 auto;
 	cursor: pointer;
