@@ -1,19 +1,44 @@
+"use client";
+
 import Link from "next/link";
-import "./About.css"; 
+import { motion } from "framer-motion";
+import "./About.css";
 
 const AboutSection = () => {
   return (
     <div className="About-section">
-      <div className="About-box">
+      <motion.div
+        initial={{ x: -200, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="About-box"
+      >
         <div className="Left-side-About">
           {/* Верхний блок с заголовком и колонной */}
           <div className="side-top-About">
-            <h2 className="about-title">Про нас</h2>
-            <div className="column_about"></div>
+            <motion.h2
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+              className="about-title"
+            >
+              Про нас
+            </motion.h2>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "40%" }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+              className="column_about"
+            />
           </div>
 
           {/* Нижний блок с текстом */}
-          <div className="side-bot-About">
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+            className="side-bot-About"
+          >
             <p className="about-text">
               Ми - Марина Пальченко та Ксенія Самойлич, засновниці “Швейної роти”, яка пошила 100 000+ одиниць адаптивного одягу для поранених захисників у 90+ госпіталів України та об’єднала навколо себе 700+ волонтерів в усіх частинах світу.
               <br /><br />
@@ -25,9 +50,9 @@ const AboutSection = () => {
               <br /><br />
               Майстрині ініціативи знімають детальні покрокові відео майстер-класи з пошиття всіх виробів та оцифровані лекала, аби навіть новачки могли долучатись до ініціативи з будь-якого міста. Саме вони опубліковані в <Link className="about-link" style={{ color: "#4682B4"}} href={"/guides"}>“Навчальний центр”</Link>.
             </p>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

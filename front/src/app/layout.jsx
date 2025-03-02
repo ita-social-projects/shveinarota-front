@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import '$style/globals.css'
-import Header from '$component/Header'
+import '$style/globals.css';
+import Header from '$component/Header';
 import { usePathname } from 'next/navigation';
 import Footer from '$component/Footer';
 import { LangProvider } from '$component/Context/LangContext';
@@ -9,15 +9,21 @@ import { useEffect, useRef } from 'react';
 import PopupLink from '$component/en/ConBlockEn/PopupLink/PopupLink';
 
 export default function RootLayout({ children }) {
-
   const path = usePathname();
+  const previousPath = useRef(path);
   const popup = useRef();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [path]);
 
-  // Закрытие окна при нажатии на крестик
+  useEffect(() => {
+    if (previousPath.current.startsWith("/dashboard") && !path.startsWith("/dashboard")) {
+      window.location.reload();
+    }
+    previousPath.current = path;
+  }, [path]);
+
   function closePopup() {
     document.body.classList.remove("popup-active");
     document.querySelector(".wrapper").style.paddingRight = "0px";
@@ -29,7 +35,6 @@ export default function RootLayout({ children }) {
       window.addEventListener("click", (event) => {
         if (event.target === popup.current) {
           document.body.classList.remove("popup-active");
-          console.log("pidaras");
           document.querySelector(".wrapper").style.paddingRight = "0px";
           document.querySelector(".header").style.paddingRight = "0px";
         }
@@ -38,9 +43,7 @@ export default function RootLayout({ children }) {
   }, []);
 
   return (
-
     <html lang="en">
-
       <head>
         <title>Швейна рота</title>
         <meta name="description" content='Волонтерський проєкт - "Швейна рота"' />
@@ -51,10 +54,9 @@ export default function RootLayout({ children }) {
         <meta name="robots" content="index, follow" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='true' />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Neucha&family=Unbounded:wght@200..900&display=swap" rel="stylesheet" />
       </head>
-
       <body>
         <LangProvider>
           <div ref={popup} id="popup" className="popup">
@@ -66,14 +68,10 @@ export default function RootLayout({ children }) {
               <PopupLink href="https://send.monobank.ua/jar/5VV7zhDJGY" text="5375 4112 0381 7304" img="/images/mono.jpg" />
             </div>
           </div>
-          <div className='wrapper'>
-            {!path.includes('dashboard') &&
-              <Header></Header>
-            }
+          <div className="wrapper">
+            {!path.includes('dashboard') && <Header />}
             {children}
-            {!path.includes('dashboard') && !path.includes('guides') && !path.includes('auth') &&
-              <Footer></Footer>
-            }
+            {!path.includes('dashboard') && !path.includes('guides') && !path.includes('auth') && <Footer />}
           </div>
         </LangProvider>
       </body>
