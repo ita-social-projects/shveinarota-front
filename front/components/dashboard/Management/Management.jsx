@@ -23,6 +23,7 @@ const Management = () => {
 					<ManagementElement title="Маркери на мапі" number={statistic.Marker} addLink="dashboard/markers/add" link="dashboard/markers" />
 					<ManagementElement title="Категорії кібер-одягу" number={statistic.Category} addLink="dashboard/categories/add" link="dashboard/categories" />
 					<ManagementElement title="Майстер-класи" number={statistic.Subcategory} addLink="dashboard/masterclass/add" link="dashboard/masterclass" />
+					<ManagementElement title="Наша команда" number={statistic.Team} addLink="dashboard/team/add" link="dashboard/team" />
 				</ul>
 			</div>
 		</>
