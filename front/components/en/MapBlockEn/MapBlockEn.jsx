@@ -7,6 +7,7 @@ import SearchMarkers from "$component/en/MapBlockEn/Search/Search";
 import { useLang } from "$component/Context/LangContext";
 import Link from "next/link";
 import { getData, getEnData } from "api";
+import Image from "next/image";
 
 const MapBlockEn = () => {
 	const [selectedPoint, setSelectedPoint] = useState(null);
@@ -35,10 +36,14 @@ const MapBlockEn = () => {
 		setSelectedPoint({ lat, lng });
 	};
 
+	const truncateText = (text, maxLength) => {
+		return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+	};
+
 	return (
 		<div className="map">
 			<div className="map__container">
-				<h2 className="map__title _main-title">{lang == "ua" ? "Знайти нас на мапі" : "Find us on the map"}</h2>
+				<h2 className="map__title _main-title">Geography of the Shveina rota</h2>
 				<SearchMarkers markers={markers.length > 0 ? markers : []} handleZoom={handleZoom} />
 				<div className="map__body">
 					<MapContainer
@@ -61,8 +66,20 @@ const MapBlockEn = () => {
 								icon={customIcon}
 							>
 								<Popup>
-									<h1 className="marker__title">{marker.title_en}</h1>
-									<div className="marker__number">Connect with us:<br /><Link href={marker.link ? marker.link : "#"}>{marker.link ? marker.link : "No link"}</Link></div>
+									<div className="marker">
+										<div className="marker__logo">
+											<Image
+												src={'http://drive.google.com/uc?export=view&id=' + marker.path}
+												height={105}
+												width={105}
+												alt="icon"
+											/>
+										</div>
+										<div className="marker__body">
+											<h4 className="marker__title">{marker.title_en}</h4>
+											<div className="marker__number">Contact us:<br /><Link href={marker.link ? marker.link : "#"}>{marker.link ? truncateText(marker.link, 40) : "Посилання відсутнє"}</Link></div>
+										</div>
+									</div>
 								</Popup>
 							</Marker>
 						)}

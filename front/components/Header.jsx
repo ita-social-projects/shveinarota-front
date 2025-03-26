@@ -88,17 +88,17 @@ const Header = () => {
 						</Link>
 						<Link
 							onClick={closeMenu}
-							className={location.includes("guides") ? "menu__link link-active" : "menu__link"}
-							href={"/guides"}
-						>
-							{lang == "ua" ? "Навчальний центр" : "Training center"}
-						</Link>
-						<Link
-							onClick={closeMenu}
 							className={location.includes("/about") ? "menu__link link-active" : "menu__link"}
 							href={"/about"}
 						>
 							{lang == "ua" ? "Про нас" : "About us"}
+						</Link>
+						<Link
+							onClick={closeMenu}
+							className={location.includes("guides") ? "menu__link link-active" : "menu__link"}
+							href={"/guides"}
+						>
+							{lang == "ua" ? "Навчальний центр" : "Training center"}
 						</Link>
 						<button onClick={openPopup} className="header__support">
 							<Image
@@ -109,7 +109,7 @@ const Header = () => {
 								className="logo-img"
 								priority
 							/>
-							Підтримати
+							{lang == "ua" ? "Підтримати" : "Support us"}
 						</button>
 					</nav>
 					<div className="menulang">

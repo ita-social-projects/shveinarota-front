@@ -30,13 +30,12 @@
 
 
 .spoller__link {
-    font-size: 16px;
+    font-size: 18px;
     color: #e8dcd0;
     font-family: 'anonymousprobold', sans-serif;
     line-height: 1.5;
     display: block;
 		padding-left: 22px;
-		
 	}
 
 .spoller-active .spoller__icon img {

@@ -10,6 +10,7 @@ import Alert from "$component/dashboard/Alert/Alert";
 import { changeData, getData, postData } from "api";
 import { useParams } from "next/navigation";
 import MapPicker from "$component/dashboard/MapPicker/MapPicker";
+import ImageInput from "$component/dashboard/ImageInput/ImageInput";
 
 export default function ChangePage() {
 	const [lat, setLat] = useState("");
@@ -17,7 +18,7 @@ export default function ChangePage() {
 	const [title, setTitle] = useState("");
 	const [title_en, setTitleEn] = useState("");
 	const [phone, setPhone] = useState("");
-	const [file, setFile] = useState(null);
+	const [file, setFile] = useState("");
 	const [showAlert, setShowAlert] = useState(false);
 
 	const [element, setElement] = useState([]);
@@ -36,6 +37,7 @@ export default function ChangePage() {
 			setTitle(element.title || "");
 			setTitleEn(element.title_en || "");
 			setPhone(element.link ? element.link : "");
+			setFile(element.path || "")
 		}
 	}, [element]);
 
@@ -69,6 +71,8 @@ export default function ChangePage() {
 				<MapPicker lat={lat} lng={lng} setLat={setLat} setLng={setLng} />
 
 				<form className="form needs-validation" onSubmit={handleSubmit}>
+					<ImageInput image={file} setImage={setFile} />
+
 					<div className="input-group mb-3">
 						<span className="input-group-text" id="inputGroup-sizing-default">Широта:</span>
 						<input

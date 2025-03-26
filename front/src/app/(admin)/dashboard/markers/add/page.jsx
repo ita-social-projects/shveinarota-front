@@ -9,6 +9,7 @@ const Bootstrap = dynamic(() => import('$component/guides/Bootstrap/Bootstrap'),
 const MapPicker = dynamic(() => import("$component/dashboard/MapPicker/MapPicker"), { ssr: false });
 import Alert from "$component/dashboard/Alert/Alert";
 import { postData } from "api";
+import ImageInput from "$component/dashboard/ImageInput/ImageInput";
 
 export default function ChangePage() {
   const [lat, setLat] = useState("");
@@ -16,7 +17,7 @@ export default function ChangePage() {
   const [title, setTitle] = useState("");
   const [title_en, setTitleEn] = useState("");
   const [phone, setPhone] = useState("");
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState("");
   const [showAlert, setShowAlert] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -35,6 +36,20 @@ export default function ChangePage() {
     postData("markers", formData, setShowAlert)
   };
 
+  const handleLatChange = (e) => {
+    let value = e.target.value.replace(",", ".");
+    if (/^-?\d*\.?\d*$/.test(value)) {
+      setLat(value);
+    }
+  };
+
+  const handleLngChange = (e) => {
+    let value = e.target.value.replace(",", ".");
+    if (/^-?\d*\.?\d*$/.test(value)) {
+      setLng(value);
+    }
+  };
+
   return (
     <main className="main">
       {showAlert && (
@@ -49,6 +64,8 @@ export default function ChangePage() {
         <MapPicker lat={lat} lng={lng} setLat={setLat} setLng={setLng} />
 
         <form className="form needs-validation" onSubmit={handleSubmit}>
+          <ImageInput image={file} setImage={setFile} />
+
           <div className="input-group mb-3">
             <span className="input-group-text" id="inputGroup-sizing-default">Широта:</span>
             <input
@@ -58,7 +75,7 @@ export default function ChangePage() {
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               value={lat}
-              onChange={(e) => setLat(e.target.value)}
+              onChange={(e) => handleLatChange(e)}
             />
           </div>
           <div className="input-group mb-3">
@@ -70,7 +87,7 @@ export default function ChangePage() {
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               value={lng}
-              onChange={(e) => setLng(e.target.value)}
+              onChange={(e) => handleLngChange(e)}
             />
           </div>
           <div className="input-group mb-3">

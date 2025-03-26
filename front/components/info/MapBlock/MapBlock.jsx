@@ -7,12 +7,11 @@ import SearchMarkers from "$component/info/MapBlock/Search/Search";
 import { useLang } from "$component/Context/LangContext";
 import Link from "next/link";
 import { getData } from "api";
+import Image from "next/image";
 
 const MapBlock = () => {
 	const [selectedPoint, setSelectedPoint] = useState(null);
 	const [markers, setMarkers] = useState([]);
-
-	const { lang } = useLang();
 
 	useEffect(() => {
 		getData("markers", setMarkers)
@@ -35,10 +34,14 @@ const MapBlock = () => {
 		setSelectedPoint({ lat, lng });
 	};
 
+	const truncateText = (text, maxLength) => {
+		return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+	};
+
 	return (
 		<div className="map">
 			<div className="map__container">
-				<h2 className="map__title _main-title">{lang == "ua" ? "Знайти нас на мапі" : "Find us on the map"}</h2>
+				<h2 className="map__title _main-title">Географія Швейної роти</h2>
 				<SearchMarkers markers={markers} handleZoom={handleZoom} />
 				<div className="map__body">
 					<MapContainer
@@ -61,13 +64,25 @@ const MapBlock = () => {
 								icon={customIcon}
 							>
 								<Popup>
-									<h1 className="marker__title">{marker.title}</h1>
-									<div className="marker__number">Зв'язатися з нами:<br /><Link href={marker.link ? marker.link : "#"}>{marker.link ? marker.link : "Посилання відсутнє"}</Link></div>
+									<div className="marker">
+										<div className="marker__logo">
+											<Image
+												src={'http://drive.google.com/uc?export=view&id=' + marker.path}
+												height={105}
+												width={105}
+												alt="icon"
+											/>
+										</div>
+										<div className="marker__body">
+											<h3 className="marker__title">{marker.title}</h3>
+											<div className="marker__number">Зв'язатися з нами:<br /><Link href={marker.link ? marker.link : "#"}>{marker.link ? truncateText(marker.link, 40) : "Посилання відсутнє"}</Link></div>
+										</div>
+									</div>
 								</Popup>
 							</Marker>
 						)}
 
-						{selectedPoint && <ZoomToPoint lat={selectedPoint.lat} lng={selectedPoint.lng} />}
+						{selectedPoint && <ZoomToPoint lat={selectedPoint.lat + 3} lng={selectedPoint.lng} />}
 					</MapContainer>
 				</div>
 			</div>

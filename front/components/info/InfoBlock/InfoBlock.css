@@ -24,7 +24,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 70px;
+	gap: 80px;
 }
 
 .swiper-wrapper {
@@ -52,62 +52,31 @@
 	/* Дополнительное центрирование текста */
 }
 
-.right h2 {
+.right .infobox__text {
 	color: #2e2e35;
 	font-family: 'anonymousprobold', sans-serif;
 	font-size: 24px;
 	line-height: 1.2;
-	text-align: center;
+	text-align: left;
 	margin-top: 2%;
+	text-indent: 2em;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.icon_shveya {
+	height: 356px;
+	position: relative;
+	border-radius: 50%;
+	overflow: hidden;
 }
 
 .icon_shveya img {
 	max-width: 100%;
-}
-
-.infobox__container1 {
-	position: relative;
-	z-index: 3;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 20px;
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 120px 15px 120px 15px;
-	text-align: center;
-}
-
-/* Стили для h2 */
-.infobox__container1 h2 {
-	font-size: 24px;
-	color: #2e2e35;
-	font-family: 'anonymousprobold', sans-serif;
-	line-height: 1.5;
-	margin: 0;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-}
-
-
-.infobox__container1 h1 {
-	font-size: 32px;
-	margin: 0px 0px 30px 0px;
-	background-color: rgb(82, 223, 129);
-	padding: 5px;
-	border-radius: 5px;
-	color: #2e2e35;
-}
-
-.infobox__container1 h2 p {
-	text-align: left;
-	color: #eee;
-	font-size: 26px;
-	font-weight: 600;
-	font-family: "unbounded", Arial, Helvetica, sans-serif;
-	max-width: 800px;
+	position: absolute;
+	top: 50%;
+	transform: translate(0px, -50%);
 }
 
 ._italic {
@@ -149,7 +118,7 @@
 		font-size: 26px;
 	}
 
-	.right h2 {
+	.right .infobox__text {
 		font-size: 22px;
 	}
 }
@@ -159,7 +128,7 @@
 		font-size: 22px;
 	}
 
-	.right h2 {
+	.right .infobox__text {
 		font-size: 18px;
 	}
 

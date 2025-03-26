@@ -43,13 +43,9 @@ export default function RootLayout({ children }) {
   }, []);
 
   return (
-    <html lang="en">
+    <html lang="uk">
       <head>
-        <title>Швейна рота</title>
-        <meta name="description" content='Волонтерський проєкт - "Швейна рота"' />
         <meta charSet="UTF-8" />
-        <meta name="keywords" content="волонтерство, знання, платформа, пошиття, швейна рота, швея" />
-        <meta name="author" content="Швейна рота" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="index, follow" />
         <link rel="icon" href="/favicon.ico" />

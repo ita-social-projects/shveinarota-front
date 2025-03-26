@@ -4,7 +4,7 @@
 }
 
 .media-background .swiper {
-	height: 500px;
+	height: 550px;
 }
 
 .media-background {
@@ -23,6 +23,16 @@
 	max-width: 1200px;
 	width: 100%;
 	padding: 0px 15px;
+}
+
+.media__title {
+	position: absolute;
+	top: -65px;
+	left: 50%;
+	transform: translate(-50%,0px);
+	color: #E8DCD0;
+	margin: 0px 0px 30px 0px;
+	width: 100%;
 }
 
 .swiper-buttons__container {
@@ -156,7 +166,7 @@
 		top: 0;
 	}
 	.media {
-		padding: 30px 0px;
+		padding: 90px 0px 30px 0px;
 	}
 	.swiper-button-prev, .swiper-button-next {
 		display: none;
@@ -164,17 +174,24 @@
 	.media-pagination {
 		display: flex !important;
 	}
+	.media__title {
+		top: -55px;
+		color: #2e2e35;
+	}
 }
 
 @media (max-width: 768.03px) {
 	.media {
-		padding: 50px 0px 40px 0px;
+		padding: 80px 0px 40px 0px;
+	}
+	.media__title {
+		top: -45px;
 	}
 }
 
 @media (max-width: 576.03px) {
 	.story__title {
-		font-size: 20px;
+		font-size: 18px;
 	}
 
 	.story__body {
@@ -183,7 +200,7 @@
 	}
 
 	.media {
-		padding: 40px 0px 40px 0px;
+		padding: 70px 0px 40px 0px;
 	}
 
 	.media-pagination {

@@ -1,63 +1,50 @@
-"use client";
+import axios from "axios";
+import MasterClassPage from "./MasterClassPageEN";
 
-import { useEffect, useRef, useState } from "react";
-import "$style/Guides.css";
-import VideoSect from "$component/guides/VideoSect/VideoSect";
-import Questions from "$component/guides/Questions/Questions";
-import { useParams } from "next/navigation";
-import { getData, getEnData } from "api";
-import MasterClassSectEn from "$component/guides_en/MasterClassSectEn/MasterClassSectEn";
-import ExamplesSectEn from "$component/guides_en/ExamplesSectEn/ExamplesSectEn";
-import DetailsSectEn from "$component/guides_en/DetailsSectEn/DetailsSectEn";
-import AuthorSectEn from "$component/guides_en/AuthorSectEn/AuthorSectEn";
+export async function getData(type) {
+	try {
+		console.log(`Запрос: ${process.env.BACK_URL_EN + type}`);
 
-export default function MasterClassPage() {
-  const [categories, setCategories] = useState([]);
-  const [guidesData, setGuidesData] = useState({});
+		const response = await axios.get(process.env.BACK_URL_EN + type, {
+			timeout: 5000, // Максимальное ожидание 5 сек
+		});
 
-  const params = useParams();
-  const { slug } = params;
+		return response.data;
+	} catch (error) {
+		console.error("Ошибка загрузки данных:", error?.response?.status || error);
+		return null;
+	}
+}
 
-  useEffect(() => {
-    getEnData("categories", setCategories);
-  }, []);
+export async function generateMetadata({ params }) {
+	let guide = [];
 
-  useEffect(() => {
-    if (!slug && categories.length > 0) {
-      const firstCategory = categories[0];
-      if (firstCategory?.subcategories?.length > 0) {
-        getEnData(
-          `subcategories/${firstCategory.subcategories[0].id}`,
-          setGuidesData
-        );
-      }
-    }
-    if (slug) {
-      getEnData(`subcategories/${slug[1]}`, setGuidesData);
-    }
-  }, [categories, slug]);
+	const { slug } = await params;
 
-  return (
-    <div className="guides-container">
-      <div className="container">
-        <Questions />
-        <main className="main-content">
-          {guidesData.authors_en ? (
-            <>
-              <MasterClassSectEn masterClassData={guidesData} />
-              <VideoSect masterClassData={guidesData} />
-              <ExamplesSectEn masterClassData={guidesData} />
-              <DetailsSectEn masterClassData={guidesData} />
-              <AuthorSectEn masterClassData={guidesData} />
-            </>
-          ) : (
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          )}
-        </main>
-      </div>
-    </div>
-  );
-  
+	if (slug) {
+		guide = await getData(`subcategories/${slug?.[1]}`);
+	} else {
+		const cat = await getData('categories/all');
+		guide = await getData(`subcategories/${cat[0].subcategories[0].id}`);
+	}
+
+	if (!guide) {
+		return {
+			title: "Гайд не знайдений",
+			description: "Такого гайда немає в базі даних",
+		};
+	}
+
+	return {
+		title: `${guide.subcategory_en} | Shveina rota`,
+		description: guide.summary_en,
+		openGraph: {
+			title: guide.subcategory_en,
+			description: guide.summary_en,
+		},
+	};
+}
+
+export default function GuidesPage() {
+	return <MasterClassPage />;
 }

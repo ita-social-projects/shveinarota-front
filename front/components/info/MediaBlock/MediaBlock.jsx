@@ -67,6 +67,7 @@ const MediaBlock = () => {
 				</Swiper>
 			</div>
 			<div className="media__container">
+				<div className="media__title _main-title">{lang == "ua" ? "Медіа про нас" : "Media about us"}</div>
 				<Swiper
 					key={isMobileView ? "mobile" : "desktop"}
 					modules={[Pagination, Navigation, EffectCoverflow]}

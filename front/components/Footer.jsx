@@ -105,15 +105,12 @@ const Footer = () => {
 								</div>
 								<div className="column-footer__row">
 									<Link className="column-footer__link" href="/dashboard">
-										{lang == "ua" ? "Адмін панель" : "Admin panel"}
+										{lang == "ua" ? "Вхід для адміністрації" : "Login for administration"}
 									</Link>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className="footer__bottom">
-
 				</div>
 			</div>
 		</footer>

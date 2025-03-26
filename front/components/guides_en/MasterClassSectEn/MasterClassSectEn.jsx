@@ -4,32 +4,32 @@ import Link from "next/link";
 
 const MasterClassSectEn = ({ masterClassData }) => {
   const [invalidLinks, setInvalidLinks] = useState({});
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(true);
 
-  useEffect(() => {
-    const checkLinks = async () => {
-      const results = {};
+  // useEffect(() => {
+  //   const checkLinks = async () => {
+  //     const results = {};
 
-      await Promise.all(
-        masterClassData.lekala.map(async (lekalo) => {
-          const url = `https://drive.google.com/file/d/${lekalo.path}/view?usp=sharing`;
-          try {
-            const response = await fetch(url, { method: "HEAD" });
-            if (!response.ok) {
-              results[lekalo.path] = true;
-            }
-          } catch {
-            results[lekalo.path] = true;
-          }
-        })
-      );
+  //     await Promise.all(
+  //       masterClassData.lekala.map(async (lekalo) => {
+  //         const url = `https://drive.google.com/file/d/${lekalo.path}/view?usp=sharing`;
+  //         try {
+  //           const response = await fetch(url, { method: "HEAD" });
+  //           if (!response.ok) {
+  //             results[lekalo.path] = true;
+  //           }
+  //         } catch {
+  //           results[lekalo.path] = true;
+  //         }
+  //       })
+  //     );
 
-      setLoaded(true);
-      setInvalidLinks(results);
-    };
+  //     setLoaded(true);
+  //     setInvalidLinks(results);
+  //   };
 
-    checkLinks();
-  }, [masterClassData.lekala]);
+  //   checkLinks();
+  // }, [masterClassData.lekala]);
 
   return (
     <section className="master-class">

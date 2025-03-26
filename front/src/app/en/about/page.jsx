@@ -1,13 +1,10 @@
-"use client";
+import AboutPage from "./AboutPageEN";
 
-import AboutSection from "$component/about/About_section/About";
-import TeamSection from "$component/about/Team_section/Team";
+export const metadata = {
+	title: "About us | Shveina rota",
+	description: '"Швейна рота" – волонтерська ініціатива, що займається виготовленням адаптивного одягу для поранених. Ми надаємо безкоштовну допомогу захисникам та постраждалим цивільним, створюючи комфортний та зручний одяг. Долучайтесь до нашої команди та разом підтримуємо тих, хто потребує допомоги! Разом ми потужна сила!',
+};
 
-export default function AboutPage() {
-	return (
-		<main className="main">
-			<AboutSection />
-			<TeamSection />
-		</main>
-	);
+export default function GuidesPage() {
+	return <AboutPage />;
 }

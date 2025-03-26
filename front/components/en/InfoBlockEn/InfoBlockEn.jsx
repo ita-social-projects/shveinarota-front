@@ -78,9 +78,7 @@ const InfoBlockEn = () => {
 										viewport={{ once: true }}
 									>
 										<motion.h1 custom={1} variants={blockAnitmation}>{slide.title_en}</motion.h1>
-										<motion.h2 custom={1.3} variants={blockAnitmation}>
-											{slide.text_en}
-										</motion.h2>
+										<motion.div className="infobox__text" custom={1.3} variants={blockAnitmation} dangerouslySetInnerHTML={{ __html: slide.text_en }}></motion.div>
 									</motion.div>
 								</div>
 							</SwiperSlide>

@@ -1,13 +1,9 @@
-"use client";
+import AuthPage from "./AuthPage";
 
-import AuthForm from "$component/auth/AuthForm/AuthForm";
-import "$style/auth/Auth.css"
+export const metadata = {
+	title: "Вхід для адміністрації | Швейна рота",
+};
 
-export default function AuthPage() {
-
-	return (
-		<main className='main-auth'>
-			<AuthForm/>
-		</main>
-	);
+export default function GuidesPage() {
+	return <AuthPage />;
 }

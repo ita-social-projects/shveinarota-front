@@ -108,7 +108,7 @@ const Aside = ({ categories }) => {
               {category.subcategories.map((sub) => (
                 <Link
                   key={sub.id}
-                  href={`/guides/${sub.subcategory.toLowerCase()}/${sub.id}`}
+                  href={`/guides/${sub.subcategory_en.toLowerCase()}/${sub.id}`}
                   className={`spoller__link ${activeLink == sub.id ? "active" : ""}`}
                   onClick={() => setActiveLink(sub.id)}
                   // Привязываем ref только к активной ссылке

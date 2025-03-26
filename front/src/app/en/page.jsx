@@ -1,51 +1,11 @@
-"use client";
+import InfoPage from "./InfoPageEN";
 
-import '$style/infoPage/Popup.css'
-import dynamic from "next/dynamic";
-const MapBlockEn = dynamic(() => import('$component/en/MapBlockEn/MapBlockEn'), { ssr: false });
-import MediaBlock from "$component/info/MediaBlock/MediaBlock";
-import InfoBlockEn from "$component/en/InfoBlockEn/InfoBlockEn";
-import CardBlockEn from '$component/en/CardBlockEn/CardBlockEn';
-import ConBlockEn from '$component/en/ConBlockEn/ConBlockEn';
-import PartnersBlockEn from '$component/en/PartnersBlockEn/PartnersBlockEn';
 
-export default function InfoPage() {
+export const metadata = {
+	title: "Shveina rota - adaptive clothing for the wounded",
+	description: "Швейна рота - волонтерська ініціатива | Шиємо адаптивний одяг для поранених. Передаємо безоплатно адаптивний одяг. Долучайтеся до нашої справи та допомагайте нашим захисникам! Разом ми потужна сила💪💙💛 ",
+};
 
-  const anitmationLeft = {
-    hidden: {
-      x: -40,
-      opacity: 0,
-    },
-    visible: custom => ({
-      x: 0,
-      opacity: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  }
-
-  const anitmationRight = {
-    hidden: {
-      x: 40,
-      opacity: 0,
-    },
-    visible: custom => ({
-      x: 0,
-      opacity: 1,
-      transition: { delay: custom * 0.2 },
-    }),
-  }
-
-  return (
-    <main className='main'>
-      <InfoBlockEn />
-      <div className="order">
-        <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScwlcFX3jqmOrJ3oXMrcNJJS3-LgfYy5fjMlXSlSmpU6HaLaw/viewform" className="order__link">Order adaptive clothing</a>
-      </div>
-      <CardBlockEn />
-      <ConBlockEn />
-      <PartnersBlockEn />
-      <MediaBlock />
-      <MapBlockEn />
-    </main>
-  );
+export default function GuidesPage() {
+	return <InfoPage />;
 }

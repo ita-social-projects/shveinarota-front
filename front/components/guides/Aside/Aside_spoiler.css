@@ -1,4 +1,8 @@
 /* Спойлер */
+.spoller {
+	margin: 0px 0px 20px 0px;
+}
+
 .spoller__title {
 	cursor: pointer;
 	font-size: 20px;

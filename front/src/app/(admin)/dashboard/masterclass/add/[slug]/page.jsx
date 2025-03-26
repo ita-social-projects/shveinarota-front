@@ -9,6 +9,7 @@ import Alert from "$component/dashboard/Alert/Alert";
 import { changeJsonData, getData, postData, postDataJson } from "api";
 import GDriveInput from "$component/dashboard/GDriveInput/GDriveInput";
 import { useParams } from "next/navigation";
+import ImageInput from "$component/dashboard/ImageInput/ImageInput";
 
 export default function ChangePage() {
 	const [categories, setCategories] = useState([]);
@@ -27,6 +28,7 @@ export default function ChangePage() {
 	});
 	const [lekala, setLekala] = useState([{ path: "", text: "", text_en: "" }]);
 	const [examples, setExamples] = useState([{ path: "", text: "", text_en: "" }]);
+	const [preview, setPreview] = useState("");
 
 	const authors = useRef();
 	const authors_en = useRef();
@@ -57,6 +59,7 @@ export default function ChangePage() {
 				category: element.categoryname,
 				category_en: element.categoryname_en
 			})
+			element.preview != null && setPreview(element.preview)
 			setLekala(element.lekala)
 			setExamples(element.example)
 			authors.current.value = element.authors.join(", ")
@@ -129,6 +132,8 @@ export default function ChangePage() {
 						<label htmlFor="title" className="form-label">Заголовок (англ)</label>
 						<input onChange={(e) => setFormData({ ...formData, title_en: e.target.value })} value={formData.title_en} type="text" className="form-control" id="title" name="title" placeholder="Введіть заголовок" />
 					</div>
+
+					<ImageInput placeholder="Посилання на зображення етикетки виробу" image={preview} setImage={setPreview} />
 
 					<div className="mb-3">
 						<label className="form-label">Лекала</label>

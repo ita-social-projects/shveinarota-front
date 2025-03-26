@@ -1,6 +1,7 @@
 .map {
 	position: relative;
 	z-index: 2;
+	box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.562);
 }
 
 .map__container {
@@ -31,6 +32,41 @@
 
 .map__title {
 	color: #e8dcd0;
-	text-align: center;
-	margin: 0px 0px 40px 0px;
+	text-align: left;
+	max-width: 1200px;
+	margin: 0px auto 20px auto;
+	padding: 0px 15px 0px 15px;
+}
+
+.marker {
+	display: flex;
+	gap: 15px;
+	max-width: 400px !important;
+}
+
+.marker__logo {
+	min-width: 120px;
+}
+
+.leaflet-popup-content {
+	width: auto !important;
+}
+
+@media (max-width: 574px) {
+	.marker__title {
+		font-size: 18px;
+	}
+
+	.marker__number {
+		font-size: 14px;
+	}
+
+	.marker {
+		flex-direction: column;
+		max-width: 300px !important;
+	}
+
+	.marker__logo {
+		min-width: 70px;
+	}
 }

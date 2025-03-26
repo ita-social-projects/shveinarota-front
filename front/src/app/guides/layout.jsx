@@ -9,7 +9,7 @@ function GuidesLayout({ children }) {
 	const [categories, setCategories] = useState([]);
 
 	useEffect(() => {
-		getData("categories", setCategories);
+		getData("categories/all", setCategories);
 	}, []);
 
 	return (

@@ -47,7 +47,7 @@ const InfoBlock = () => {
 							bulletActiveClass: "bullet-active",
 						} : false}
 						autoplay={{
-							delay: 3500,
+							delay: 10000,
 							disableOnInteraction: false,
 						}}
 						className="swiper__container"
@@ -76,9 +76,7 @@ const InfoBlock = () => {
 										<motion.h1 custom={1} variants={blockAnimation}>
 											{slide.title}
 										</motion.h1>
-										<motion.h2 custom={1.3} variants={blockAnimation}>
-											{slide.text}
-										</motion.h2>
+										<motion.div className="infobox__text" custom={1.3} variants={blockAnimation} dangerouslySetInnerHTML={{ __html: slide.text }}></motion.div>
 									</motion.div>
 								</div>
 							</SwiperSlide>
