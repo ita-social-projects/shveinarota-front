@@ -3,14 +3,22 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import "./Team.css";
+import { useEffect, useState } from "react";
+import { getData, getEnData } from "api";
 
 const TeamSection = () => {
+  const [team, setTeam] = useState([])
+
+  useEffect(() => {
+    getData(`teams`, setTeam);
+  }, []);
+
   return (
-    <motion.div 
+    <motion.div
       className="Team-section"
     >
       <div className="Team-box">
-        {[...Array(5)].map((_, index) => (
+        {team.map((member, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 30 }}
@@ -21,17 +29,16 @@ const TeamSection = () => {
           >
             <div className="top">
               <Image
-                src={index === 0 ? "/images/about/Main.png" : "/images/about/user.png"}
-                alt="Team Member"
+                src={'http://drive.google.com/uc?export=view&id=' + member.path}
+                alt="member photo"
+                width={300}
+                height={300}
                 className="Member-Icon"
-                width={100}
-                height={100}
-                unoptimized
               />
             </div>
             <div className="bot">
-              <p className="member-text">Ксенія Самойлович</p>
-              <h2 className="member-title">Організатор</h2>
+              <p className="member-text">{member.name}</p>
+              <h2 className="member-title">{member.status}</h2>
             </div>
           </motion.div>
         ))}

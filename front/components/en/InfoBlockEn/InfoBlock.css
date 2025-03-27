@@ -46,7 +46,6 @@
 	/* Относительный размер шрифта */
 	color: #2e2e35;
 	margin-top: 3%;
-	margin-right: 4%;
 	font-family: 'intro', sans-serif;
 	text-align: center;
 	/* Дополнительное центрирование текста */
@@ -111,7 +110,7 @@
 	.infobox__slide {
 		flex-direction: column-reverse;
 		gap: 30px;
-		padding: 20px 15px;
+		padding: 20px 20px;
 	}
 
 	.right h1 {
@@ -123,9 +122,19 @@
 	}
 }
 
+
+
 @media (max-width: 768px) {
 	.right h1 {
 		font-size: 22px;
+	}
+
+	.infobox__slide {
+		flex-direction: row;
+	}
+
+	.infobox {
+		min-height: 300px;
 	}
 
 	.right .infobox__text {
@@ -134,7 +143,28 @@
 
 	.infobox .left {
 		min-width: 0;
-		width: 200px;
+		min-width: 200px;
+	}
+
+	.icon_shveya {
+		height: 200px;
+		position: relative;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+}
+
+@media (max-width: 568px) {
+	.right .infobox__text {
+		text-align: center;
+	}
+
+	.infobox {
+		min-height: 566px;
+	}
+
+	.infobox__slide {
+		flex-direction: column-reverse;
 	}
 }
 
@@ -189,7 +219,7 @@
 
 @media (max-width: 900px) {
 	.infobox__container {
-		padding: 20px 8px 45px 8px;
+		padding: 20px 15px 45px 15px;
 	}
 
 	.order__link {
