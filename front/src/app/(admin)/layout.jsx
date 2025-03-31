@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
 	title: "Адмін панель | Швейна рота",
@@ -35,6 +36,17 @@ export default function AdminLayout({ children }) {
 										<li><Link className="dropdown-item" href="/dashboard/team">Наша команда</Link></li>
 									</ul>
 								</li>
+								<li className="nav-item">
+									<Link style={{fontSize: "20px", fontWeight: "bold"}} className="nav-link" href={"/dashboard/settings"}>
+										<Image
+											src={"/images/admin/settings.svg"}
+											width={45}
+											height={45}
+											alt="setting"
+										/>
+									</Link>
+								</li>
+								
 							</ul>
 						</div>
 					</div>
