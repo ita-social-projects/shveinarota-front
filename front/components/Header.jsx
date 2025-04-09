@@ -35,7 +35,7 @@ const Header = () => {
 		}
 
 		changeLanguage(language);
-		router.push(currentPath);
+		window.location.href = currentPath;
 	};
 
 	function openMenu(e) {

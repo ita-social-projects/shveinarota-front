@@ -48,6 +48,8 @@
   margin-bottom: 25px;
   font-family: 'unbounded';
   font-weight: 600;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 @media (max-width: 900px) {

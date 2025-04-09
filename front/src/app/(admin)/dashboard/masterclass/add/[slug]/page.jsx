@@ -10,6 +10,7 @@ import { changeJsonData, getData, postData, postDataJson } from "api";
 import GDriveInput from "$component/dashboard/GDriveInput/GDriveInput";
 import { useParams } from "next/navigation";
 import ImageInput from "$component/dashboard/ImageInput/ImageInput";
+import AutoGrowTextarea from "$component/dashboard/AutoGrowTextarea/AutoGrowTextarea";
 
 export default function ChangePage() {
 	const [categories, setCategories] = useState([]);
@@ -50,10 +51,10 @@ export default function ChangePage() {
 				title: element.subcategory,
 				title_en: element.subcategory_en,
 				videoUrl: element.url,
-				details: element.details,
-				details_en: element.details_en,
-				summary: element.summary,
-				summary_en: element.summary_en,
+				details: element.details != null ? element.details : "",
+				details_en: element.details_en != null ? element.details_en : "",
+				summary: element.summary != null ? element.summary : "",
+				summary_en: element.summary_en != null ? element.summary_en : "",
 				authors: element.authors,
 				authors_en: element.authors_en,
 				category: element.categoryname,
@@ -105,6 +106,7 @@ export default function ChangePage() {
 			example: examples,
 			categoryname: formData.category,
 			categoryname_en: formData.category,
+			preview: preview
 		};
 
 		console.log(data);
@@ -152,22 +154,38 @@ export default function ChangePage() {
 
 					<div className="input-group mb-3">
 						<span className="input-group-text">Деталі</span>
-						<textarea onChange={(e) => setFormData({ ...formData, details: e.target.value })} value={formData.details} style={{ resize: "none" }} className="form-control" aria-label="деталі"></textarea>
+						<AutoGrowTextarea
+							value={formData.details}
+							onChange={(val) => setFormData({ ...formData, details: val })}
+							ariaLabel="деталі"
+						/>
 					</div>
 
 					<div className="input-group mb-3">
 						<span className="input-group-text">Деталі (англ)</span>
-						<textarea onChange={(e) => setFormData({ ...formData, details_en: e.target.value })} value={formData.details_en} style={{ resize: "none" }} className="form-control" aria-label="деталі"></textarea>
+						<AutoGrowTextarea
+							value={formData.details_en}
+							onChange={(val) => setFormData({ ...formData, details_en: val })}
+							ariaLabel="деталі англійською"
+						/>
 					</div>
 
 					<div className="input-group mb-3">
 						<span className="input-group-text">Підсумок</span>
-						<textarea onChange={(e) => setFormData({ ...formData, summary: e.target.value })} value={formData.summary} style={{ resize: "none" }} className="form-control" aria-label="підсумок"></textarea>
+						<AutoGrowTextarea
+							value={formData.summary}
+							onChange={(val) => setFormData({ ...formData, summary: val })}
+							ariaLabel="підсумок"
+						/>
 					</div>
 
 					<div className="input-group mb-3">
 						<span className="input-group-text">Підсумок (англ)</span>
-						<textarea onChange={(e) => setFormData({ ...formData, summary_en: e.target.value })} value={formData.summary_en} style={{ resize: "none" }} className="form-control" aria-label="підсумок"></textarea>
+						<AutoGrowTextarea
+							value={formData.summary_en}
+							onChange={(val) => setFormData({ ...formData, summary_en: val })}
+							ariaLabel="підсумок англійською"
+						/>
 					</div>
 
 					<div className="mb-3">

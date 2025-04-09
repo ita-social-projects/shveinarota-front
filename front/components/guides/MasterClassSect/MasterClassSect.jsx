@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./MasterClassSect.css";
 import Link from "next/link";
+import Image from "next/image";
 
 const MasterClassSect = ({ masterClassData }) => {
   const [invalidLinks, setInvalidLinks] = useState({});
@@ -38,33 +39,44 @@ const MasterClassSect = ({ masterClassData }) => {
           {masterClassData.subcategory}
         </h1>
       </div>
-      
+
       <div className="masterclass-subcategory-container">
         <h2>Лекала</h2>
 
-        {loaded ? (
-          <ul>
-            {masterClassData.lekala.map((lekalo, index) => {
-              const url = `https://drive.google.com/file/d/${lekalo.path}/view?usp=sharing`;
-              const isInvalid = invalidLinks[lekalo.path];
+        <div className="master-class__body">
+          {masterClassData.preview != null && masterClassData.preview != "" &&
+            <Image
+              src={`http://drive.google.com/uc?export=view&id=${masterClassData.preview}`}
+              alt="Етикетка"
+              width={400}
+              height={400}
+              className="master-class__preview"
+            />
+          }
+          {loaded ? (
+            <ul>
+              {masterClassData.lekala.map((lekalo, index) => {
+                const url = `https://drive.google.com/file/d/${lekalo.path}/view?usp=sharing`;
+                const isInvalid = invalidLinks[lekalo.path];
 
-              return (
-                <li key={index}>
-                  {lekalo.text} -{" "}
-                  <Link
-                    className={isInvalid ? "lekala-link invalid-link" : "lekala-link"}
-                    href={url}
-                    target="_blank"
-                  >
-                    {isInvalid ? "<Файл не доступний>" : "завантажити"}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <div>Завантаження...</div>
-        )}
+                return (
+                  <li key={index}>
+                    {lekalo.text} -{" "}
+                    <Link
+                      className={isInvalid ? "lekala-link invalid-link" : "lekala-link"}
+                      href={url}
+                      target="_blank"
+                    >
+                      {isInvalid ? "<Файл не доступний>" : "завантажити"}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <div>Завантаження...</div>
+          )}
+        </div>
       </div>
 
 

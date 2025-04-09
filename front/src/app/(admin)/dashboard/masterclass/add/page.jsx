@@ -10,6 +10,8 @@ import PhotoInput from "$component/dashboard/ImageInput/ImageInput";
 import { getData, postData, postDataJson } from "api";
 import GDriveInput from "$component/dashboard/GDriveInput/GDriveInput";
 import ImageInput from "$component/dashboard/ImageInput/ImageInput";
+import AutoGrowTextarea from "$component/dashboard/AutoGrowTextarea/AutoGrowTextarea";
+
 
 export default function ChangePage() {
   const [categories, setCategories] = useState([]);
@@ -69,6 +71,7 @@ export default function ChangePage() {
       example: examples,
       categoryname: formData.category,
       categoryname_en: formData.category,
+      preview: preview
     };
 
     console.log(data);
@@ -97,7 +100,7 @@ export default function ChangePage() {
             <input onChange={(e) => setFormData({ ...formData, title_en: e.target.value })} value={formData.title_en} type="text" className="form-control" id="title" name="title" placeholder="Введіть заголовок" />
           </div>
 
-          <ImageInput placeholder="Посилання на зображення етикетки виробу" image={preview} setImage={setPreview}/>
+          <ImageInput placeholder="Посилання на зображення етикетки виробу" image={preview} setImage={setPreview} />
 
           <div className="mb-3">
             <label className="form-label">Лекала</label>
@@ -116,22 +119,38 @@ export default function ChangePage() {
 
           <div className="input-group mb-3">
             <span className="input-group-text">Деталі</span>
-            <textarea onChange={(e) => setFormData({ ...formData, details: e.target.value })} value={formData.details} style={{ resize: "none" }} className="form-control" aria-label="деталі"></textarea>
+            <AutoGrowTextarea
+              value={formData.details}
+              onChange={(val) => setFormData({ ...formData, details: val })}
+              ariaLabel="деталі"
+            />
           </div>
 
           <div className="input-group mb-3">
             <span className="input-group-text">Деталі (англ)</span>
-            <textarea onChange={(e) => setFormData({ ...formData, details_en: e.target.value })} value={formData.details_en} style={{ resize: "none" }} className="form-control" aria-label="деталі"></textarea>
+            <AutoGrowTextarea
+              value={formData.details_en}
+              onChange={(val) => setFormData({ ...formData, details_en: val })}
+              ariaLabel="деталі англійською"
+            />
           </div>
 
           <div className="input-group mb-3">
             <span className="input-group-text">Підсумок</span>
-            <textarea onChange={(e) => setFormData({ ...formData, summary: e.target.value })} value={formData.summary} style={{ resize: "none" }} className="form-control" aria-label="підсумок"></textarea>
+            <AutoGrowTextarea
+              value={formData.summary}
+              onChange={(val) => setFormData({ ...formData, summary: val })}
+              ariaLabel="підсумок"
+            />
           </div>
 
           <div className="input-group mb-3">
             <span className="input-group-text">Підсумок (англ)</span>
-            <textarea onChange={(e) => setFormData({ ...formData, summary_en: e.target.value })} value={formData.summary_en} style={{ resize: "none" }} className="form-control" aria-label="підсумок"></textarea>
+            <AutoGrowTextarea
+              value={formData.summary_en}
+              onChange={(val) => setFormData({ ...formData, summary_en: val })}
+              ariaLabel="підсумок англійською"
+            />
           </div>
 
           <div className="mb-3">
