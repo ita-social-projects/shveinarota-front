@@ -26,7 +26,7 @@ const MapBlock = () => {
 
 	const ZoomToPoint = ({ lat, lng }) => {
 		const map = useMap();
-		map.flyTo([lat, lng], 6);
+		map.flyTo([lat, lng], 7);
 		return null;
 	};
 
@@ -47,7 +47,7 @@ const MapBlock = () => {
 					<MapContainer
 						center={[50.27, 30.31]}
 						zoom={5}
-						maxZoom={6}
+						maxZoom={7}
 						style={{ height: '100%', width: '100%', borderRadius: "5px" }}
 					>
 						<TileLayer

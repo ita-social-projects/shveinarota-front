@@ -33,7 +33,7 @@ const SearchMarkers = ({ markers, handleZoom }) => {
 			const results = markers.filter((marker) =>
 				marker.title_en.toLowerCase().includes(input.toLowerCase())
 			);
-			setFilteredMarkers(results);
+			setFilteredMarkers(results.slice(0, 6));
 		}
 	};
 
