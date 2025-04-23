@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 import "$style/Footer.css"
+import "$style/FooterColors.css"
 import { useLang } from "./Context/LangContext";
 import { useEffect, useState } from "react";
 import { getData } from "api";
@@ -27,8 +29,15 @@ const Footer = () => {
 		getData("categories/all", setCategories)
 	}, [])
 
+	const pathname = usePathname();
+	
+	let colorClass = '';
+	if (pathname.startsWith('/about')) colorClass = 'footer--about';
+	else if (pathname.startsWith('/guides')) colorClass = 'footer--guides';
+	else colorClass = 'footer--default';
+
 	return (
-		<footer className="footer">
+		<footer className={`footer ${colorClass}`}>
 			<div className="_background"></div>
 			<div className="footer__wrapper">
 				<div className="footer__container">
@@ -36,8 +45,9 @@ const Footer = () => {
 						<Image
 							src="/images/headerlogo.png"
 							alt="logo"
-							width={180}
-							height={180}
+							width={220}
+							height={220}
+							className="footer_title_logo"
 						/>
 						{lang == "ua" ? "Швейна рота" : "Shveina rota"}
 					</div>
@@ -53,6 +63,7 @@ const Footer = () => {
 												alt="logo"
 												width={35}
 												height={35}
+												className="footer__icons"
 											/>
 											{link.title}
 										</Link>

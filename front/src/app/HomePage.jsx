@@ -17,10 +17,10 @@ export default function HomePage() {
       <main className='main'>
         <InfoBlock />
         <OrderBlock />
-        <CardBlock />
         <ConBlock />
-        <PartnersBlock />
+        <CardBlock />
         <MediaBlock />
+        <PartnersBlock />
         <MapBlock />
       </main>
     </>

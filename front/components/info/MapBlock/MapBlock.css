@@ -1,7 +1,7 @@
 .map {
 	position: relative;
 	z-index: 2;
-	box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.562);
+
 }
 
 .map__container {

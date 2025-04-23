@@ -3,10 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import "$style/Header.css";
+import "$style/HeaderColors.css"; 
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useLang } from "./Context/LangContext";
 import { useScrollbarWidth } from "$hooks/useScrollbarWidth";
+
 
 const Header = () => {
 	const location = usePathname();
@@ -54,9 +56,15 @@ const Header = () => {
 		menuIcon.current.classList.remove("btn-active");
 		document.body.classList.remove("menu-active");
 	}
+	const pathname = usePathname();
 
+	let colorClass = '';
+	if (pathname.startsWith('/about')) colorClass = 'header--about';
+	else if (pathname.startsWith('/guides')) colorClass = 'header--guides';
+	else colorClass = 'header--default';
+	
 	return (
-		<header className="header">
+		<header className={`header ${colorClass}`}>
 			<div className="header__container">
 				<div className="left">
 					<Link className="header__link" onClick={closeMenu} href="/">
@@ -106,7 +114,7 @@ const Header = () => {
 								alt="Logo"
 								width={24}
 								height={24}
-								className="logo-img"
+								className="Support-img"
 								priority
 							/>
 							{lang == "ua" ? "Підтримати" : "Support us"}

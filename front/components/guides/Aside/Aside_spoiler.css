@@ -6,12 +6,15 @@
 .spoller__title {
 	cursor: pointer;
 	font-size: 20px;
-	color: #e8dcd0;
+	color: #232324;
 	font-family: 'intro', sans-serif;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	text-shadow: 0.788px 0.616px 0px rgba(0, 0, 0, 0.57);
 }
+
+  
 
 .spoller__button {
 	display: flex;
@@ -21,6 +24,7 @@
 	width: 100%;
 	position: relative;
 	padding-right: 30px;
+	border-radius: 5px;
 }
 
 .spoller__body {
