@@ -45,9 +45,7 @@
 	max-width: 100% !important;
 }
 
-.logo_shveya {
-	max-width: 196px;
-}
+
 
 .right .menu {
 	display: flex;
@@ -206,7 +204,6 @@
 }
 
 .logo_main_img {
-	width: 60px;
 	margin-left: 20px;
 }
 
@@ -222,6 +219,9 @@
 	}
 	.right .menu {
 		gap: 24px;
+	}
+	.logo_main_img {
+		width: 65px;
 	}
 	
 }
