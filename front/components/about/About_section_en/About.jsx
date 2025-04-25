@@ -1,5 +1,5 @@
 import Link from "next/link";
-import "./About.css"; 
+import "./About.css";
 
 const AboutSectionEn = () => {
   return (
@@ -8,22 +8,22 @@ const AboutSectionEn = () => {
         <div className="Left-side-About">
           {/* Верхний блок с заголовком и колонной */}
           <div className="side-top-About">
-            <h2 className="about-title">Про нас</h2>
+            <h2 className="about-title">About us</h2>
             <div className="column_about"></div>
           </div>
 
           {/* Нижний блок с текстом */}
           <div className="side-bot-About">
             <p className="about-text">
-              Ми - Марина Пальченко та Ксенія Самойлич, засновниці “Швейної роти”, яка пошила 100 000+ одиниць адаптивного одягу для поранених захисників у 90+ госпіталів України та об’єднала навколо себе 700+ волонтерів в усіх частинах світу.
+              We are Maryna Palchenko and Kseniia Samoilych, co-founders of "Shveina Rota" — a volunteer sewing initiative that has produced over 100,000 pieces of adaptive clothing for wounded defenders across 90+ hospitals in Ukraine, uniting more than 700 volunteers from all over the world.
               <br /><br />
-              28-го лютого 2022 року принесли в звичайний офіс дніпровської ІТ-компанії власні швейні машинки і оверлоки та запустили <span className="highlight">“Швейну роту”</span>, аби робити балаклави та термобілизну, яку безкоштовно роздавали Захисникам. Рекорд - 498 балаклав за день!
+              On February 28, 2022, we brought our own sewing machines and overlockers into a regular office of a Dnipro-based IT company and launched <span className="highlight">“Shveina Rota”</span> to make balaclavas and thermal underwear, which we distributed to defenders free of charge. Our record — 498 balaclavas in one day!
               <br /><br />
-              А у травні прийшов запит із госпіталю на <span className="highlight">“кіберодяг”</span> - це спеціальний адаптивний одяг на липучках/кнопках, який швидко одягається, не травмує і не вимагає піднімати руки/ноги пораненому воїнові.
+              In May, we received a request from a hospital for <span className="highlight">“cyber clothing”</span> — special adaptive wear with Velcro or snap fasteners that can be put on quickly, without causing pain or requiring a wounded soldier to lift their arms or legs.
               <br /><br />
-              Так, з часом навколо “Швейної роти” зібралась крута команда дуже активних і талановитих майстринь і майстрів зі всієї України.
+              Over time, an amazing team of highly skilled and passionate craftswomen and tailors from across Ukraine gathered around "Shveina Rota."
               <br /><br />
-              Майстрині ініціативи знімають детальні покрокові відео майстер-класи з пошиття всіх виробів та оцифровані лекала, аби навіть новачки могли долучатись до ініціативи з будь-якого міста. Саме вони опубліковані в <Link className="about-link" style={{ color: "#4682B4"}} href={"/guides"}>“Навчальний центр”</Link>.
+              Our volunteers created detailed step-by-step video master classes on sewing all products and digitized patterns so that even beginners can join the initiative from any city. These resources are published in our <Link className="about-link" style={{ color: "#4682B4" }} href={"/guides"}>“Training Center”</Link>.
             </p>
           </div>
         </div>

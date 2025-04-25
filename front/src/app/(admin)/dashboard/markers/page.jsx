@@ -47,7 +47,7 @@ export default function CardsPage() {
 				</div>
 				<div className="list-group">
 					{markers.map((marker) => (
-						<DatabaseItem setSelectedId={setSelectedMarkerId} key={marker.id} title={`Маркер ${marker.id} (${marker.title})`} link={`/dashboard/markers/add/${marker.id}`} id={marker.id}/>
+						<DatabaseItem setSelectedId={setSelectedMarkerId} key={marker.id} title={`Маркер (${marker.title})`} link={`/dashboard/markers/add/${marker.id}`} id={marker.id}/>
 					))}
 				</div>
 			</div>

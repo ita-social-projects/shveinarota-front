@@ -22,7 +22,7 @@ const Footer = () => {
 	}
 
 	useEffect(() => {
-		getData("medialinks", setMediaLinks)
+		getData("medialinks/all", setMediaLinks)
 
 		getData("categories/all", setCategories)
 	}, [])
@@ -54,7 +54,7 @@ const Footer = () => {
 												width={35}
 												height={35}
 											/>
-											{link.title}
+											{lang == "ua" ? <>{link.title}</> : <>{link.title_en}</>}
 										</Link>
 									</div>
 								)}

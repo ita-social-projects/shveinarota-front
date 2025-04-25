@@ -47,7 +47,7 @@ export default function CardsPage() {
 				</div>
 				<div className="list-group">
 					{categories.map((categorie, index) => (
-						<DatabaseItem setSelectedId={setSelectedCardId} key={categorie.id} title={`Категорія ${index + 1} (${categorie.category})`} link={`/dashboard/categories/add/${categorie.id}`} id={categorie.id}/>
+						<DatabaseItem setSelectedId={setSelectedCardId} key={categorie.id} title={`Категорія (${categorie.category})`} link={`/dashboard/categories/add/${categorie.id}`} id={categorie.id}/>
 					))}
 				</div>
 			</div>

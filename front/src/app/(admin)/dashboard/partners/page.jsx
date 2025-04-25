@@ -47,11 +47,22 @@ export default function CardsPage() {
 				</div>
 				<div className="list-group">
 					{partners.map((partner, index) => (
-						<DatabaseItem setSelectedId={setSelectedPartnerId} key={partner.id} title={`Партнер ${index + 1}`} link={`/dashboard/partners/add/${partner.id}`} id={partner.id}/>
+						<div key={partner.id} className='partner-row'>
+							<Image
+								src={
+									"http://drive.google.com/uc?export=view&id=" +
+									partner.path
+								}
+								width={75}
+								height={75}
+								alt="img"
+							/>
+							<DatabaseItem setSelectedId={setSelectedPartnerId} title={`Партнер`} link={`/dashboard/partners/add/${partner.id}`} id={partner.id} />
+						</div>
 					))}
 				</div>
 			</div>
-			<Bootstrap/>
+			<Bootstrap />
 		</main>
 	);
 }

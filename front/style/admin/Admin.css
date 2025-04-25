@@ -164,3 +164,28 @@ body {
 	align-items: center;
 	color: #495057;
 }
+
+.partner-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0px 0px 10px 0px;
+}
+
+.db_item {
+	flex: 1 1 auto;
+}
+
+@media (max-width: 500px) {
+	.partner-row {
+		display: block;
+	}
+	.btn-outline-secondary {
+		font-size: 14px;
+	}
+	.db_item {
+		flex-direction: column;
+		align-items: flex-start !important;
+		gap: 5px;
+	}
+}

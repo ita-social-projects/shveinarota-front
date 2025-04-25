@@ -50,8 +50,8 @@ const InfoBlockEn = () => {
 							bulletActiveClass: "bullet-active",
 						} : false}
 						autoplay={{
-							delay: 3500,
-							disableOnInteraction: false,
+							delay: 10000,
+							disableOnInteraction: true,
 						}}
 						className="swiper__container"
 					>

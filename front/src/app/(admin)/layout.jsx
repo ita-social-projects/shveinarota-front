@@ -27,7 +27,7 @@ export default function AdminLayout({ children }) {
 									<ul className="dropdown-menu">
 										<li><Link className="dropdown-item" href="/dashboard/slides">Слайди</Link></li>
 										<li><Link className="dropdown-item" href="/dashboard/cards">Статистичні картки</Link></li>
-										<li><Link className="dropdown-item" href="/dashboard/media">Медіа посилання</Link></li>
+										<li><Link className="dropdown-item" href="/dashboard/media">Соц Мережі</Link></li>
 										<li><Link className="dropdown-item" href="/dashboard/partners">Партнери</Link></li>
 										<li><Link className="dropdown-item" href="/dashboard/plots">Cлайди-сюжети</Link></li>
 										<li><Link className="dropdown-item" href="/dashboard/markers">Маркери на мапі</Link></li>
@@ -46,7 +46,6 @@ export default function AdminLayout({ children }) {
 										/>
 									</Link>
 								</li>
-								
 							</ul>
 						</div>
 					</div>

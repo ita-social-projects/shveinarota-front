@@ -48,7 +48,7 @@ const InfoBlock = () => {
 						} : false}
 						autoplay={{
 							delay: 10000,
-							disableOnInteraction: false,
+							disableOnInteraction: true,
 						}}
 						className="swiper__container"
 					>

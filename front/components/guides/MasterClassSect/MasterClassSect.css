@@ -15,7 +15,8 @@
 }
 
 .master-class__preview {
-	max-width: 400px;
+	max-width: 280px;
+	max-height: 280px;
 }
 
 
@@ -132,5 +133,6 @@
 	}
 	.master-class__preview {
 		max-width: 100%;
+		max-height: 100%;
 	}
 }

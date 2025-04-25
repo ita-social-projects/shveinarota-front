@@ -62,7 +62,7 @@ export default function CardsPage() {
 				</div>
 				<div className="list-group">
 					{guides.map((guide, index) => (
-						<DatabaseItem setSelectedId={setSelectedCardId} key={guide.id} categoryId={guide.categoryId} title={`Майстер-клас ${index + 1} (${guide.subcategory})`} link={`/dashboard/masterclass/add/${guide.id}`} id={guide.id} setSelectedCategoryId={setSelectedCategoryId} />
+						<DatabaseItem setSelectedId={setSelectedCardId} key={guide.id} categoryId={guide.categoryId} title={`Майстер-клас (${guide.subcategory})`} link={`/dashboard/masterclass/add/${guide.id}`} id={guide.id} setSelectedCategoryId={setSelectedCategoryId} />
 					))}
 				</div>
 			</div>

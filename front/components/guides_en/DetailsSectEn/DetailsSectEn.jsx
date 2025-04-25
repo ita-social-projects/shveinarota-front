@@ -6,7 +6,6 @@ const DetailsSectEn = ({ masterClassData }) => {
       <div className="details__container">
         <h2>Details of the master class</h2>
         <p>{masterClassData.details_en}</p>
-        <p>{masterClassData.summary_en}</p>
       </div>
     </section>
   );

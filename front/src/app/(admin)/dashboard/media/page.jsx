@@ -38,14 +38,14 @@ export default function CardsPage() {
 			</div>
 			<div className="main__items items container-md mt-5">
 				<div className="items__header mb-4">
-					<h1 className="admin-title">Медіа посилання ({media.length})</h1>
+					<h1 className="admin-title">Соц Мережі ({media.length})</h1>
 					<Link href="/dashboard/media/add" type="button" className="btn btn-success">
 						<span className="_plus">+</span> Додати
 					</Link>
 				</div>
 				<div className="list-group">
 					{media.map((elem) => (
-						<DatabaseItem setSelectedId={setSelectedMarkerId} key={elem.id} title={`Посилання ${elem.id} (${elem.title})`} link={`/dashboard/media/add/${elem.id}`} id={elem.id}/>
+						<DatabaseItem setSelectedId={setSelectedMarkerId} key={elem.id} title={`Посилання (${elem.title})`} link={`/dashboard/media/add/${elem.id}`} id={elem.id}/>
 					))}
 				</div>
 			</div>
