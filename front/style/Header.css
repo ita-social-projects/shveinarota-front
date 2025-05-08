@@ -7,6 +7,19 @@
 	height: 100px;
 	width: 100%;
 }
+.header {
+	transition: transform 0.3s ease;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+}
+
+.header--hidden {
+	transform: translateY(-100%);
+}
+
 
 .header__container {
 	display: flex;

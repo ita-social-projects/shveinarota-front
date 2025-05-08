@@ -9,15 +9,15 @@ import { useEffect, useRef } from "react";
 import { useLang } from "./Context/LangContext";
 import { useScrollbarWidth } from "$hooks/useScrollbarWidth";
 
-
 const Header = () => {
 	const location = usePathname();
 	const menuIcon = useRef();
 	const router = useRouter();
-
+	const headerRef = useRef(null);
+	const lastScrollTop = useRef(0);
 	const { lang, changeLanguage } = useLang();
-
 	const scrollbarWidth = useScrollbarWidth();
+	
 
 	// Открытие окна
 	function openPopup() {
@@ -56,6 +56,26 @@ const Header = () => {
 		menuIcon.current.classList.remove("btn-active");
 		document.body.classList.remove("menu-active");
 	}
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollTop = window.scrollY;
+
+			if (!headerRef.current) return;
+
+			if (scrollTop > lastScrollTop.current && scrollTop > 100 && !document.body.classList.contains("menu-active")) {
+				headerRef.current.classList.add("header--hidden");
+			} else {
+				headerRef.current.classList.remove("header--hidden");
+			}
+
+			lastScrollTop.current = scrollTop;
+		};
+
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
 	const pathname = usePathname();
 
 	let colorClass = '';
@@ -64,7 +84,7 @@ const Header = () => {
 	else colorClass = 'header--default';
 	
 	return (
-		<header className={`header ${colorClass}`}>
+		<header ref={headerRef} className={`header ${colorClass}`}>
 			<div className="header__container">
 				<div className="left">
 					<Link className="header__link" onClick={closeMenu} href="/">
@@ -81,11 +101,10 @@ const Header = () => {
 					</Link>
 				</div>
 				<div className="Menu_header_wrapper">
-				<button ref={menuIcon} onClick={openMenu} className="icon-menu">
-					<span></span>
-				</button>
+					<button ref={menuIcon} onClick={openMenu} className="icon-menu">
+						<span></span>
+					</button>
 				</div>
-				
 
 				<div className="right _menu">
 					<nav className="menu">
@@ -123,9 +142,9 @@ const Header = () => {
 						</button>
 					</nav>
 					<div className="menulang">
-						<button onClick={() => { handleLanguageChange("en"); closeMenu() }}>EN</button>
+						<button onClick={() => { handleLanguageChange("en"); closeMenu(); }}>EN</button>
 						<div className="_line"></div>
-						<button onClick={() => { handleLanguageChange("ua"); closeMenu() }}>UA</button>
+						<button onClick={() => { handleLanguageChange("ua"); closeMenu(); }}>UA</button>
 					</div>
 				</div>
 			</div>
