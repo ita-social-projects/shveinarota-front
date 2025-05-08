@@ -4,17 +4,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #222229;
+  box-shadow: 0px -11px 35px 0px rgba(0, 0, 0, 0.63);
+  background-color: #232324;
+  flex-direction: column;
+  padding: 50px 0 0 0;
 }
+
+.team_title_about{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #f6f0d9; 
+  font-size: 40px;
+  font-family: 'Caviar Dreams Bold', sans-serif; 
+  text-shadow: 1.516px 1.034px 0px rgba(0, 0, 0, 0.97);
+
+
+}
+
+
+.team_title_about_column{
+  width: 600px;
+  height: 3px;
+  background-color: #e8dcd0;
+}
+
 
 .Team-box {
   width: 100%;
   max-width: 1700px;
-  background-color: #222229;
+  background-color: #232324;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 30px;
-  padding: 90px 15px;
+  padding: 60px 15px;
   justify-items: center;
 }
 
@@ -27,7 +50,6 @@
 .Team-member {
   width: auto;
   height: auto;
-  background-color: #222229;
   display: flex;
   margin-top: 28px;
   flex-direction: column;
@@ -43,13 +65,11 @@
   /* Половина висоти Team-member */
   display: flex;
   justify-content: center;
-  background-color: #222229;
 }
 
 .Team-member .bot {
   width: auto;
   height: auto;
-  background-color: #222229;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -59,10 +79,10 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  /* Делает изображение круглым */
   object-fit: cover;
-  /* Обрезает изображение, сохраняя пропорции */
+  box-shadow: 0.668px 0.772px 30px 0px rgba(0, 0, 0, 0.33);
 }
+
 
 .member-title {
   font-size: 20px;
@@ -132,4 +152,23 @@
   .Team-box {
     padding: 50px 15px;
   }
+}
+
+@media (max-width: 875px) {
+  .team_title_about{
+    font-size: 28px;
+  }
+  .team_title_about_column{
+    width: 425px;
+  }
+}
+
+@media (max-width: 560px) {
+  .team_title_about{
+    font-size: 27px;
+  }
+  .team_title_about_column{
+    width: 325px;
+  }
+  
 }
