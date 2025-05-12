@@ -100,7 +100,6 @@
 	height: clamp(5px, 1vw, 10px);
 	background-color: #232324;
 	transform: rotate(45deg); 
-	transition: all 0.3s ease;
 	cursor: pointer;
 	list-style: none;
 	display: flex;
