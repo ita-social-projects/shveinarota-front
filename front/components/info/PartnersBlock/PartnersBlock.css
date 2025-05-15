@@ -6,6 +6,9 @@
 	text-align: center;
 
 	padding: 40px 0 70px 0;
+	 position: relative;
+  z-index: 1;
+  margin-top: -20px; /* сдвигаем ближе, чтобы казалось что тень падает */
 }
 
 
@@ -19,8 +22,8 @@
 }
 
 .partners__title {
+	font-size: 42px;
 	color: #232324;
-	font-size: 30px;
 	display: inline-block;
 	font-family: 'Caviar Dreams Bold', sans-serif;
 	position: relative;
@@ -33,7 +36,7 @@
 }
 .partners__line {
 	width: calc(100% + clamp(10px, 2vw, 30px));
-	max-width: 300px;
+	max-width: 500px;
 	height: clamp(2px, 0.5vw, 4px);
 	background-color: #232324;
 
@@ -147,6 +150,19 @@
 	.partners__slider .slick-list {
 		height: clamp(140px, 9vw, 180px); /* Уменьшена высота слайдера */
 	}
+}
+
+
+@media (max-width: 720px) {
+	.partners__line {
+
+}
+
+	.partners__title {
+	font-size: 30px;
+	
+}
+
 }
 
 
