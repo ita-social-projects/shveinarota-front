@@ -28,8 +28,15 @@
 	color: #2e2e35;
 	width: auto;
 }
+
+.footer--guides .footer__wrapper {
+    padding-bottom: 40px;
+    background-color: #f8f4e7;
+
+}
   
 .footer--guides .footer__container {
+	background-color: #fff6e5;
 	position: relative;
     border: 3px solid #2e2e35;
     gap: 30px;
@@ -42,11 +49,7 @@
 	gap: 40px;
 }
 
-.footer--guides .footer__wrapper {
-    padding-bottom: 40px;
-    
 
-}
 
 .footer--guides .footer__title {
 	color: #2e2e35;

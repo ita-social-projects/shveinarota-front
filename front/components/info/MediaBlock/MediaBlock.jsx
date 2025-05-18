@@ -137,7 +137,7 @@ const MediaBlock = () => {
 
           <div className="right_slide_mediablock">
             <div className="top_slide_block">
-              <button onClick={goNext} className="nav-btn" disabled={isSyncing}>
+              <button onClick={goPrev} className="nav-btn" disabled={isSyncing}>
                 <img
                   src="/images/pointer.png"
                   alt="Следующая"

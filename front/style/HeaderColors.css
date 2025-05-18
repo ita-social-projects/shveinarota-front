@@ -2,8 +2,29 @@
 .header--default {
 	background-color: #fff6e5;
     color: #232324;
-    box-shadow: 0px 11px 165px 0px rgba(0, 0, 0, 0.13);
+    border-bottom: 2px solid #6156fa;
 }
+
+.header--default .menulang button {
+	padding: 4px 8px;
+	border: none;
+	background: transparent;
+	color: black;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	border-radius: 6px;
+}
+
+.header--default .menulang button:hover:not(.active) {
+	background-color: #333;
+	color: white;
+}
+
+.header--default .menulang button.active {
+	background-color: black;
+	color: white !important;
+}
+
 
 
 
@@ -12,9 +33,7 @@
     color: #fff6e5;
 }
 
-.header--default .Support-img{
-    filter: invert(94%) sepia(10%) saturate(300%) hue-rotate(10deg);
-}
+
 
 .header--default ._menu {
     background-color: #fff6e5;
@@ -46,9 +65,16 @@
 	color: #232324;
 }
 
-.header--default .header__support:hover .logo-img {
-	filter: invert(87%) sepia(0%) saturate(300%) hue-rotate(0.06deg);
+
+.header--default .Support-img {
+    filter: invert(94%) sepia(10%) saturate(300%) hue-rotate(10deg);
+    transition: filter 0.3s ease;
 }
+
+.header--default .header__support:hover .Support-img {
+    filter: none !important;
+}
+
 
 .header--default .menulang button {
     color: #232324;
@@ -62,17 +88,39 @@
 .header--about {
 	background-color: #232324;
     color: #fff6e5;
-    box-shadow: 0px 11px 35px 0px rgba(0, 0, 0, 0.63);
+    border-bottom: 2px solid #ffec7d;
 }
+
+
+.header--about .menulang button {
+	padding: 4px 8px;
+	border: none;
+	background: transparent;
+	color: black;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	border-radius: 6px;
+}
+
+.header--about .menulang button:hover:not(.active) {
+	background-color: #fff6e5;
+	color: black !important;
+}
+
+.header--about .menulang button.active {
+	background-color: #fff6e5;
+	color: black !important;
+}
+
+
+
 
 .header--about .header__support  {
 	background-color: #fff6e5; 
     color: #232324;
 }
 
-.header--about .Support-img {
-    filter: invert(6%) sepia(0%) saturate(300%) hue-rotate(0.06deg);
-}
+
 
 .header--about ._menu {
     background-color: #232324;
@@ -100,9 +148,11 @@
 	color: #fff6e5;
 }
 
-.header--about .header__support:hover .logo-img {
-	filter: invert(94%) sepia(10%) saturate(300%) hue-rotate(10deg);
+.header--about .header__support:hover .Support-img {
+    filter: invert(94%) sepia(10%) saturate(300%) hue-rotate(10deg);
+    transition: filter 0.3s ease;
 }
+
 
 .header--about .menulang button {
     color: #fff6e5;
@@ -116,9 +166,29 @@
 .header--guides {
 	background-color: #232324;
     color: #fff6e5;
-    box-shadow: 0px 11px 10px 0px rgba(0, 0, 0, 0.34);
+    border-bottom: 2px solid #537ef5;
+    box-shadow: 0 0 0 1px black; 
 }
 
+.header--guides .menulang button {
+	padding: 4px 8px;
+	border: none;
+	background: transparent;
+	color: black;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	border-radius: 6px;
+}
+
+.header--guides .menulang button:hover:not(.active) {
+	background-color: #fff6e5;
+	color: black ;
+}
+
+.header--guides .menulang button.active {
+	background-color: #fff6e5;
+	color: black !important;
+}
 
   
 
@@ -128,8 +198,9 @@
     color: #232324;
 }
 
-.header--guides .Support-img {
-    filter: invert(0%) sepia(100%) saturate(363%) hue-rotate(-28.66deg);
+.header--guides .header__support:hover .Support-img {
+    filter: invert(94%) sepia(10%) saturate(300%) hue-rotate(10deg);
+    transition: filter 0.4s ease;
 }
 
 .header--guides ._menu {

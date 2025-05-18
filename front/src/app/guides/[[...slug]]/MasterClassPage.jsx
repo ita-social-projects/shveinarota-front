@@ -8,7 +8,6 @@ import VideoSect from "$component/guides/VideoSect/VideoSect";
 import ExamplesSect from "$component/guides/ExamplesSect/ExamplesSect";
 import DetailsSect from "$component/guides/DetailsSect/DetailsSect";
 import AuthorSect from "$component/guides/AuthorSect/AuthorSect";
-import Questions from "$component/guides/Questions/Questions";
 import { useParams } from "next/navigation";
 import { getData } from "api";
 
@@ -41,7 +40,6 @@ export default function MasterClassPage() {
   return (
     <div className="guides-container">
       <div className="container">
-        <Questions />
         <main className="main-content">
           {guidesData.authors ? (
             <>

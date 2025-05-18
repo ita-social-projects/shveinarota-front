@@ -5,11 +5,12 @@ import Image from "next/image";
 import "$style/Header.css";
 import "$style/HeaderColors.css"; 
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLang } from "./Context/LangContext";
 import { useScrollbarWidth } from "$hooks/useScrollbarWidth";
 
 const Header = () => {
+	const pathname = usePathname();
 	const location = usePathname();
 	const menuIcon = useRef();
 	const router = useRouter();
@@ -17,6 +18,16 @@ const Header = () => {
 	const lastScrollTop = useRef(0);
 	const { lang, changeLanguage } = useLang();
 	const scrollbarWidth = useScrollbarWidth();
+	const [activeLang, setActiveLang] = useState('ua');
+	const [hoveredLang, setHoveredLang] = useState(null);
+
+	useEffect(() => {
+		if (pathname.startsWith('/en')) {
+			setActiveLang('en');
+		} else {
+			setActiveLang('ua');
+		}
+	}, [pathname]);
 	
 
 	// Открытие окна
@@ -51,6 +62,11 @@ const Header = () => {
 		}
 	}
 
+	const isActiveVisible = (lang) => {
+	// Скрыть стиль активной кнопки, если наводим на другую
+	return activeLang === lang && hoveredLang !== (lang === 'en' ? 'ua' : 'en');
+	};
+
 	function closeMenu() {
 		document.querySelector("._menu").classList.remove("active");
 		menuIcon.current.classList.remove("btn-active");
@@ -76,7 +92,7 @@ const Header = () => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	const pathname = usePathname();
+	
 
 	let colorClass = '';
 	if (pathname.startsWith('/about')) colorClass = 'header--about';
@@ -110,10 +126,17 @@ const Header = () => {
 					<nav className="menu">
 						<Link
 							onClick={closeMenu}
+							className={location.includes("/questions") ? "menu__link link-active" : "menu__link"}
+							href={"/questions"}
+						>
+							{lang == "ua" ? "Питання" : "questions"}
+						</Link>
+						<Link
+							onClick={closeMenu}
 							className={location == "/" || location == "/en" ? "menu__link link-active" : "menu__link"}
 							href={"/"}
 						>
-							{lang == "ua" ? "Головна сторінка" : "Home page"}
+							{lang == "ua" ? "Головна" : "Home page"}
 						</Link>
 						<Link
 							onClick={closeMenu}
@@ -142,10 +165,25 @@ const Header = () => {
 						</button>
 					</nav>
 					<div className="menulang">
-						<button onClick={() => { handleLanguageChange("en"); closeMenu(); }}>EN</button>
+						<button
+							className={isActiveVisible('en') ? 'active' : ''}
+							onClick={() => { handleLanguageChange('en'); closeMenu(); }}
+							onMouseEnter={() => setHoveredLang('en')}
+							onMouseLeave={() => setHoveredLang(null)}
+						>
+							EN
+						</button>
 						<div className="_line"></div>
-						<button onClick={() => { handleLanguageChange("ua"); closeMenu(); }}>UA</button>
+						<button
+							className={isActiveVisible('ua') ? 'active' : ''}
+							onClick={() => { handleLanguageChange('ua'); closeMenu(); }}
+							onMouseEnter={() => setHoveredLang('ua')}
+							onMouseLeave={() => setHoveredLang(null)}
+						>
+							UA
+						</button>
 					</div>
+
 				</div>
 			</div>
 		</header>

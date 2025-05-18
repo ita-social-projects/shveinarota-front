@@ -5,8 +5,10 @@
 }
 
 .questions-wrapper {
-	border-bottom: 12px solid #35353d;
+	border-bottom: 1px solid #000000;
+	
 }
+
 
 .main__title {
 	margin: 0px 0px 60px 0px;

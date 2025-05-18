@@ -3,8 +3,8 @@
     display: flex;
     justify-content: center; /* Центрирует контент по горизонтали */
     width: 100%;
-    min-height: 100vh;
-    background-color: #fff6e5;
+    height: auto;
+    background-color: #f8f4e7;
 }
 
 
@@ -15,7 +15,7 @@
     max-width: 1200px;
     width: 100%;
     padding: 15px;
-    background: #fff6e5;
+
     border-radius: 10px;
 }
 
@@ -27,7 +27,6 @@
 
 /* Основной контент */
 .main-content {
-    background-color: #fff6e5;
     border-radius: 13px;
     padding: 20px 0px 0px 0px;
     font-family: 'intro', sans-serif;
