@@ -31,8 +31,8 @@
 
 .spoller__link {
     font-size: 18px;
-    color: #e8dcd0;
-    font-family: 'anonymousprobold', sans-serif;
+    color: #fff6e5;
+    font-family: 'Caviar Dreams Bold', sans-serif;
     line-height: 1.5;
     display: block;
 		padding-left: 22px;
@@ -53,21 +53,14 @@
 	position: relative;
 	margin-bottom: 15px;
 	padding-right: 30px;
-	background-color: #2e2e35;
+	background-color: #fff6e5;
 	box-shadow: 0px 0px 13.12px 2.88px rgba(0, 0, 0, 0.35);
 	
 	
 	
 }
 
-.spoller__link.active {
-	color: #00ff66 !important; /* Принудительно задаем цвет */
-}
 
-.spoller__title.active-category {
-  color:  #00ff66; /* Подсветка активной категории зелёным цветом */
- 
-}
 
 .spoller-active .spoller__body {
   height: auto; /* Открытие активной категории */

@@ -4,10 +4,12 @@ import "./CardBlock.css"
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getData } from "api";
+import { useLang } from "$component/Context/LangContext";
 
 const CardBlock = () => {
 
 	const [cards, setCards] = useState([]);
+	const { lang } = useLang();
 
 	useEffect(() => {
 		getData("cards", setCards)
@@ -42,6 +44,8 @@ const CardBlock = () => {
 
 	return (
 		<div className="cardbox">
+			<h1 className="card__title__main-title">{lang == 'ua' ? "Наші досягнення" : "Our achievements"}</h1>
+			<div className="card__line"></div>
 			<div
 				className="cardbox__container"
 			>

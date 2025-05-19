@@ -1,42 +1,43 @@
 .partners {
-	background: #2e2e35;
+	background: #fff6e5;
 	position: relative;
-	z-index: 2;
-	border-bottom: clamp(6px, 1vw, 12px) solid #2e2e35;
-	box-shadow: 0px 0px clamp(10px, 2vw, 20px) clamp(4px, 1vw, 8px) rgba(0, 0, 0, 0.562);
-	padding-bottom: clamp(10px, 5vw, 20px);
+	height: auto;
+
 	text-align: center;
+
+	padding: 40px 0 70px 0;
 }
 
-.partners__wrapper {
-	background-color: #2e2e35;
-}
+
 
 .partners__container {
 	max-width: 1200px;
 	padding: clamp(10px, 3vw, 15px);
 	margin: 0 auto;
 	cursor: pointer;
+	gap: 20px;
 }
 
 .partners__title {
-	color: #ebddd0;
-	padding: clamp(10px, 2vw, 20px) 0 0 0;
-	background-color: #2e2e35;
-	border-top: clamp(6px, 1vw, 12px) solid #2e2e35;
-	font-size: clamp(18px, 4vw, 32px);
+	color: #232324;
+	font-size: 30px;
 	display: inline-block;
+	font-family: 'Caviar Dreams Bold', sans-serif;
 	position: relative;
 }
 
+.wrapper_partner_line {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
 .partners__line {
 	width: calc(100% + clamp(10px, 2vw, 30px));
 	max-width: 300px;
 	height: clamp(2px, 0.5vw, 4px);
-	background-color: #50d37c;
-	margin: clamp(2px, 1vw, 5px) auto clamp(5px, 2vw, 15px);
-	border-radius: 2px;
-	position: relative;
+	background-color: #232324;
+
+	border-radius: 1px;
 }
 
 .partners__row {
@@ -77,6 +78,7 @@
 
 .partners__slider .slick-list {
 	height: clamp(150px, 12vw, 200px);
+
 }
 
 .slick-dots {
@@ -88,27 +90,29 @@
 	align-items: center;
 	gap: clamp(4px, 1vw, 6px);
 	width: auto;
+	top: 175px;
+
 }
 
 .slick-dots li {
+	
 	width: clamp(5px, 1vw, 10px);
 	height: clamp(5px, 1vw, 10px);
-	border: clamp(1px, 0.6vw, 2.5px) solid rgb(52, 52, 59);
-	background-color: rgb(232, 220, 208);
-	border-radius: 50%;
-	box-shadow: 0px 0px clamp(8px, 2vw, 16px) clamp(0.7px, 0.5vw, 1.4px) rgba(0, 0, 0, 0.42);
-	transition: all 0.3s ease;
+	background-color: #232324;
+	transform: rotate(45deg); 
 	cursor: pointer;
 	list-style: none;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	box-shadow: 4px -1.250px 0px rgba(0, 0, 0, 0.1);
 }
 
+
 .slick-dots li.slick-active {
-	background-color: rgb(52, 52, 59);
-	border-color: rgb(232, 220, 208);
-	transform: scale(0.9);
+	border: 4px solid #232324;
+	background-color: #fff6e5;
+	
 }
 
 .slick-dots li button {
@@ -130,6 +134,7 @@
 	.partners__slider .slick-list {
 		height: clamp(150px, 10vw, 200px); /* Уменьшена высота слайдера */
 	}
+
 }
 
 @media (max-width: 768px) {
@@ -138,10 +143,13 @@
 		gap: 8px; /* Уменьшил расстояние между картинками */
 	}
 
+
 	.partners__slider .slick-list {
 		height: clamp(140px, 9vw, 180px); /* Уменьшена высота слайдера */
 	}
 }
+
+
 
 @media (max-width: 480px) {
 	.partners__row {

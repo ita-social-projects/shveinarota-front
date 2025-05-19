@@ -7,6 +7,7 @@ export default function AboutPage() {
 	return (
 		<main className="main">
 			<AboutSectionEn />
+			
 			<TeamSection />
 		</main>
 	);

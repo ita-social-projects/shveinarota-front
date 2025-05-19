@@ -68,7 +68,7 @@ export default function RootLayout({ children }) {
           <div className="wrapper">
             {!path.includes('dashboard') && <Header />}
             {children}
-            {!path.includes('dashboard') && !path.includes('guides') && !path.includes('auth') && <Footer />}
+            {!path.includes('dashboard')  && !path.includes('auth') && <Footer />}
           </div>
         </LangProvider>
       </body>

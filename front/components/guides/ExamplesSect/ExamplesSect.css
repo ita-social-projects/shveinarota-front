@@ -5,47 +5,28 @@
 }
 
 .examples__container {
-  background-color: #E8DCD0;
-  /* Белый фон для контейнера */
-  padding: 20px;
-  /* Отступы внутри контейнера */
-  border-radius: 2px;
-  /* Округлые углы */
-  box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.63);
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgb(117, 117, 117);
-  width: 100%;
-  /* Контейнер занимает всю доступную ширину */
+  background-color: #fff6e5;
   max-width: 1200px;
-  /* Максимальная ширина контейнера */
-  margin: 0 auto;
-  /* Центрируем контейнер */
-  margin-top: 30px;
-  /* Отступ сверху */
+  border: 3px solid #232324;
+  border-radius: 4px;
+  box-shadow: 8.668px 6.772px 0px 0px rgba(0, 0, 0, 0.26);
 }
 
+
 .examples h2 {
-  font-size: 24px;
-  text-align: center;
-  /* Центрируем текст внутри */
-  background-color: #2e2e35;
-  color: #E8DCD0;
+  font-size: 30px;
+  background-color: #fff6e5;
+  color: #232324;
   display: flex;
-  justify-content: center;
-  /* Центрируем по горизонтали */
-  align-items: center;
-  /* Центрируем по вертикали */
-  padding: 10px;
-  border-radius: 5px;
-  margin: 0 auto 20px auto;
-  /* Центрируем блок и задаем отступ снизу */
+  padding: 10px 10px 10px 20px;
+  border-bottom: 4px solid #232324;
 }
 
 .gallery {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  padding: 20px;
 }
 
 .gallery-item {
@@ -138,9 +119,6 @@
 }
 
 @media (max-width: 900px) {
-  .examples__container {
-    padding: 15px;
-  }
 
   .gallery img {
     width: 100%;

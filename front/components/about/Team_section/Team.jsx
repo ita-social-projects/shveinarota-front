@@ -17,6 +17,10 @@ const TeamSection = () => {
     <motion.div
       className="Team-section"
     >
+      <div className="team_title_about">
+          <span>Наша команда</span>
+          <div className="team_title_about_column"></div>
+      </div>
       <div className="Team-box">
         {team.map((member, index) => (
           <motion.div

@@ -154,7 +154,7 @@ body {
 .wrapper {
   position: relative;
   height: 100%;
-  background-color: #e8dcd0;
+  background-color: #fff6e5;
 }
 
 .menu-active {
@@ -172,27 +172,6 @@ body {
   color: #2e2e35;
 }
 
-._background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: url("/images/footer/bg.png");
-  background-size: cover;
-  margin: 0px 0px -85px 0px;
-  width: 100%;
-  height: 100%;
-}
-
-._background::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #2e2e3575;
-}
 
 .popup {
   display: none;

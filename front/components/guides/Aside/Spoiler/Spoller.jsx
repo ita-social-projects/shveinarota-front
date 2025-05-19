@@ -61,7 +61,7 @@ const Spoller = ({ children, title, isActiveCategory }) => {
         </h2>
         <div className="spoller__icon">
           <Image
-            src="/images/guides/arrow-down.svg"
+            src="/images/guides/down-arrow.png"
             alt="приклад"
             width={800}
             height={436}

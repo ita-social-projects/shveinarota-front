@@ -18,7 +18,8 @@ export default function ChangePage() {
   const [formData, setFormData] = useState({
     title: '',
     title_en: '',
-    videoUrl: '',
+    videoUrl: [''],
+    videoEnUrl: [''],
     details: '',
     details_en: '',
     summary: '',
@@ -50,10 +51,37 @@ export default function ChangePage() {
       "summary", "summary_en", "category"
     ];
 
-    const emptyFields = requiredFields.filter(field => !formData[field].trim());
+    const emptyFields = requiredFields.filter(field => !formData[field]);
 
     if (emptyFields.length > 0) {
       alert('Будь ласка, заповніть всі поля!');
+      return;
+    }
+
+    let error = false
+
+    formData.videoUrl.forEach(e => {
+      if (e == "") {
+        alert('Посилання на відео не має бути пустим')
+        error = true
+        return;
+      }
+    });
+
+    formData.videoEnUrl.forEach(e => {
+      if (e == "") {
+        alert('Посилання на відео не має бути пустим')
+        error = true
+        return;
+      }
+    });
+
+    if (error) {
+      return
+    }
+
+    if (preview.length == "") {
+      alert('Будь ласка, додайте зображення етикетки!');
       return;
     }
 
@@ -64,7 +92,8 @@ export default function ChangePage() {
       details_en: formData.details_en,
       summary: formData.summary,
       summary_en: formData.summary_en,
-      url: formData.videoUrl,
+      url: formData.videoUrl.map((url) => url.trim()),
+      url_en: formData.videoEnUrl.map((url) => url.trim()),
       authors: formData.authors.map((author) => author.trim()),
       authors_en: formData.authors_en.map((author) => author.trim()),
       lekala: lekala,
@@ -108,8 +137,77 @@ export default function ChangePage() {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="videoUrl" className="form-label">Посилання на відео(embed)</label>
-            <input onChange={(e) => setFormData({ ...formData, videoUrl: e.target.value })} value={formData.videoUrl} type="url" className="form-control" id="videoUrl" name="videoUrl" placeholder="Введіть посилання на відео" />
+            <label className="form-label">Посилання на відео (embed)</label>
+            {formData.videoUrl.map((url, index) => (
+              <div key={index} className="input-group mb-2">
+                <input
+                  type="url"
+                  className="form-control"
+                  placeholder="Введіть посилання на відео"
+                  value={url}
+                  onChange={(e) => {
+                    const updatedUrls = [...formData.videoUrl];
+                    updatedUrls[index] = e.target.value;
+                    setFormData({ ...formData, videoUrl: updatedUrls });
+                  }}
+                />
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => {
+                    const updatedUrls = formData.videoUrl.filter((_, i) => i !== index);
+                    setFormData({ ...formData, videoUrl: updatedUrls });
+                  }}
+                  disabled={formData.videoUrl.length === 1}
+                >
+                  Видалити
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => setFormData({ ...formData, videoUrl: [...formData.videoUrl, ''] })}
+            >
+              Додати посилання
+            </button>
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Посилання на відео англійською (embed)</label>
+            {formData.videoEnUrl.map((url, index) => (
+              <div key={index} className="input-group mb-2">
+                <input
+                  type="url"
+                  className="form-control"
+                  placeholder="Введіть посилання на відео"
+                  value={url}
+                  onChange={(e) => {
+                    const updatedUrls = [...formData.videoEnUrl];
+                    updatedUrls[index] = e.target.value;
+                    setFormData({ ...formData, videoEnUrl: updatedUrls });
+                  }}
+                />
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => {
+                    const updatedUrls = formData.videoEnUrl.filter((_, i) => i !== index);
+                    setFormData({ ...formData, videoEnUrl: updatedUrls });
+                  }}
+                  disabled={formData.videoEnUrl.length === 1}
+                >
+                  Видалити
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => setFormData({ ...formData, videoEnUrl: [...formData.videoEnUrl, ''] })}
+            >
+              Додати посилання
+            </button>
           </div>
 
           <div className="mb-3">

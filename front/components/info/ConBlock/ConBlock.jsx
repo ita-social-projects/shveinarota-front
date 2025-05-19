@@ -3,11 +3,12 @@ import "./ConBlock.css";
 import Link from "next/link";
 import { useScrollbarWidth } from "$hooks/useScrollbarWidth";
 import PopupLink from "./PopupLink/PopupLink";
+import { useLang } from "$component/Context/LangContext";
 
 const ConBlock = () => {
     
     const scrollbarWidth = useScrollbarWidth();
-
+    
     // Открытие окна
     function openPopup() {
         document.body.classList.add("popup-active");
@@ -17,6 +18,7 @@ const ConBlock = () => {
 
     return (
         <div className="conboxcontainer">
+
             <div className="conbox">
                 <Link href="/guides" className="left">
                     <h1>Доєднатися до пошиття</h1>

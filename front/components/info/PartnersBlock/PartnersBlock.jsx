@@ -3,7 +3,7 @@
 import { getData } from "api";
 import "./PartnersBlock.css";
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -13,13 +13,6 @@ import { useLang } from "$component/Context/LangContext";
 const PartnersBlock = () => {
   const [partners, setPartners] = useState([]);
   const [chunkSize, setChunkSize] = useState(5);
-  const sliderRef = useRef(null);
-  const containerRef = useRef(null);
-  const trackRef = useRef(null);
-  const dragStartY = useRef(null);
-  const baseOffset = useRef(0);
-  const currentDelta = useRef(0);
-
   const { lang } = useLang();
 
   useEffect(() => {
@@ -35,15 +28,10 @@ const PartnersBlock = () => {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      if (width < 480) {
-        setChunkSize(2);
-      } else if (width < 768) {
-        setChunkSize(3);
-      } else if (width < 1024) {
-        setChunkSize(4);
-      } else {
-        setChunkSize(5);
-      }
+      if (width < 480) setChunkSize(2);
+      else if (width < 768) setChunkSize(3);
+      else if (width < 1024) setChunkSize(4);
+      else setChunkSize(5);
     };
 
     handleResize();
@@ -62,16 +50,14 @@ const PartnersBlock = () => {
   const groupedPartners = chunkArray(partners, chunkSize);
 
   const settings = {
+    arrows: false,
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    vertical: true,
-    verticalSwiping: true,
-    swipe: false,
-    draggable: false,
-    arrows: false,
+    swipe: true,
+    draggable: true,
     autoplay: true,
     autoplaySpeed: 3000,
     cssEase: "ease",
@@ -79,134 +65,49 @@ const PartnersBlock = () => {
     appendDots: (dots) => <ul className="slick-dots">{dots}</ul>,
   };
 
-  const handleStart = (startY) => {
-    sliderRef.current?.slickPause();
-    dragStartY.current = startY;
-    currentDelta.current = 0;
-    const track = document.querySelector(".slick-track");
-    trackRef.current = track;
-    if (track) {
-      const computed = window.getComputedStyle(track);
-      const transform = computed.transform;
-      let translateY = 0;
-      if (transform && transform !== "none") {
-        const match = transform.match(/matrix.*\((.+)\)/);
-        if (match) {
-          const values = match[1].split(",").map((val) => parseFloat(val.trim()));
-          translateY = values[5];
-        }
-      }
-      baseOffset.current = translateY;
-    }
-  };
-
-  const handleMove = (currentY) => {
-    if (dragStartY.current === null || !trackRef.current) return;
-    const deltaY = currentY - dragStartY.current;
-    currentDelta.current = deltaY;
-    trackRef.current.style.transition = "none";
-    trackRef.current.style.transform = `translate3d(0, ${baseOffset.current + deltaY}px, 0)`;
-  };
-
-  const handleEnd = () => {
-    const threshold = 50;
-    if (currentDelta.current < -threshold) {
-      sliderRef.current?.slickNext();
-    } else if (currentDelta.current > threshold) {
-      sliderRef.current?.slickPrev();
-    } else if (trackRef.current) {
-      trackRef.current.style.transition = "transform 0.5s ease";
-      trackRef.current.style.transform = `translate3d(0, ${baseOffset.current}px, 0)`;
-      setTimeout(() => {
-        if (trackRef.current) trackRef.current.style.transition = "";
-      }, 500);
-    }
-    dragStartY.current = null;
-    currentDelta.current = 0;
-    sliderRef.current?.slickPlay();
-  };
-
-  useEffect(() => {
-    const container = containerRef.current;
-
-    const onTouchStart = (e) => {
-      handleStart(e.touches[0].clientY);
-    };
-
-    const onTouchMove = (e) => {
-      handleMove(e.touches[0].clientY);
-      e.preventDefault(); // Чтобы страница не прокручивалась
-    };
-
-    const onTouchEnd = () => {
-      handleEnd();
-    };
-
-    if (container) {
-      container.addEventListener("touchstart", onTouchStart, { passive: false });
-      container.addEventListener("touchmove", onTouchMove, { passive: false });
-      container.addEventListener("touchend", onTouchEnd, { passive: false });
-    }
-
-    return () => {
-      if (container) {
-        container.removeEventListener("touchstart", onTouchStart);
-        container.removeEventListener("touchmove", onTouchMove);
-        container.removeEventListener("touchend", onTouchEnd);
-      }
-    };
-  }, []);
-
   return (
     <div className="partners">
-      <h1 className="partners__title _main-title">{lang == 'ua' ? "Наші партнери" : "Our partners"}</h1>
+      <h1 className="partners__title _main-title">
+        {lang === 'ua' ? "Наші партнери" : "Our partners"}
+      </h1>
+      <div className="wrapper_partner_line">
       <div className="partners__line"></div>
-      <div
-        className="partners__wrapper"
-        ref={containerRef}
-        onMouseDown={(e) => handleStart(e.clientY)}
-        onMouseMove={(e) => handleMove(e.clientY)}
-        onMouseUp={handleEnd}
-        onMouseLeave={() => dragStartY.current !== null && handleEnd()}
-      >
+      </div>
+      <div className="partners__wrapper">
         <div className="partners__container">
           <div className="partners__slider-wrapper">
-            <Slider ref={sliderRef} {...settings} className="partners__slider">
+            <Slider {...settings} className="partners__slider">
               {groupedPartners.map((group, index) => (
                 <div className="partners__block" key={index}>
                   <div
                     className="partners__row"
-                    style={{
-                      gridTemplateColumns: `repeat(${group.length}, 1fr)`,
-                    }}
+                    style={{ gridTemplateColumns: `repeat(${group.length}, 1fr)` }}
                   >
                     {group.map((partner) => (
                       <div className="partners__partner" key={partner.id}>
-                        {partner.link
-                          ?
-                          <Link target="_blank" href={partner.link} className="partner__img-wrapper">
+                        {partner.link ? (
+                          <Link
+                            target="_blank"
+                            href={partner.link}
+                            className="partner__img-wrapper"
+                          >
                             <Image
-                              src={
-                                "http://drive.google.com/uc?export=view&id=" +
-                                partner.path
-                              }
+                              src={`http://drive.google.com/uc?export=view&id=${partner.path}`}
                               width={130}
                               height={130}
-                              alt="img"
+                              alt="partner logo"
                             />
                           </Link>
-                          : <div className="partner__img-wrapper">
+                        ) : (
+                          <div className="partner__img-wrapper">
                             <Image
-                              src={
-                                "http://drive.google.com/uc?export=view&id=" +
-                                partner.path
-                              }
+                              src={`http://drive.google.com/uc?export=view&id=${partner.path}`}
                               width={130}
                               height={130}
-                              alt="img"
+                              alt="partner logo"
                             />
                           </div>
-                        }
+                        )}
                       </div>
                     ))}
                   </div>

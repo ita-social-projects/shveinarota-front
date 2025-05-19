@@ -38,10 +38,13 @@ const MasterClassSect = ({ masterClassData }) => {
         <h1 className="masterclass-title">
           {masterClassData.subcategory}
         </h1>
+        <div className="column_title_masterclass">
+        </div>
       </div>
-
-      <div className="masterclass-subcategory-container">
+      <div className="lekala_container">
         <h2>Лекала</h2>
+      </div>
+      <div className="masterclass-subcategory-container">
 
         <div className="master-class__body">
           {masterClassData.preview != null && masterClassData.preview != "" &&

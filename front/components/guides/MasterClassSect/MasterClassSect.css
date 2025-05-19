@@ -1,16 +1,45 @@
 .master-class {
-	margin: 0px 0px 50px 0px;
+
+	display: flex;
+	flex-direction: column; /* или row — зависит от желаемой оси */
+	gap: 20px;
 }
 
+.lekala_container {
+    width: fit-content; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 30px 5px 30px;
+    border-radius: 5px;
+    border: 3px solid rgb(46, 46, 53); 
+    box-shadow: 7.314px 6.82px 0px 0px rgba(0, 0, 0, 0.17);
+}
+
+
+  
+
+.lekala_container h2 {
+	font-size: 25px;
+}
 .masterclass-title-container {
 	display: flex;
 	justify-content: center;
-	/* Центрує заголовок по горизонталі */
+	flex-direction: column;
+	align-items: center;
+
+	
+}
+.column_title_masterclass {
+	background-color: #2e2e35;
+	height: 5px; 
+	max-width: 850px;
+	width: 100%;
 }
 
 .master-class__body {
 	display: flex;
-	gap: 15px;
+	gap: 30px;
 	flex-wrap: wrap;
 }
 
@@ -21,12 +50,9 @@
 
 
 .masterclass-title {
-	font-size: 26px;
-	background-color: #2e2e35;
-	/* Чорний фон */
-	color: #E8DCD0;
-	/* Білий текст */
-
+	font-size: 46px;
+	color: 232324;
+	font-family: 'intro', sans-serif; 
 	display: flex;
 	/* Використовуємо Flexbox для центрівки контенту */
 	justify-content: center;
@@ -34,60 +60,27 @@
 	align-items: center;
 	/* Центрує контент по вертикалі */
 	width: 100%;
-	/* Ширина блока становить 100% від батьківського елемента */
-	max-width: 400px;
-	/* Максимальна ширина для заголовка */
+	text-shadow: 3.94px 3.078px 0px rgba(0, 0, 0, 0.35);
 	padding: 10px;
-	border-radius: 5px;
-	/* Округлені кути */
-	margin-bottom: 30px;
-	/* Додаємо відступ знизу між заголовками */
+	
 }
 
+  
 .masterclass-subcategory-container {
 	width: 100%;
-	/* Ширина контейнера */
 	display: flex;
 	flex-direction: column;
-	/* Элементы внутри будут располагаться вертикально */
 	align-items: flex-start;
-	/* Выравниваем элементы по левому краю */
 	margin-bottom: 20px;
-	/* Отступ снизу */
 	padding: 20px;
-	/* Отступ внутри блока */
-	background-color: #E8DCD0;
-	/* Светлый фон для контейнера */
 	border-style: solid;
 	border-width: 1px;
-	border-color: rgb(117, 117, 117);
-	border-radius: 2px;
-	/* Округлые углы */
-	box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.63);
-}
-
-.masterclass-subcategory-container h2 {
-	font-size: 20px;
-	/* Размер шрифта остаётся таким же, как у h1 */
-	text-align: center;
-	/* Центрируем текст */
-	background-color: #2e2e35;
-	/* Черный фон */
-	color: #E8DCD0;
-	/* Белый текст */
-	display: flex;
-	/* Используем Flexbox для центрирования содержимого */
-	justify-content: center;
-	/* Центрируем по горизонтали */
-	align-items: center;
-	/* Центрируем по вертикали */
-	width: 250px;
-	padding: 8px 10px;
+	border: 3px solid rgb(46, 46, 53);
 	border-radius: 5px;
-	/* Округлые углы */
-	margin-bottom: 20px;
-	/* Отступ снизу */
+	box-shadow: 8.045px 7.502px 0px 0px rgba(0, 0, 0, 0.29);
 }
+  
+
 
 
 .masterclass-subcategory-container ul {
@@ -101,12 +94,10 @@
 }
 
 .masterclass-subcategory-container li {
-	font-size: 18px;
-	/* Размер шрифта для элементов списка */
+	font-size: 22px;
 	text-align: left;
-	/* Выравнивание текста по левому краю */
 	margin-bottom: 10px;
-	/* Отступ снизу для элементов списка */
+	font-family: 'Caviar Dreams Bold', sans-serif;
 }
 
 .lekala-link {

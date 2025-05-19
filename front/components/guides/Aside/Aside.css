@@ -1,6 +1,6 @@
 /* Основные стили */
 .aside {
-  background-color: #2e2e35;
+  background-color: #232324;
   width: auto;
   align-items: center;
   min-height: 100vh;
@@ -13,7 +13,9 @@
   left: 0;
   transition: transform 0.3s ease;
   z-index: 3;
+  box-shadow: 2.94px 3.078px 0px 0px rgba(0, 0, 0, 0.47);
 }
+
 
 /* Контейнер с прокруткой */
 .aside-content {

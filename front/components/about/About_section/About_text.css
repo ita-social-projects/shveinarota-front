@@ -1,0 +1,302 @@
+.hospital_about-button {
+    width: 200px;               
+    height: 200px;
+    background-color: #232324;  
+    border: 2px solid #f6f0d9;  
+    border-radius: 50%;       
+    display: flex;             
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #f6f0d9;             
+    font-size: 16px;            
+    transition: background-color 0.3s, border-color 0.3s;
+    flex-direction: column;
+    font-family: 'intro', sans-serif; 
+    gap: 10px;
+    box-shadow: 0px 0px 29px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  
+  
+
+.shveya_about-button{
+    width: 200px;               
+    height: 200px;
+    background-color: #232324;  
+    border: 2px solid #f6f0d9;  
+    border-radius: 50%;       
+    display: flex;             
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #f6f0d9;   
+    font-family: 'intro', sans-serif; 
+    font-size: 16px;            
+    transition: background-color 0.3s, border-color 0.3s;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0px 0px 29px 0px rgba(0, 0, 0, 0.2);
+}
+
+.hospital_about-button,
+.shveya_about-button {
+  width: 200px;               
+  height: 200px;
+  background-color: #232324;  
+  border: 2px solid #f6f0d9;  
+  border-radius: 50%;       
+  display: flex;             
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #f6f0d9;             
+  font-size: 16px;            
+  transition: 
+    background-color 0.3s, 
+    border-color     0.3s,
+    color            0.3s,
+    filter           0.3s;
+  flex-direction: column;
+  font-family: 'intro', sans-serif; 
+  gap: 10px;
+}
+
+
+.hospital_about-button:hover,
+.shveya_about-button:hover {
+  background-color: #f6f0d9; 
+  border-color:#232324; 
+  color: #232324; 
+}
+
+
+.hospital_about-button:hover .hospital_button_about,
+.shveya_about-button:hover .shveya_button_about {
+
+  filter: invert(1);
+}
+
+
+
+.About_text_box {
+    display: flex;
+    width: 100%;
+    height: auto;
+    text-align: left;
+    background: linear-gradient(
+        rgba(35, 35, 36, 0.7), 
+        rgba(35, 35, 36, 0.8)
+      ),
+      url('/images/about/Background.png');
+    background-size: cover;       
+    background-repeat: no-repeat; 
+    background-position: center;  
+    color: #ebd6c2;
+    padding: 70px 0 70px 0;
+    justify-content: center;
+    align-items: center;
+    gap: 140px;
+}
+
+
+.About_text_left, 
+.About_text_right {
+    flex-direction: column; 
+    display: flex;
+    align-items: center;
+    width: 1000px; 
+    max-width: 80%; 
+}
+
+.About_text_left{
+    margin: 0 0 30px 0;
+}
+
+
+.About_text_right {
+    width: auto; 
+    gap: 25px;
+
+}
+
+.About_text_right_top {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column; 
+    gap: 45px;
+}
+.About_text_right_bot {
+    width: auto;
+    height: auto;
+    text-align: center;
+}
+.about-text {
+    font-size: 22px;
+    line-height: 1.4;
+    max-width: 100%;
+    text-shadow: 1.516px 1.034px 0px rgba(0, 0, 0, 0.97);
+}
+
+
+
+.About_text_right h1 {
+    font-size: 28px;
+    font-family: 'Caviar Dreams Bold', sans-serif;
+}
+
+.About_text_left h1 {
+    font-size: 48px;
+    font-family: 'Caviar Dreams Bold', sans-serif;
+    text-shadow: 2.283px 1.592px 0px rgba(0, 0, 0, 0.3);
+}
+
+.About_Left_column {
+    background-color: rgb(232, 220, 208);
+    width: 651px;
+    height: 3px;
+    margin-bottom: 2%;  
+    margin-top: 1%;  
+    box-shadow: 2.624px 3.019px 0px 0px rgba(0, 0, 0, 0.28);
+}
+
+
+  
+
+.About_right_column {
+    background-color: rgb(232, 220, 208);
+    width: 240px;
+    height: 3px;
+    margin-bottom: 2%;  
+    margin-top: 3px;  
+}
+
+
+
+
+
+@media (max-width: 1440px) {
+    .About_text_box {
+        gap: 5px;
+        padding: 40px 0 40px 0;
+    }
+    .About_text_box {
+      flex-direction: column; 
+        display: flex;
+        text-align: center;
+    }
+    .About_text_right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1000px; 
+        max-width: 80%; 
+    }
+
+    .About_text_right_top {
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: row; 
+    }
+
+
+
+    .About_text_right h1 {
+        font-size: 35px;
+        text-shadow: 2.283px 1.592px 0px rgba(0, 0, 0, 0.3);
+    }
+    
+    .About_text_left h1 {
+        font-size: 46px;
+    }
+
+    .about-text {
+        font-size: 20px;
+    }
+
+    .About_right_column {
+        width: 451px;
+        height: 3px;
+        box-shadow: 2.624px 3.019px 0px 0px rgba(0, 0, 0, 0.28);
+    }
+    
+  }
+
+  
+
+  
+
+  @media (max-width: 875px) {
+
+
+
+
+
+    .About_text_right h1 {
+        font-size: 28px;
+    }
+    
+    .About_text_left h1 {
+        font-size: 24px;
+    }
+
+    .about-text {
+        font-size: 14px;
+    }
+    
+
+    .About_right_column {
+        width: 300px;
+        height: 3px;
+    }
+    .About_Left_column  {
+        width: 350px;
+        height: 3px;
+    }
+
+    .hospital_about-button, .shveya_about-button {
+        width: 150px;               
+        height: 150px; 
+        font-size: 10px;            
+        
+      }
+  }
+
+  @media (max-width: 560px) {
+    .hospital_about-button, .shveya_about-button {
+        width: 120px;               
+        height: 120px;
+    }
+
+
+    .About_text_right h1 {
+        font-size: 20px;
+    }
+    
+    .About_text_left h1 {
+        font-size: 20px;
+    }
+
+    .about-text {
+        font-size: 12px;
+    }
+    
+
+    .About_right_column, .About_Left_column  {
+        max-width: 190px;
+        height: 3px;
+    }
+
+    .hospital_button_about{
+        height: 50px;
+        width: 50px;
+    }
+
+    .shveya_button_about{
+        height: 50px;
+        width: 50px;
+    }
+    
+  }
