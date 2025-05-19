@@ -47,6 +47,7 @@
 .footer--guides .footer__columns {
 	justify-content: left;
 	gap: 40px;
+	padding-left: 15px;
 }
 
 
@@ -83,7 +84,6 @@
 .footer--guides .footer__container{
     width: 100%;
     max-width: 1170px;
-    padding-left: 40px;
     padding-top: 50px;
 }
 
@@ -140,12 +140,13 @@
 	position: relative;
     max-width: 1170px;
     gap: 30px;
-    margin: 0 14px 0 14px;
+    justify-content: center;
 }
 
 .footer--about .footer__columns {
 	justify-content: left;
 	gap: 40px;
+	
 }
 
 .footer--about .footer__wrapper {
@@ -187,7 +188,7 @@
 }
 
 .footer--about .footer__columns {
-    margin-left: 60px;
+    justify-content: center;
 }
 
 
