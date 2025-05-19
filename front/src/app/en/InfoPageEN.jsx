@@ -41,10 +41,10 @@ export default function InfoPage() {
       <div className="order">
         <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScwlcFX3jqmOrJ3oXMrcNJJS3-LgfYy5fjMlXSlSmpU6HaLaw/viewform" className="order__link">Order adaptive clothing</a>
       </div>
-      <CardBlockEn />
       <ConBlockEn />
-      <PartnersBlock />
+      <CardBlockEn />
       <MediaBlock />
+      <PartnersBlock />
       <MapBlockEn />
     </main>
   );

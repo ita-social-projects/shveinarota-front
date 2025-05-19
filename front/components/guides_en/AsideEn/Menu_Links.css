@@ -5,8 +5,8 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #e8dcd0;
-  font-family: 'anonymousprobold', sans-serif;
+  color: #fff6e5;
+  font-family: 'Caviar Dreams Bold', sans-serif;
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 8px;
@@ -14,8 +14,7 @@
   position: relative;
   transition: transform 0.3s ease, color 0.3s ease;
   transform: translateX(0);
-  min-width: max-content;
-  /* предотвращает сжатие текста */
+  min-width: max-content; /* предотвращает сжатие текста */
   white-space: nowrap;
 }
 
@@ -23,27 +22,26 @@
 .spoller__link::before {
   content: "";
   width: 10px;
-  height: 9px;
-  background-color: rgb(82, 223, 129);
-  border-radius: 50%;
+  height: 10px;
+  background-color: #fff6e5#232324;
+  border: 2px solid #fff6e5;
   position: absolute;
   left: 3px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) rotate(45deg); /* превращаем квадрат в ромб */
   transition: opacity 0.3s ease, transform 0.3s ease;
-  opacity: 0;
+  opacity: 0; /* Сделаем видимым для проверки */
 }
 
-/* Изменение цвета при наведении */
-.spoller__link:hover {
-  color: rgb(82, 223, 129);
-}
+
+
+
+
 
 /* Для неактивных ссылок при hover сдвигаем их вправо и показываем точку */
 .spoller__link:not(.active):hover {
   transform: translateX(5px);
 }
-
 .spoller__link:not(.active):hover::before {
   opacity: 1;
 }
@@ -51,14 +49,16 @@
 /* Активная ссылка (текущая страница) */
 .spoller__link.active {
   transform: translateX(0);
-  color: #00ff66 !important;
+  color: #fff6e5 !important;
+  text-shadow: 3.152px 2.463px 0px rgba(0, 0, 0, 0.57);
+  
 }
+
+
 
 .spoller__link.active::before {
   opacity: 1;
-  transform: translateY(-50%) translateX(0);
 }
-
 .spoller__link.active:hover {
   transform: translateX(5px);
 }

@@ -67,7 +67,7 @@ const PartnersBlock = () => {
 
   return (
     <div className="partners">
-      <h1 className="partners__title _main-title">
+      <h1 className="partners__title">
         {lang === 'ua' ? "Наші партнери" : "Our partners"}
       </h1>
       <div className="wrapper_partner_line">

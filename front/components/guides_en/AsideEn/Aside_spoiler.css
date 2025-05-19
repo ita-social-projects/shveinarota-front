@@ -6,12 +6,16 @@
 .spoller__title {
 	cursor: pointer;
 	font-size: 20px;
-	color: #e8dcd0;
+	color: #232324;
 	font-family: 'intro', sans-serif;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	text-shadow: 0.788px 0.616px 0px rgba(0, 0, 0, 0.57);
+
+	white-space: normal;
+	word-break: break-word;
+	overflow-wrap: break-word;
 }
+
+  
 
 .spoller__button {
 	display: flex;
@@ -21,6 +25,8 @@
 	width: 100%;
 	position: relative;
 	padding-right: 30px;
+	border-radius: 5px;
+	max-width: 250px;
 }
 
 .spoller__body {
@@ -31,4 +37,10 @@
 	overflow: hidden;
 	height: 0;
 	transition: height 0.5s ease;
+}
+
+@media (max-width: 600px) {
+	.spoller__title {
+		font-size: 18px;
+	}
 }

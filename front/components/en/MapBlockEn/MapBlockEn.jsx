@@ -1,5 +1,5 @@
-import "./MapBlock.css"
-import { useEffect, useRef, useState } from 'react';
+import "./MapBlock.css";
+import { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
@@ -8,11 +8,23 @@ import { useLang } from "$component/Context/LangContext";
 import Link from "next/link";
 import { getData, getEnData } from "api";
 import Image from "next/image";
+import SidebarSearch from '$component/en/MapBlockEn/SidebarSearch/SidebarSearch';
+
+const PassMapToSidebar = ({ markers, handleZoom }) => {
+	const map = useMap();
+	return (
+		<SidebarSearch
+			markers={markers}
+			handleZoom={handleZoom}
+			disableMapInteraction={() => map.dragging.disable()}
+			enableMapInteraction={() => map.dragging.enable()}
+		/>
+	);
+};
 
 const MapBlockEn = () => {
 	const [selectedPoint, setSelectedPoint] = useState(null);
 	const [markers, setMarkers] = useState([]);
-
 	const { lang } = useLang();
 
 	useEffect(() => {
@@ -43,25 +55,36 @@ const MapBlockEn = () => {
 	return (
 		<div className="map">
 			<div className="map__container">
-				<h2 className="map__title _main-title">Geography of the Shveina rota</h2>
-				<SearchMarkers markers={markers.length > 0 ? markers : []} handleZoom={handleZoom} />
+				<h2 className="map__title _main-title">
+					{lang === 'ua' ? "Географія Швейної роти" : "Geography of Shveyna Rota"}
+				</h2>
+				<div className="map_line"></div>
 				<div className="map__body">
 					<MapContainer
 						center={[50.27, 30.31]}
 						zoom={5}
 						maxZoom={7}
-						style={{ height: '100%', width: '100%', borderRadius: "5px" }}
+						style={{
+							height: '100%',
+							width: '100%',
+							borderRadius: "5px",
+							position: 'relative'
+						}}
 					>
 						<TileLayer
-							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+							url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+							attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>'
 						/>
 
-						{markers.map(marker =>
+						{markers.map(marker => (
 							<Marker
 								key={marker.id}
 								position={[marker.lat, marker.lng]}
 								eventHandlers={{
-									click: () => setSelectedPoint({ lat: marker.lat, lng: marker.lng, })
+									click: (e) => {
+										e.target.openPopup(); // відкриває попап
+										setSelectedPoint({ lat: marker.lat, lng: marker.lng });
+									}
 								}}
 								icon={customIcon}
 							>
@@ -76,15 +99,24 @@ const MapBlockEn = () => {
 											/>
 										</div>
 										<div className="marker__body">
-											<h4 className="marker__title">{marker.title_en}</h4>
-											<div className="marker__number">Contact us:<br /><Link href={marker.link ? marker.link : "#"}>{marker.link ? truncateText(marker.link, 40) : "Посилання відсутнє"}</Link></div>
+											<h3 className="marker__title">{marker.title_en}</h3>
+											<div className="marker__number">
+												Contact with us:<br />
+												<Link href={marker.link ? marker.link : "#"}>
+													{marker.link ? truncateText(marker.link, 40) : "Посилання відсутнє"}
+												</Link>
+											</div>
 										</div>
 									</div>
 								</Popup>
 							</Marker>
-						)}
+						))}
 
-						{selectedPoint && <ZoomToPoint lat={selectedPoint.lat} lng={selectedPoint.lng} />}
+						{/* Zoom */}
+						{selectedPoint && <ZoomToPoint lat={selectedPoint.lat + 3} lng={selectedPoint.lng} />}
+
+						{/* Sidebar */}
+						<PassMapToSidebar markers={markers} handleZoom={handleZoom} />
 					</MapContainer>
 				</div>
 			</div>

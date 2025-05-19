@@ -40,7 +40,6 @@ export default function MasterClassPage() {
   return (
     <div className="guides-container">
       <div className="container">
-        <Questions />
         <main className="main-content">
           {guidesData.authors_en ? (
             <>

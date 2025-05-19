@@ -66,15 +66,12 @@
 	.card__number {
 		font-size: 30px !important;
 	}
-
 	.card__title {
 		font-size: 18px !important;
 	}
-
 	.card_top img {
 		max-width: 45px;
 	}
-
 	.card_top {
 		gap: 20px;
 	}

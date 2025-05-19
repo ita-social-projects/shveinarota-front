@@ -86,4 +86,14 @@
 	.marker__logo {
 		min-width: 70px;
 	}
+	
+}
+
+@media (max-width: 768px) {
+	.map__title {
+		font-size: 26px;
+	}
+	.map_line {
+		width: 60%;
+	}
 }

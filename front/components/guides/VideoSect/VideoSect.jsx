@@ -47,7 +47,7 @@ const VideoSect = ({ masterClassData }) => {
           </div>
         </div>
         <div className="video__nav">
-          <span>Відеокурси:</span>
+          <span>{lang == "ua" ? "Відеокурси:" : "Video courses:"}</span>
           <div className="video__buttons">
             {videos != null && videos.map((el, i) =>
               <button key={i} value={i} className={i === 0 ? "video__button current-video" : "video__button"} onClick={(e) => {setCurrentVideo(videos[e.target.value]); handleCurrentButton(e)}}>{i + 1}</button>

@@ -152,14 +152,14 @@
 	}
 }
 
-@media (max-width: 1010px) {
+@media (max-width: 1050px) {
+
 	.footer__container {
 		justify-content: center;
+		padding-left: 0px;
 	}
 
-	.footer__columns {
-		justify-content: center;
-	}
+	
 }
 
 @media (max-width: 552px) {
@@ -171,7 +171,7 @@
 @media (max-width: 520px) {
 	.footer__columns {
 		flex-direction: column;
-		width: 100%;
+		
 	}
 
 	.footer__container {

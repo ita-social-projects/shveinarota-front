@@ -63,7 +63,7 @@ const AboutTextSection = () => {
       transition={{ duration: 0.8, delay: 0.4 }}
     >
       <div className="About_text_right_top">
-        <Link href="/" className="shveya_about-button">
+        <Link href="/guides" className="shveya_about-button">
           <Image
             src="/images/about/icons/shveya.png"
             width={85}
@@ -71,18 +71,18 @@ const AboutTextSection = () => {
             alt="Home"
             className="shveya_button_about"
           />
-          <span className="shveya_button_about_text">Для швей</span>
+          <span className="shveya_button_about_text">Навчання</span>
         </Link>
 
-        <Link href="/guides" className="hospital_about-button">
+        <Link href="/questions" className="hospital_about-button">
           <Image
-            src="/images/about/icons/hospital.png"
+            src="/images/about/icons/light-bulb.png"
             width={75}
             height={75}
             alt="Guides"
             className="hospital_button_about"
           />
-          <span className="shveya_button_about_text">Для поранених</span>
+          <span className="shveya_button_about_text">Часті питання</span>
         </Link>
       </div>
 

@@ -2,29 +2,32 @@
 .toggle-button {
   position: absolute;
   top: 50%; 
-  right: -32px; /* Увеличиваем отступ, чтобы кнопка явно выступала */
+  right: -46px; /* Увеличиваем отступ, чтобы кнопка явно выступала */
   transform: translateY(-50%);
-  background-color: #2e2e35; /* Изменён фон, чтобы отличался от aside */
+  background-color: #232324; 
   border: none;
-  width: 32px;
-  height: 94px;
+  width: 40px;
+  height: 48px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  
   cursor: pointer;
-  border-radius: 0 10px 10px 0;
-  z-index: 9999 !important; /* Кнопка поверх всех элементов */
+  border-radius: 5px;
+  z-index: 9999 !important; 
+  box-shadow: 1.94px 2.078px 0px 0px rgba(0, 0, 0, 0.37);
 }
+
+
+
 
 /* Стили для кнопки, когда aside закрыт */
 .aside.closed .toggle-button {
-  right: -32px;
+  right: -52px;
 }
 
 /* Иконка кнопки */
 .toggle-icon {
-  width: 42%;
-  height: 42%;
+  width: 36%;
+  height: 36%;
   background-image: url("/images/pointer.png"); /* Проверьте, что путь корректный */
   background-size: contain;
   background-repeat: no-repeat;
@@ -41,5 +44,15 @@
 @media (hover: hover) {
   .toggle-button:hover {
     background-color: #46464d;
+  }
+}
+
+@media (max-width: 600px) {
+  .toggle-button {
+    width: 36px;
+    height: 44px;
+  }
+  .aside.closed .toggle-button {
+    right: -44px;
   }
 }

@@ -38,3 +38,9 @@
 	height: 0;
 	transition: height 0.5s ease;
 }
+
+@media (max-width: 600px) {
+	.spoller__title {
+		font-size: 18px;
+	}
+}

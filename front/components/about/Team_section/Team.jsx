@@ -5,9 +5,12 @@ import { motion } from "framer-motion";
 import "./Team.css";
 import { useEffect, useState } from "react";
 import { getData, getEnData } from "api";
+import { useLang } from "$component/Context/LangContext";
 
 const TeamSection = () => {
   const [team, setTeam] = useState([])
+
+  const { lang } = useLang();
 
   useEffect(() => {
     getData(`teams`, setTeam);
@@ -18,7 +21,7 @@ const TeamSection = () => {
       className="Team-section"
     >
       <div className="team_title_about">
-          <span>Наша команда</span>
+          <span>{lang == "ua" ? "Наша команда" : "Our team members"}</span>
           <div className="team_title_about_column"></div>
       </div>
       <div className="Team-box">

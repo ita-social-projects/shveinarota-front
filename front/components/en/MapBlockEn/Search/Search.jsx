@@ -31,7 +31,7 @@ const SearchMarkers = ({ markers, handleZoom }) => {
 			setFilteredMarkers([]);
 		} else {
 			const results = markers.filter((marker) =>
-				marker.title_en.toLowerCase().includes(input.toLowerCase())
+				marker.title.toLowerCase().includes(input.toLowerCase())
 			);
 			setFilteredMarkers(results.slice(0, 6));
 		}
@@ -65,7 +65,7 @@ const SearchMarkers = ({ markers, handleZoom }) => {
 							onMouseDown={(e) => e.preventDefault()}
 							onClick={() => handleSearch(marker.lat, marker.lng)}
 						>
-							<span>{marker.title_en}</span>
+							<span>{marker.title}</span>
 							<Image
 								src="images/map/location.svg"
 								width={28}
