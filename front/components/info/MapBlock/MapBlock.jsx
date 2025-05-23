@@ -1,8 +1,10 @@
 import "./MapBlock.css";
 import { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
+import 'leaflet-gesture-handling/dist/leaflet-gesture-handling.css'; // Импорт стилей плагина
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
+import 'leaflet-gesture-handling'; // Импорт плагина
 import SearchMarkers from "$component/info/MapBlock/Search/Search";
 import { useLang } from "$component/Context/LangContext";
 import Link from "next/link";
@@ -10,6 +12,9 @@ import { getData } from "api";
 import Image from "next/image";
 import SidebarSearch from '$component/info/MapBlock/SidebarSearch/SidebarSearch';
 import { convertToId } from "@lib/utils";
+
+// Добавление обработчика gestureHandling к карте
+L.Map.addInitHook("addHandler", "gestureHandling", L.GestureHandling);
 
 const PassMapToSidebar = ({ markers, handleZoom }) => {
 	const map = useMap();
@@ -71,10 +76,10 @@ const MapBlock = () => {
 							borderRadius: "5px",
 							position: 'relative'
 						}}
+						gestureHandling={true} // Включение gestureHandling
 					>
 						<TileLayer
 							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-							// attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>'
 						/>
 
 						{markers.map(marker => (
