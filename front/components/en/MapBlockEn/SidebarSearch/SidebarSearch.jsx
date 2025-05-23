@@ -141,7 +141,7 @@ const SidebarSearch = ({ markers, handleZoom }) => {
 
       <div className={`sidebar ${!isOpen ? 'closed' : ''}`}>
         <h3 className="sidebar__title">
-          {lang === 'ua' ? 'Відділення' : 'Subdivisions'}
+          {lang === 'ua' ? 'Підрозділи' : 'Subdivisions'}
         </h3>
         <input
           type="text"
