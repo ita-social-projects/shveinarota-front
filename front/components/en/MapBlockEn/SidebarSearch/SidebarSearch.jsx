@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useLang } from '$component/Context/LangContext';
 import './SidebarSearch.css';
 import './SidebarButton.css';
+import { convertToId } from '@lib/utils';
 
 const SidebarSearch = ({ markers, handleZoom }) => {
   const { lang } = useLang();
