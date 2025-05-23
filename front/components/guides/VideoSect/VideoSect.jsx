@@ -26,7 +26,7 @@ const VideoSect = ({ masterClassData }) => {
     <section className="video">
       <div className="video__container">
         <h2><span>{lang == "ua" ? "Майстер-клас" : "Master class"}</span>{videos != null && videos?.length > 1 && <span>(1-{videos.length})</span>}</h2>
-        {videos != null
+        {videos != null && Array.isArray(videos)
           ? <> {videos.map((el, i) =>
             <div key={i} className="video__body">
               <div className="spinner-border" role="status">
