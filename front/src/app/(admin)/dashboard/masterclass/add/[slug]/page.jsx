@@ -51,8 +51,8 @@ export default function ChangePage() {
 			setFormData({
 				title: element.subcategory,
 				title_en: element.subcategory_en,
-				videoUrl: element.url != null ? element.url : [""],
-				videoEnUrl: element.url_en != null ? element.url_en : [""],
+				videoUrl: element.url != null && Array.isArray(element.url) ? element.url : [""],
+				videoEnUrl: element.url_en != null && Array.isArray(element.url_en) ? element.url_en : [""],
 				details: element.details != null ? element.details : "",
 				details_en: element.details_en != null ? element.details_en : "",
 				summary: element.summary != null ? element.summary : "",
