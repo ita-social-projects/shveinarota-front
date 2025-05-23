@@ -25,11 +25,10 @@
 	background-color: #fff6e5;
 	color: #232324;
 	display: flex;
+	gap: 10px;
 	width: 100%;
 	padding: 10px 10px 10px 30px;
 	border-bottom: 3px solid #232324;
-
-
 }
 
 
@@ -139,4 +138,8 @@
 
 .current-video {
 	background-color: #4682B4;
+}
+
+.video__body:not(:last-child) {
+	border-bottom: 3px solid #232324;
 }

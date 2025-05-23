@@ -9,6 +9,7 @@ import Link from "next/link";
 import { getData, getEnData } from "api";
 import Image from "next/image";
 import SidebarSearch from '$component/en/MapBlockEn/SidebarSearch/SidebarSearch';
+import { convertToId } from "@lib/utils";
 
 const PassMapToSidebar = ({ markers, handleZoom }) => {
 	const map = useMap();
@@ -92,7 +93,7 @@ const MapBlockEn = () => {
 									<div className="marker">
 										<div className="marker__logo">
 											<Image
-												src={'http://drive.google.com/uc?export=view&id=' + marker.path}
+												src={'http://drive.google.com/uc?export=view&id=' + convertToId(marker.path)}
 												height={105}
 												width={105}
 												alt="icon"

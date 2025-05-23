@@ -1,8 +1,7 @@
-
 .header--default {
 	background-color: #fff6e5;
-    color: #232324;
-    border-bottom: 3px solid #232324;
+	color: #232324;
+	border-bottom: 3px solid #232324;
 }
 
 .header--default .menulang button {
@@ -28,47 +27,51 @@
 
 
 
-.header--default .header__support  {
-	background-color: #232324; 
-    color: #fff6e5;
+.header--default .header__support {
+	background-color: #388e3c;
+	color: #fff6e5;
+	box-shadow: 3.668px 3.772px 0px 0px rgba(0, 0, 0, 0.26);
+	transition: all 0.3s ease 0s;
+	border: 2px solid #388e3c;
 }
 
 
 
 .header--default ._menu {
-    background-color: #fff6e5;
+	background-color: #fff6e5;
 }
 
 .header--default .menu__link::after {
-    background-color: #fff6e5;
-    border: 2px solid #232324;
+	background-color: #fff6e5;
+	border: 2px solid #232324;
 }
 
 
 .header--default .icon-menu {
-    background-color: #fff6e5;
-}
-
-.header--default  .icon-menu span {
-	background-color: #232324;
-}
-
-.header--default  .icon-menu::before {
-	background-color: #232324;
-}
-
-.header--default .icon-menu::after{
-    background-color: #232324;
-}
-.header--default .header__support:hover {
 	background-color: #fff6e5;
+}
+
+.header--default .icon-menu span {
+	background-color: #232324;
+}
+
+.header--default .icon-menu::before {
+	background-color: #232324;
+}
+
+.header--default .icon-menu::after {
+	background-color: #232324;
+}
+
+.header--default .header__support:hover {
+	background-color: transparent;
 	color: #232324;
 }
 
 
 .header--default .Support-img {
-    filter: invert(94%) sepia(10%) saturate(300%) hue-rotate(10deg);
-    transition: filter 0.3s ease;
+	filter: invert(94%) sepia(10%) saturate(300%) hue-rotate(10deg);
+	transition: filter 0.3s ease;
 }
 
 .header--default .header__support:hover .Support-img {
@@ -77,8 +80,7 @@
 
 
 .header--default .menulang button {
-    color: #232324;
-
+	color: #232324;
 }
 
 
@@ -87,8 +89,8 @@
 
 .header--about {
 	background-color: #232324;
-    color: #fff6e5;
-    border-bottom: 2px solid #ffec7d;
+	color: #fff6e5;
+	border-bottom: 2px solid #ffec7d;
 }
 
 
@@ -115,47 +117,52 @@
 
 
 
-.header--about .header__support  {
-	background-color: #fff6e5; 
-    color: #232324;
+.header--about .header__support {
+	background-color: #388e3c;
+	color: #fff6e5;
+	box-shadow: 3.668px 3.772px 0px 0px rgba(0, 0, 0, 0.26);
+	transition: all 0.3s ease 0s;
+	border: 2px solid #388e3c;
 }
 
 
 
 .header--about ._menu {
-    background-color: #232324;
+	background-color: #232324;
 }
 
 .header--about .menu__link::after {
-    background-color: #232324;
-    border: 2px solid #fff6e5;
+	background-color: #232324;
+	border: 2px solid #fff6e5;
 }
 
 .header--about .icon-menu {
-    background-color: #232324;
+	background-color: #232324;
 }
 
 .header--about .icon-menu span {
 	background-color: #fff6e5;
 }
 
-.header--about .icon-menu::after, .icon-menu::before {
+.header--about .icon-menu::after,
+.icon-menu::before {
 	background-color: #fff6e5;
 }
 
 .header--about .header__support:hover {
-	background-color: #232324;
-	color: #fff6e5;
+	background-color: transparent;
 }
 
-.header--about .header__support:hover .Support-img {
-    filter: invert(94%) sepia(10%) saturate(300%) hue-rotate(10deg);
-    transition: filter 0.3s ease;
+
+.header--about .Support-img {
+	filter: invert(94%) sepia(10%) saturate(300%) hue-rotate(10deg);
+	transition: filter 0.3s ease;
 }
+
 
 
 .header--about .menulang button {
-    color: #fff6e5;
+	color: #fff6e5;
 
 }
 
@@ -165,9 +172,9 @@
 
 .header--guides {
 	background-color: #232324;
-    color: #fff6e5;
-    border-bottom: 2px solid #537ef5;
-    box-shadow: 0 0 0 1px black; 
+	color: #fff6e5;
+	border-bottom: 2px solid #537ef5;
+	box-shadow: 0 0 0 1px black;
 }
 
 .header--guides .menulang button {
@@ -182,7 +189,7 @@
 
 .header--guides .menulang button:hover:not(.active) {
 	background-color: #fff6e5;
-	color: black ;
+	color: black;
 }
 
 .header--guides .menulang button.active {
@@ -190,51 +197,58 @@
 	color: black !important;
 }
 
-  
 
 
-.header--guides .header__support  {
-	background-color: #fff6e5; 
-    color: #232324;
+
+.header--guides .header__support {
+	background-color: #388e3c;
+	color: #fff6e5;
+	box-shadow: 3.668px 3.772px 0px 0px rgba(0, 0, 0, 0.26);
+	transition: all 0.3s ease 0s;
+	border: 2px solid #388e3c;
+}
+
+.header--guides .header__support .Support-img {
+	filter: invert(94%) sepia(10%) saturate(300%) hue-rotate(10deg);
 }
 
 .header--guides .header__support:hover .Support-img {
-    filter: invert(94%) sepia(10%) saturate(300%) hue-rotate(10deg);
-    transition: filter 0.4s ease;
+	filter: invert(94%) sepia(10%) saturate(300%) hue-rotate(10deg);
+	transition: filter 0.4s ease;
 }
 
 .header--guides ._menu {
-    background-color: #232324;
+	background-color: #232324;
 }
 
 .header--guides .menu__link::after {
-    background-color: #232324;
-    border: 2px solid #fff6e5;
+	background-color: #232324;
+	border: 2px solid #fff6e5;
 }
 
 .header--guides .icon-menu {
-    background-color: #232324;
+	background-color: #232324;
 }
 
 .header--guides .icon-menu span {
 	background-color: #fff6e5;
 }
 
-.header--guides .icon-menu::after, .icon-menu::before {
+.header--guides .icon-menu::after,
+.icon-menu::before {
 	background-color: #fff6e5;
 }
 
 .header--guides .header__support:hover {
-	background-color: #232324;
+	background-color: transparent;
+}
+
+.header--guides .Support-img {
+	filter: invert(94%) sepia(10%) saturate(300%) hue-rotate(10deg);
+	transition: filter 0.3s ease;
+}
+
+.header--guides .menulang button {
 	color: #fff6e5;
-}
-
-.header--guides .header__support:hover .logo-img {
-	filter: invert(0%) sepia(100%) saturate(363%) hue-rotate(-28.66deg);
-}
-
-.header--guides  .menulang button {
-    color: #fff6e5;
 
 }
-

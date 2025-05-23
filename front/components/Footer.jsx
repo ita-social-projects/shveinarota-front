@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { getData } from "api";
 import { Button } from "react-bootstrap";
 import { useScrollbarWidth } from "$hooks/useScrollbarWidth";
+import { convertToId } from "@lib/utils";
 
 const Footer = () => {
 	const [mediaLinks, setMediaLinks] = useState([]);
@@ -59,7 +60,7 @@ const Footer = () => {
 									<div key={link.id} className="column-footer__row">
 										<Link target="_blank" className="column-footer__link" href={link.url}>
 											<Image
-												src={'http://drive.google.com/uc?export=view&id=' + link.path}
+												src={'http://drive.google.com/uc?export=view&id=' + convertToId(link.path)}
 												alt="logo"
 												width={35}
 												height={35}

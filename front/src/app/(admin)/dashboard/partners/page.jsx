@@ -10,6 +10,7 @@ import DatabaseItem from "$component/dashboard/DatabaseItem/DatabaseItem";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { deleteDataById, getData } from "api";
+import { convertToId } from '@lib/utils';
 
 export default function CardsPage() {
 	const [partners, setPartners] = useState([]);
@@ -51,7 +52,7 @@ export default function CardsPage() {
 							<Image
 								src={
 									"http://drive.google.com/uc?export=view&id=" +
-									partner.path
+									convertToId(partner.path)
 								}
 								width={75}
 								height={75}

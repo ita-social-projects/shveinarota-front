@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css"
 import { useEffect, useState } from "react";
 import { getData } from "api";
+import { convertToId } from "@lib/utils";
 
 const InfoBlock = () => {
 	const blockAnimation = {
@@ -58,7 +59,7 @@ const InfoBlock = () => {
 									<div className="left">
 										<div className="icon_shveya">
 											<Image
-												src={'http://drive.google.com/uc?export=view&id=' + slide.path}
+												src={'http://drive.google.com/uc?export=view&id=' + convertToId(slide.path)}
 												alt="logo"
 												width={356}
 												height={61}

@@ -30,7 +30,7 @@ const SidebarSearch = ({ markers, handleZoom }) => {
     if (!firstValid) return;
 
     const img = new window.Image();
-    img.src = `http://drive.google.com/uc?export=view&id=${firstValid.path}`;
+    img.src = `http://drive.google.com/uc?export=view&id=${convertToId(firstValid.path)}`;
 
     img.onload = () => {
       const ratio = img.width / img.height;
@@ -172,7 +172,7 @@ const SidebarSearch = ({ markers, handleZoom }) => {
                 <ImageWrapper
                   src={
                     marker.path
-                      ? `http://drive.google.com/uc?export=view&id=${marker.path}`
+                      ? `http://drive.google.com/uc?export=view&id=${convertToId(marker.path)}`
                       : '/images/logo-rota.png'
                   }
                   fallback={referenceImage || '/images/logo-rota.png'}

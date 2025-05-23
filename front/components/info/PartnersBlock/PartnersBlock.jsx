@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import { useLang } from "$component/Context/LangContext";
+import { convertToId } from "@lib/utils";
 
 const PartnersBlock = () => {
   const [partners, setPartners] = useState([]);
@@ -92,7 +93,7 @@ const PartnersBlock = () => {
                             className="partner__img-wrapper"
                           >
                             <Image
-                              src={`http://drive.google.com/uc?export=view&id=${partner.path}`}
+                              src={`http://drive.google.com/uc?export=view&id=${convertToId(partner.path)}`}
                               width={130}
                               height={130}
                               alt="partner logo"
@@ -101,7 +102,7 @@ const PartnersBlock = () => {
                         ) : (
                           <div className="partner__img-wrapper">
                             <Image
-                              src={`http://drive.google.com/uc?export=view&id=${partner.path}`}
+                              src={`http://drive.google.com/uc?export=view&id=${convertToId(partner.path)}`}
                               width={130}
                               height={130}
                               alt="partner logo"

@@ -6,6 +6,7 @@ import "./Team.css";
 import { useEffect, useState } from "react";
 import { getData, getEnData } from "api";
 import { useLang } from "$component/Context/LangContext";
+import { convertToId } from "@lib/utils";
 
 const TeamSection = () => {
   const [team, setTeam] = useState([])
@@ -36,7 +37,7 @@ const TeamSection = () => {
           >
             <div className="top">
               <Image
-                src={'http://drive.google.com/uc?export=view&id=' + member.path}
+                src={'http://drive.google.com/uc?export=view&id=' + convertToId(member.path)}
                 alt="member photo"
                 width={300}
                 height={300}

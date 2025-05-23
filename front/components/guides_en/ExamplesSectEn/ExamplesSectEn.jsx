@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "./ExamplesSect.css";
 import Image from "next/image";
+import { convertToId } from "@lib/utils";
 
 const ExamplesSect = ({ masterClassData }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -39,7 +40,7 @@ const ExamplesSect = ({ masterClassData }) => {
           {masterClassData.example.map((exampl, index) => (
             <div key={index} className="gallery-item">
               <Image
-                src={`http://drive.google.com/uc?export=view&id=${exampl.path}`}
+                src={`http://drive.google.com/uc?export=view&id=${convertToId(exampl.path)}`}
                 alt={exampl.text_en}
                 width={200}
                 height={120}
@@ -75,7 +76,7 @@ const ExamplesSect = ({ masterClassData }) => {
               />
             </span>
             <Image
-              src={`http://drive.google.com/uc?export=view&id=${selectedImage}`}
+              src={`http://drive.google.com/uc?export=view&id=${convertToId(selectedImage)}`}
               alt="Full Size"
               width={800}
               height={600}

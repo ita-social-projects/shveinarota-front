@@ -2,6 +2,7 @@ import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import "./Card.css";
+import { convertToId } from "@lib/utils";
 
 const Card = ({ title, number, img }) => {
 	const [count, setCount] = useState(0);
@@ -64,7 +65,7 @@ const Card = ({ title, number, img }) => {
 			<div className="card__content">
 				<div className="card_top">
 					<Image
-						src={'http://drive.google.com/uc?export=view&id=' + img}
+						src={'http://drive.google.com/uc?export=view&id=' + convertToId(img)}
 						height={55}
 						width={55}
 						alt="icon"

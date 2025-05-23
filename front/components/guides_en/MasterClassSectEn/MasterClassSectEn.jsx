@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./MasterClassSect.css";
 import Link from "next/link";
 import Image from "next/image";
+import { convertToId } from "@lib/utils";
 
 const MasterClassSectEn = ({ masterClassData }) => {
   const [invalidLinks, setInvalidLinks] = useState({});
@@ -46,8 +47,8 @@ const MasterClassSectEn = ({ masterClassData }) => {
         <div className="master-class__body">
           {masterClassData.preview != null && masterClassData.preview != "" &&
             <Image
-              src={`http://drive.google.com/uc?export=view&id=${masterClassData.preview}`}
-              alt="Етикетка"
+              src={`http://drive.google.com/uc?export=view&id=${convertToId(masterClassData.preview)}`}
+              alt="Preview"
               width={400}
               height={400}
               className="master-class__preview"
@@ -56,7 +57,7 @@ const MasterClassSectEn = ({ masterClassData }) => {
           {loaded ? (
             <ul>
               {masterClassData.lekala.map((lekalo, index) => {
-                const url = `https://drive.google.com/file/d/${lekalo.path}/view?usp=sharing`;
+                const url = lekalo.path.includes("sharing") ? lekalo.path : `https://drive.google.com/file/d/${lekalo.path}/view?usp=sharing`;
                 const isInvalid = invalidLinks[lekalo.path];
 
                 console.log("=================");

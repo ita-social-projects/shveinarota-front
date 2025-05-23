@@ -149,6 +149,8 @@
 
 	.footer__columns {
 		gap: 50px;
+		justify-content: center;
+		padding: 0px 10px;
 	}
 }
 
