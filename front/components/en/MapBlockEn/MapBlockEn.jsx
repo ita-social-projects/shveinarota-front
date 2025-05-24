@@ -1,8 +1,10 @@
 import "./MapBlock.css";
 import { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
+import 'leaflet-gesture-handling/dist/leaflet-gesture-handling.css'; // Импорт стилей плагина
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
+import 'leaflet-gesture-handling'; // Импорт плагина
 import SearchMarkers from "$component/en/MapBlockEn/Search/Search";
 import { useLang } from "$component/Context/LangContext";
 import Link from "next/link";
@@ -10,6 +12,8 @@ import { getData, getEnData } from "api";
 import Image from "next/image";
 import SidebarSearch from '$component/en/MapBlockEn/SidebarSearch/SidebarSearch';
 import { convertToId } from "@lib/utils";
+
+L.Map.addInitHook("addHandler", "gestureHandling", L.GestureHandling);
 
 const PassMapToSidebar = ({ markers, handleZoom }) => {
 	const map = useMap();
@@ -71,6 +75,7 @@ const MapBlockEn = () => {
 							borderRadius: "5px",
 							position: 'relative'
 						}}
+						gestureHandling={true}
 					>
 						<TileLayer
 							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
