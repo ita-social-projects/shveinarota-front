@@ -76,3 +76,164 @@
 }
 
 
+/*=========================================================================================================*/
+.header-guides {
+    padding: 200px 0px;
+}
+
+.header-guides__title {
+    font-family: "HelveticaNeue";
+    font-size: 58px;
+    letter-spacing: 0.2;
+    margin: 0px 0px 10px 0px;
+    text-shadow: 3.657px 3.41px 0px rgba(0, 0, 0, 0.63);
+}
+
+.header-guides__subtitle {
+    font-family: 'Caviar Dreams Bold';
+    font-size: 26px;
+    font-weight: normal;
+    max-width: 500px;
+}
+
+.header-guides__container {
+    max-width: 1170px;
+    padding: 0px 15px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.stage {
+    font-family: 'cheque';
+    font-size: 559px;
+    opacity: 0.29;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0px, -50%);
+}
+
+@media (max-width: 892px) {
+    .stage {
+        font-size: 459px;
+    }
+    .header-guides {
+        padding: 100px 0px;
+    }
+}
+
+@media (max-width: 768px) {
+    .stage {
+        font-size: 259px;
+    }
+    .header-guides {
+        padding: 60px 0px;
+    }
+    .header-guides__title {
+        font-size: 36px;
+    }
+    .header-guides__subtitle {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .stage {
+        display: none;
+    }
+}
+
+.cards-guides {
+    background-color: #45464c;
+    padding: 70px 0px;
+}
+
+.cards-guides__container {
+    max-width: 1170px;
+    padding: 0px 15px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.cards-guides__body {
+    display: flex;
+    justify-content: space-between;
+    gap: 70px;
+}
+
+/*=============================================*/
+.card-guides {
+    background-color: #fff;
+    max-width: 350px;
+    padding: 30px 20px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 29.26px 8.74px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-guides__body {
+    flex: 1 1 auto;
+}
+
+.card-guides__image {
+    display: flex;
+    justify-content: center;
+    margin: 0px auto 30px auto;
+    width: 130px;
+    height: 130px;
+}
+
+.card-guides__status {
+    font-family: "intro";
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 14px;
+    box-shadow: 2.6px 2.6px 0px 0px rgba(0, 0, 0, 0.493);
+    margin: 0px 0px 10px 0px;
+}
+
+.card-guides__title {
+    font-family: 'Caviar Dreams Bold';
+    font-size: 26px;
+    max-width: 200px;
+    padding: 0px 0px 10px 0px;
+}
+
+.card-guides__description {
+    padding: 10px 0px 0px 0px;
+    font-family: 'Caviar Dreams Bold';
+    font-size: 18px;
+    border-top: 1px solid #000;
+}
+
+.green {
+    background-color: #00c571;
+}
+.purple {
+    background-color: #9073f1;
+}
+.beige {
+    background-color: #ffbf91;
+}
+
+.card-guides__right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.card-guides__button {
+    margin: 20px 0px 0px 0px;
+    height: auto;
+    color: #fff;
+    background-color: #000;
+    padding: 5px 9px;
+    border-radius: 6px;
+    box-shadow: 2.6px 2.6px 0px 0px rgba(0, 0, 0, 0.226);
+    transition: transform 0.2s ease 0s;
+}
+
+.card-guides__button:hover {
+    transform: scale(1.05);
+}

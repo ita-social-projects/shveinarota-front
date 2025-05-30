@@ -5,7 +5,6 @@ import Cookies from "js-cookie";
 export async function getData(type, setData) {
 	try {
 		const response = await axios.get(process.env.BACK_URL + type);
-		console.log(response.data);
 		setData(response.data);
 	} catch (error) {
 		console.error("Помилка при отриманні даних:", error);
@@ -15,7 +14,6 @@ export async function getData(type, setData) {
 export async function getEnData(type, setData) {
 	try {
 		const response = await axios.get(process.env.BACK_URL_EN + type);
-		console.log(response.data);
 		setData(response.data);
 	} catch (error) {
 		console.error("Помилка при отриманні даних:", error);
@@ -99,7 +97,6 @@ export async function changeJsonData(type, id, data, setShowAlert) {
 export async function getDataNoLang(type, setData) {
 	try {
 		const response = await axios.get(process.env.BACK_URL_IMG + type);
-		console.log(response.data);
 		setData(response.data);
 	} catch (error) {
 		console.error("Помилка при отриманні даних:", error);

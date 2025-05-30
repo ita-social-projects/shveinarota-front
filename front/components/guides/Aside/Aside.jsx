@@ -83,9 +83,8 @@ const Aside = ({ categories }) => {
 
   return (
     <aside
-      className={`aside ${isOpen ? "open" : "closed"} ${
-        isNonActiveHovered ? "nonActiveHovered" : ""
-      }`}
+      className={`aside ${isOpen ? "open" : "closed"} ${isNonActiveHovered ? "nonActiveHovered" : ""
+        }`}
     >
       {/* Кнопка сворачивания */}
       <button className="toggle-button" onClick={() => setIsOpen(!isOpen)}>
@@ -94,6 +93,14 @@ const Aside = ({ categories }) => {
 
       {/* Контейнер с прокруткой */}
       <div className="aside-content" ref={asideContentRef}>
+        <div className="aside__heading heading">
+          <Link href="/guides/main" className="heading__title">Головна</Link>
+          <ul className="heading__body">
+            <li><Link className="spoller__link" href="/guides/cybercomplect">Кібернабір для пошиття</Link></li>
+            <li><Link className="spoller__link" href="/guides/cybercomplect">Самостійне пошиття</Link></li>
+            <li><Link className="spoller__link" href="/guides/cybercomplect">Локальний воркшоп</Link></li>
+          </ul>
+        </div>
         {categories.map((category) => {
           const isActiveCategory = category.subcategories.some(
             (sub) => sub.id == activeLink

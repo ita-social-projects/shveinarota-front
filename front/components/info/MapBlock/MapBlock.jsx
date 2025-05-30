@@ -77,6 +77,18 @@ const MapBlock = () => {
 							position: 'relative'
 						}}
 						gestureHandling={true} // Включение gestureHandling
+
+						gestureHandlingOptions={{
+							text: {
+								touch: lang === 'ua' ? "Використовуйте два пальці для переміщення карти" : "Use two fingers to move the map",
+								scroll: lang === 'ua' ? "Використовуйте Ctrl + прокрутка для збільшення" : "Use ctrl + scroll to zoom the map",
+								scrollMac: lang === 'ua' ? "Використовуйте \u2318 + прокрутка для збільшення" : "Use \u2318 + scroll to zoom the map"
+							},
+							duration: 1000,
+							userInactiveTimeout: 2000,
+							tapHold: false,
+							touchAction: 'auto'
+						}}
 					>
 						<TileLayer
 							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
