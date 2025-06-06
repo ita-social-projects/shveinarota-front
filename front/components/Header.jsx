@@ -30,15 +30,14 @@ const Header = () => {
 		}
 	}, [pathname]);
 
-
-	// Открытие окна
+	// Открытие окна Donate
 	function openPopup() {
 
-	document.querySelector(".wrapper")?.style.setProperty("padding-right", scrollbarWidth + "px");
-	document.querySelector(".header")?.style.setProperty("padding-right", scrollbarWidth + "px");
+		document.querySelector(".wrapper").style.paddingRight = scrollbarWidth + "px";
+		document.querySelector(".header").style.paddingRight = scrollbarWidth + "px";
 
-	const event = new Event("openDonatePopup");
-	window.dispatchEvent(event);
+		const event = new Event("openDonatePopup");
+		window.dispatchEvent(event);
 	}
 
 	const handleLanguageChange = (language) => {
@@ -189,7 +188,7 @@ const Header = () => {
 
 				</div>
 			</div>
-			<DonatePage />
+
 		</header>
 	);
 };

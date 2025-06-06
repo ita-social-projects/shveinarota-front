@@ -5,6 +5,7 @@ import "./DonatePage.css";
 import Image from "next/image";
 import { useLang } from "$component/Context/LangContext";
 import { getDataNoLang } from "api";
+import { useScrollbarWidth } from "$hooks/useScrollbarWidth";
 
 const convertToId = (urlOrId) => {
   if (!urlOrId.includes("http")) return urlOrId;
@@ -40,12 +41,9 @@ const DonatePage = () => {
     setIsVisible(false);
     setTimeout(() => {
       setIsOpen(false);
-      document.querySelector(".wrapper")?.classList.remove("compensate-scrollbar");
-      const header = document.querySelector("header.header");
-      if (header && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-        header.classList.remove("header--force-show");
-      }
-    }, 400);
+      document.querySelector(".wrapper").style.paddingRight = 0 + "px";
+      document.querySelector(".header").style.paddingRight = 0 + "px";
+    }, 470);
   }, []);
 
   const handleCopy = useCallback((text, id) => {

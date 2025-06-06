@@ -10,6 +10,7 @@ import PopupLink from '$component/en/ConBlockEn/PopupLink/PopupLink';
 import "$style/infoPage/Popup.css"
 import { getDataNoLang } from 'api';
 import { convertToId } from '@lib/utils';
+import DonatePage from '$component/info/DonatePage/DonatePage';
 
 export default function RootLayout({ children }) {
   const path = usePathname();
@@ -60,17 +61,8 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <LangProvider>
-          <div ref={popup} id="popup" className="popup">
-            <div className="popup-content">
-              <span onClick={closePopup} id="closeBtn" className="popup__close">
-                &times;
-              </span>
-              {payments.map((element, i) =>
-                <PopupLink key={i} href={element.url} text={element.text} img={'http://drive.google.com/uc?export=view&id=' + convertToId(element.path)} />
-              )}
-            </div>
-          </div>
           <div className="wrapper">
+            <DonatePage />
             {!path.includes('dashboard') && <Header />}
             {children}
             {!path.includes('dashboard') && !path.includes('auth') && <Footer />}

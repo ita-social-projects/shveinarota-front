@@ -1,5 +1,6 @@
 import Image from "next/image";
 import "$style/Guides.css"
+import Link from "next/link";
 
 const GuidesMain = () => {
 	return (
@@ -100,7 +101,33 @@ const GuidesMain = () => {
 						</div>
 					</div>
 				</div>
-
+			</div>
+			<div className="guides-main__contacts contacts-guides">
+				<div className="contacts-guides__container">
+					<div className="contacts-guides__title">
+						Зв'язатися з нами
+					</div>
+					<div className="contacts-guides__body">
+						<div className="contacts-guides__text">
+							<p>Для запиту адреси для відправки готових виробів - звертайтесь до координаторок.</p>
+							<p>Для участі у локальних воркшопах - пишіть в <Link href="" className="contacts-guides__link">Instagram</Link>, вам підкажуть координатора у вашому місті.</p>
+						</div>
+						<div className="contacts-guides__media">
+							<div className="contacts-guides__column column-guides">
+								<div className="column-guides__title">Instagram</div>
+								<Link href="" className="column-guides__link">@shveina_rota</Link>
+							</div>
+							<div className="contacts-guides__column column-guides">
+								<div className="column-guides__title">Telegram</div>
+								<Link href="" className="column-guides__link">t.me/shveina_rota</Link>
+								<Link href="" className="column-guides__link">@shveina_rota</Link>
+							</div>
+						</div>
+					</div>
+					<div className="contacts-guides__stage stage">
+						03
+					</div>
+				</div>
 			</div>
 		</main>
 	);
