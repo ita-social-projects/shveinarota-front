@@ -52,7 +52,12 @@ const MediaBlock = () => {
 
   // derive slides, numbers, images only when `media` changes
   const mediaUrl = media.map(item => item.url || '');
-  const slides = useMemo(() => media.map(item => item.title || ''), [media]);
+  const slides = useMemo(() => 
+  media.map(item => lang === 'ua' 
+    ? item.title || '' 
+    : item.title_en || ''
+  ), [media, lang]);
+
   const numbers = useMemo(
     () => slides.map((_, idx) => String(idx + 1).padStart(2, '0')),
     [slides]
@@ -105,14 +110,19 @@ const MediaBlock = () => {
   }, [activeIndex, slides.length, changeSlide, isSyncing]);
 
   if (!slides.length) {
-    return <div>Завантаження...</div>;
+    return <div>{lang === 'ua' ? 'Завантаження...' : 'Loading...'}</div>;
   }
 
   return (
     <div className="main_media_wrapper">
       <div className="media_container">
         <div className="media_title_block">
-          <h2>Медіа про нас</h2>
+          <h2>
+          {lang === 'ua' 
+            ? 'Медіа про нас' 
+            : 'Media about us'}
+          </h2>
+
           <div className="media_title_column" />
         </div>
 
