@@ -23,19 +23,21 @@ const AsideEn = ({ categories }) => {
 
   // Определяем активную ссылку по URL или по первой подкатегории
   useEffect(() => {
-    let newActiveLink = null;
-    if (urlId && !isNaN(urlId)) {
-      newActiveLink = urlId;
-    } else if (categories.length > 0) {
-      for (const category of categories) {
-        if (category.subcategories.length > 0) {
-          newActiveLink = category.subcategories[0].id;
-          break;
-        }
+  let newActiveLink = null;
+
+  if (urlId) {
+    newActiveLink = urlId; // Не проверяем на число
+  } else if (categories.length > 0) {
+    for (const category of categories) {
+      if (category.subcategories.length > 0) {
+        newActiveLink = category.subcategories[0].id;
+        break;
       }
     }
-    setActiveLink(newActiveLink);
-  }, [urlId, categories]);
+  }
+
+  setActiveLink(newActiveLink);
+}, [urlId, categories]);
 
   // Открываем ту категорию, где находится активная подкатегория
   useEffect(() => {
@@ -101,7 +103,18 @@ const AsideEn = ({ categories }) => {
         <div className="aside__heading heading">
           <Link onClick={() => closeAsideOnClick()} href="/guides/main" className="heading__title">Головна</Link>
           <ul className="heading__body">
-            <li><Link onClick={() => closeAsideOnClick()} className="spoller__link" href="/guides/cybercomplect">Кібернабір для пошиття</Link></li>
+            <li>
+              <Link
+                onClick={() => {
+                  setActiveLink("CyberComplects");
+                  closeAsideOnClick();
+                }}
+                className={`spoller__link ${activeLink === "CyberComplects" ? "active" : ""}`}
+                href="/guides/CyberComplects"
+              >
+                Cyborg
+              </Link>
+            </li>
             <li><Link onClick={() => closeAsideOnClick()} className="spoller__link" href="/guides/cybercomplect">Самостійне пошиття</Link></li>
             <li><Link onClick={() => closeAsideOnClick()} className="spoller__link" href="/guides/cybercomplect">Локальний воркшоп</Link></li>
           </ul>
