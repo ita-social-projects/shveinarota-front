@@ -23,7 +23,7 @@ const SidebarSearch = ({ markers, handleZoom }) => {
     marker.title.toLowerCase().includes(query.toLowerCase())
   );
 
-  // ✅ Устанавливаем эталонное изображение (только один раз)
+
   useEffect(() => {
     if (referenceImageReady || !filteredMarkers.length) return;
 
@@ -36,16 +36,16 @@ const SidebarSearch = ({ markers, handleZoom }) => {
     img.onload = () => {
       const ratio = img.width / img.height;
       if (ratio >= 0.9 && ratio <= 1.1) {
-        console.log(`✅ Эталон установлен: ${firstValid.id}`);
+       
         setReferenceImage(img.src);
         setReferenceImageReady(true);
       } else {
-        console.log(`❌ Первое изображение не квадратное: ${ratio}`);
+       
       }
     };
 
     img.onerror = () => {
-      console.log(`🚫 Эталонное изображение не загрузилось: ${firstValid.id}`);
+      
     };
   }, [filteredMarkers, referenceImageReady]);
 
@@ -106,7 +106,7 @@ const SidebarSearch = ({ markers, handleZoom }) => {
     };
   }, []);
 
-  // ✅ Wheel-scroll
+
   useEffect(() => {
     const sidebarList = sidebarListRef.current;
     if (!sidebarList) return;
@@ -167,7 +167,10 @@ const SidebarSearch = ({ markers, handleZoom }) => {
             <li
               key={marker.id}
               className="sidebar__item"
-              onClick={() => handleZoom(marker.lat, marker.lng)}
+              onClick={() => {
+                handleZoom(marker.lat, marker.lng, marker.id);
+                openPopupById(marker.id);
+              }}
             >
               <div className="sidebar__icon-wrapper">
                 <ImageWrapper
@@ -200,7 +203,7 @@ const SidebarSearch = ({ markers, handleZoom }) => {
 
 export default SidebarSearch;
 
-// ✅ Вспомогательный компонент
+
 const ImageWrapper = ({
   src,
   fallback,
