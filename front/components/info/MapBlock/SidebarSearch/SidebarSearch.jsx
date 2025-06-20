@@ -7,7 +7,7 @@ import './SidebarSearch.css';
 import './SidebarButton.css';
 import { convertToId } from '@lib/utils';
 
-const SidebarSearch = ({ markers, handleZoom }) => {
+const SidebarSearch = ({ markers, handleZoom, openPopupById }) => {
   const { lang } = useLang();
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(true);

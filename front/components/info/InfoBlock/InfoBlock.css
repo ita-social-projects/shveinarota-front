@@ -116,7 +116,7 @@
 	}
 
 	.right h1 {
-		font-size: 26px;
+		font-size: 36px;
 	}
 
 	.right .infobox__text {
@@ -128,7 +128,7 @@
 
 @media (max-width: 768px) {
 	.right h1 {
-		font-size: 22px;
+		font-size: 33px;
 	}
 
 	.infobox__slide {
@@ -151,7 +151,7 @@
 	.icon_shveya {
 		height: 200px;
 		position: relative;
-		border-radius: 50%;
+
 		overflow: hidden;
 	}
 }
