@@ -31,7 +31,7 @@ const TeamSection = () => {
             key={index}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: index * 0.2 }}
+            transition={{ duration: 0.3 }}
             viewport={{ once: true, amount: 0.2 }}
             className="Team-member"
           >

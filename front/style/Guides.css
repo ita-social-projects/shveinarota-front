@@ -94,6 +94,7 @@
     text-shadow: 3.657px 3.41px 0px rgba(0, 0, 0, 0.63);
     position: relative;
     z-index: 2;
+   
 }
 
 .header-guides__subtitle {
@@ -103,6 +104,7 @@
     max-width: 500px;
     position: relative;
     z-index: 2;
+  
 }
 
 .header-guides__container {
@@ -111,6 +113,17 @@
     margin: 0 auto;
     position: relative;
 }
+
+.stage-wrapper {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition-delay: 0.4s;
+}
+
+.stage-wrapper.visible {
+  opacity: 1;
+}
+
 
 .stage {
     font-family: 'cheque';
@@ -122,6 +135,27 @@
     transform: translate(0px, -50%);
     user-select: none;
 }
+
+
+.header-guides__title,
+.header-guides__subtitle {
+  opacity: 0;
+
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.header-guides__title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header-guides__subtitle.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+
 
 @media (max-width: 892px) {
     .stage {
@@ -156,6 +190,28 @@
         display: none;
     }
 }
+
+@keyframes fadeInUpHeader {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header-guides__title {
+    /* Остальные стили уже есть */
+    animation: fadeInUp 1s ease forwards;
+}
+
+.header-guides__subtitle {
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.3s;
+}
+
 
 .cards-guides {
     background-color: #45464c;
@@ -192,6 +248,9 @@
     box-shadow: 0px 0px 29.26px 8.74px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 @media (max-width: 936px) {
@@ -203,6 +262,17 @@
     .card-guides {
         max-width: none;
     }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card-guides__body {
@@ -279,6 +349,14 @@
     padding: 200px 15px;
     margin: 0 auto;
     position: relative;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 1s;
+    opacity: 0;
+}
+
+.card-guides.visible{
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .contacts-guides__body {
@@ -289,6 +367,15 @@
     grid-auto-flow: column;
     position: relative;
     z-index: 2;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition-delay: 0.2s;
+}
+
+.contacts-guides__body.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .contacts-guides__title {
@@ -299,6 +386,14 @@
     text-shadow: 3.657px 3.41px 0px rgba(0, 0, 0, 0.63);
     position: relative;
     z-index: 2;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.contacts-guides__title.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .contacts-guides__text {
@@ -313,6 +408,15 @@
 
 .contacts-guides__link {
     color: rgb(70, 130, 180);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .column-guides:not(:last-child) {

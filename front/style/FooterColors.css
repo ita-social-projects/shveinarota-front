@@ -104,7 +104,7 @@
   }
 
 .footer--default .footer__wrapper {
-    background-color: #2e2e35ad;
+    background-color: #232324ad;
     
 
 }
@@ -209,7 +209,7 @@
 
 @media (max-width: 860.23px) {
 	.footer--default .footer__wrapper {
-		background-color: #2e2e35;
+		background-color: #232324ad;;
 	}
     .footer--guides .footer_title_logo {
         width: 180px;

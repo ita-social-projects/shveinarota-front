@@ -1,15 +1,13 @@
 .map {
 	position: relative;
 	z-index: 2;
-
+	
 }
 
 .map__container {
 	background: #232324;
 	padding: 30px 0px 0px 0px;
 }
-
-
 
 .map__body {
 	position: relative;
@@ -19,8 +17,6 @@
 	margin: 0 auto;
 	overflow: visible;
 }
-
-
 
 .leaflet-container {
 	border: 3px solid #fff6e5;
@@ -50,7 +46,6 @@
 	margin: 0 auto 20px auto;
 }
 
-
 .marker {
 	display: flex;
 	gap: 15px;
@@ -63,10 +58,110 @@
 
 .leaflet-popup {
 	z-index: 1001 !important;
-  }
+}
 
 .leaflet-popup-content {
 	width: auto !important;
+}
+
+.map__fullscreen-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10012;
+	cursor: pointer;
+	background-color: transparent;
+
+}
+
+.leaflet-marker-icon.custom-marker-icon {
+  pointer-events: auto;
+}
+
+
+.map__fullscreen-collapse {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	z-index: 1000;
+}
+
+.map__fullscreen-button {
+	color: #fff6e5;
+	background-color: #388e3c;
+	border: 2px solid #388e3c;
+	padding: 6px 12px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 25px;
+	box-shadow: 3.668px 3.772px #00000042;
+	transition: background-color 0.3s;
+}
+
+.map__fullscreen-button:hover {
+	background-color: rgba(255, 255, 255, 1);
+	color: #232324;
+}
+
+.map--fullscreen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: #232324;
+	opacity: 0;
+	transform: scale(0.8);
+	animation: fullscreenEnter 0.4s ease-out forwards;
+}
+
+.map--fullscreen.map--closing {
+	animation: fullscreenExit 0.4s ease-in forwards;
+}
+
+@keyframes fullscreenEnter {
+	0% {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	
+
+}
+
+@keyframes fullscreenExit {
+	0% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+}
+
+.map--fullscreen .map__container {
+	height: 100%;
+}
+
+.map--fullscreen .map__body {
+	height: 100%;
+	margin: 0;
+	max-width: 100%;
+}
+
+.map__collapse-inside {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	z-index: 1001;
+	pointer-events: auto;
 }
 
 @media (max-width: 574px) {
@@ -86,14 +181,21 @@
 	.marker__logo {
 		min-width: 70px;
 	}
-	
 }
 
 @media (max-width: 768px) {
 	.map__title {
 		font-size: 26px;
 	}
+
 	.map_line {
 		width: 60%;
 	}
+
+	.leaflet-marker-icon.custom-marker-icon {
+    /* делаем саму иконку визуально той же, но область клика больше */
+    background-color: rgba(241, 0, 0, 0); /* прозрачный фон */
+    padding: 20px; /* добавляем невидимую область вокруг иконки */
+    box-sizing: content-box;
+  }
 }
