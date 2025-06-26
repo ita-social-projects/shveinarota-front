@@ -1,0 +1,231 @@
+.page-content {
+	max-width: 1170px;
+	padding: 0 15px;
+	margin: 0 auto;
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+	color: #222;
+}
+
+.title {
+	text-align: left;
+	margin: 30px auto;
+	font-family: 'Intro';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 74px;
+	letter-spacing: -0.08px;
+	color: #000000;
+	text-shadow: 4px 3px 0.3px rgba(0, 0, 0, 0.25);
+}
+
+.section {
+	border-top: 2px solid #000;
+	padding: 30px 0;
+	margin-bottom: 50px;
+}
+
+.section-title {
+	font-family: 'Intro';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 48px;
+	line-height: 1.2;
+	color: #000000;
+	text-shadow: 5px 4px 0px rgba(0, 0, 0, 0.25);
+	margin-bottom: 25px;
+}
+
+.center-title {
+	text-align: center;
+}
+
+.left-title {
+	text-align: left;
+	margin-left: 50px;
+}
+
+.right-title {
+	text-align: right;
+	margin-right: 20px;
+}
+
+.section-with-image {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	flex-wrap: nowrap;
+	/* 👈 ключове! */
+}
+
+.section-image {
+	flex-shrink: 0;
+	max-width: 100%;
+	height: auto;
+}
+
+.dots {
+	padding-left: 20px;
+	list-style-type: disc;
+	list-style-position: inside;
+}
+
+.pext {
+	font-family: 'Caviar Dreams Bold';
+	font-size: 26px;
+	font-weight: normal;
+	max-width: 800px;
+	position: relative;
+	z-index: 2;
+}
+
+.li {
+	margin-bottom: 5px;
+	font-family: 'Caviar Dreams Bold';
+	font-size: 26px;
+	font-weight: normal;
+	max-width: 800px;
+	position: relative;
+	z-index: 2;
+}
+
+/* 🔽 Адаптивні стилі */
+@media (max-width: 1024px) {
+	.title {
+		font-size: 56px;
+	}
+
+	.section-title {
+		font-size: 36px;
+	}
+
+	.pext,
+	.li {
+		font-size: 22px;
+	}
+
+	.left-title {
+		margin-left: 20px;
+	}
+
+	.right-title {
+		margin-right: 10px;
+	}
+}
+
+@media (max-width: 768px) {
+	.section-with-image {
+		flex-direction: column-reverse;
+		align-items: center;
+		text-align: center;
+	}
+
+	.section-image {
+		width: 100%;
+		max-width: 300px;
+		height: auto;
+		margin-bottom: 20px;
+	}
+
+	.title {
+		font-size: 44px;
+		margin-top: 0px;
+		padding-top: 30px;
+	}
+
+	.section-title {
+		font-size: 28px;
+		text-align: center !important;
+		margin: 0 auto 20px auto;
+	}
+
+	.pext,
+	.li {
+		font-size: 20px;
+	}
+
+	.left-title,
+	.right-title {
+		text-align: center;
+		margin: 0;
+	}
+
+	.section-image {
+		max-width: 30%;
+	}
+
+}
+
+@media (max-width: 480px) {
+	.title {
+		font-size: 32px;
+	}
+
+	.section-title {
+		font-size: 24px;
+	}
+
+	.pext,
+	.li {
+		font-size: 18px;
+	}
+
+	.section {
+		padding: 20px 0;
+		margin-bottom: 30px;
+	}
+
+	.section-with-image {
+		flex-direction: column-reverse;
+		align-items: center;
+		text-align: center;
+	}
+
+	.section-image {
+		max-width: 40%;
+	}
+}
+
+/*==================================================================================*/
+.columns-workshops {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	border-top: 2px solid #000;
+	border-bottom: 2px solid #000;
+	margin: 0px 0px 40px 0px;
+}
+
+.columns-workshops__column {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 30px 0px 80px 0px;
+}
+
+.columns-workshops__column:not(:last-child) {
+	border-right: 2px solid #000;
+}
+
+.columns-workshops__column ol {
+	list-style: decimal;
+	padding-left: 1.5em;
+	font-family: 'Caviar Dreams Bold';
+	font-size: 26px;
+	font-weight: normal;
+}
+
+.columns-workshops__title {
+	font-family: 'Intro';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 36px;
+	line-height: 1.2;
+	color: #000000;
+	margin-bottom: 25px;
+}
+
+.columns-workshops__text {
+	font-family: 'Caviar Dreams Bold';
+	font-size: 26px;
+	font-weight: normal;
+}

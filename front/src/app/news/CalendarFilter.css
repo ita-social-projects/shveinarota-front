@@ -1,0 +1,69 @@
+.calendar-wrapper {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	z-index: 3;
+	transform: translate(0px, 15px);
+	display: none;
+}
+
+.calendar-active .calendar-wrapper {
+	display: block;
+}
+
+.rdp-months {
+	background-color: #ffffff;
+	padding: 10px;
+	border: 1px solid #646464;
+	border-radius: 4px;
+}
+
+.rdp-nav {
+	top: 10px;
+	right: 10px;
+}
+
+.rdp-caption_label {
+	text-transform: capitalize;
+}
+
+.rdp-chevron {
+	fill: #000;
+}
+
+.rdp-selected .rdp-day_button {
+	border: none;
+}
+
+.rdp-day_button {
+	border: none;
+	transition: all 0.1s ease 0s;
+}
+
+.rdp-selected.rdp-day {
+	background-color: #000 !important;
+	color: #fff !important;
+}
+
+.rdp-day {
+	transition: all 0.1s ease 0s;
+}
+
+.rdp-day:hover {
+	background-color: #6e6e6e;
+	color: #fff !important;
+}
+
+.rdp-selected {
+	font-weight: normal;
+	font-size: 16px;
+}
+
+.rdp-today:not(.rdp-outside) {
+	color: #4682B4;
+}
+
+th,
+td {
+	border: none;
+}

@@ -142,15 +142,15 @@ const Header = () => {
 						</Link>
 						<Link
 							onClick={closeMenu}
-							className={location.includes("/questions") ? "menu__link link-active" : "menu__link"}
-							href={"/questions"}
+							className={location.includes("/news") ? "menu__link link-active" : "menu__link"}
+							href={"/news"}
 						>
-							{lang == "ua" ? "Питання" : "questions"}
+							{lang == "ua" ? "Новини" : "News"}
 						</Link>
 						<Link
 							onClick={closeMenu}
 							className={location.includes("guides") ? "menu__link link-active" : "menu__link"}
-							href={"/guides"}
+							href={"/guides/main"}
 						>
 							{lang == "ua" ? "Навчальний центр" : "Training center"}
 						</Link>

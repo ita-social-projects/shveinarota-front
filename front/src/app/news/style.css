@@ -1,0 +1,142 @@
+.news-main {
+	min-height: 80vh;
+	padding: 60px 0px 0px 0px;
+	overflow-x: hidden;
+}
+
+.news__container {
+	max-width: 1000px;
+	padding: 0px 15px;
+	margin: 0 auto;
+}
+
+.news__row {
+	margin: 0px 0px 20px 0px;
+	display: flex;
+	gap: 30px;
+	align-items: flex-end;
+	position: relative;
+}
+
+.news__title {
+	font-size: 42px;
+	color: #232324;
+	font-family: 'Caviar Dreams Bold', sans-serif;
+	position: relative;
+	width: 100%;
+	border-bottom: 1px solid #232324;
+	padding: 0px 0px 5px 0px;
+	flex: 1 1 auto;
+}
+
+.news__subtitle {
+	font-size: 22px;
+	color: #232324;
+	font-family: 'Caviar Dreams Bold', sans-serif;
+	border-bottom: 1px solid #232324;
+	padding: 0px 0px 9px 0px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	flex-direction: row;
+	gap: 15px;
+	white-space: nowrap;
+	flex: 1 1 auto;
+}
+
+.news__subtitle div {
+	width: 24px;
+	height: 24px;
+}
+
+.news__subtitle img {
+	max-width: 100%;
+}
+
+.news__list {
+	flex: 1 1 100%;
+	margin: 0px 0px 40px 0px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.news__body {}
+
+.error-text {
+	margin: 30px 0px 0px 0px;
+	font-size: 24px;
+	text-align: center;
+	width: 100%;
+	color: #232324;
+	font-family: 'HelveticaNeue', sans-serif;
+}
+
+/*=============================================================================*/
+.news__tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	align-items: center;
+	margin: 0px 0px 40px 0px;
+}
+
+.news__tag {
+	font-family: "Caviar Dreams Bold";
+	font-size: 18px;
+	border: 2px solid #232324;
+	padding: 3px 7px;
+	background-color: #434344;
+	color: #fff;
+	transition: all 0.3s ease 0s;
+}
+
+.news__tag:hover {
+	background-color:rgb(148, 148, 148);
+}
+
+.tag-active {
+	background-color:rgb(148, 148, 148);
+}
+
+/*=========================================================================================*/
+.news__pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	margin: 0px 0px 60px 0px;
+}
+
+.news__pagination span {
+	font-family: "Caviar Dreams Bold";
+	border: 1.5px solid #232324;
+	width: 30px;
+	height: 30px;
+	font-size: 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.pagination-current {
+	background-color: #4682B4;
+	color: #fff;
+}
+
+@media (max-width: 500px) {
+	.news-main {
+		padding: 30px 0px 0px 0px;
+	}
+	.news__row {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.news__title {
+		border: none;
+		font-size: 36px;
+		text-align: center;
+		margin: 0px 0px 10px 0px;
+	}
+}
