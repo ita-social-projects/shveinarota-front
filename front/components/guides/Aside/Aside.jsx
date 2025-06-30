@@ -105,9 +105,9 @@ const Aside = ({ categories }) => {
           isActiveCategory={true}
         >
           <Link onClick={() => {
-              setActiveLink("main");
-              closeAsideOnClick();
-            }}
+            setActiveLink("main");
+            closeAsideOnClick();
+          }}
             className={`spoller__link ${activeLink === "main" ? "active" : ""}`} href="/guides/main">Головна</Link>
           <Link
             onClick={() => {
@@ -124,31 +124,17 @@ const Aside = ({ categories }) => {
             setActiveLink("workshops");
             closeAsideOnClick()
           }} className={`spoller__link ${activeLink === "workshops" ? "active" : ""}`} href="/guides/workshops">Локальний воркшоп</Link>
+          <Link
+            onClick={() => {
+              setActiveLink("questions");
+              closeAsideOnClick();
+            }}
+            className={`spoller__link ${activeLink === "questions" ? "active" : ""}`}
+            href="/questions"
+          >
+            Часті питання
+          </Link>
         </Spoller>
-        {/* <div className="aside__heading heading">
-          <Link onClick={() => closeAsideOnClick()} href="/guides/main" className="heading__title">Головна</Link>
-          <ul className="heading__body">
-            <li>
-              <Link
-                onClick={() => {
-                  setActiveLink("cybercomplects");
-                  closeAsideOnClick();
-                }}
-                className={`spoller__link ${activeLink === "cybercomplects" ? "active" : ""}`}
-                href="/guides/cybercomplects"
-              >
-                Кібернабір для пошиття
-              </Link>
-            </li>
-            <li><Link onClick={() => closeAsideOnClick()} className="spoller__link" href="/guides/workshops">Самостійне пошиття</Link></li>
-            <li>
-              <Link onClick={() => {
-                setActiveLink("workshops");
-                closeAsideOnClick()
-              }} className={`spoller__link ${activeLink === "workshops" ? "active" : ""}`} href="/guides/workshops">Локальний воркшоп</Link>
-            </li>
-          </ul>
-        </div> */}
         {categories.map((category) => {
           const isActiveCategory = category.subcategories.some(
             (sub) => sub.id == activeLink

@@ -20,15 +20,15 @@ const CurrNewsPage = () => {
 	const [currNews, setCurrNews] = useState(null);
 
 	useEffect(() => {
-		getData("medialinks/all", setMediaLinks)
-		setMediaLinks(prev =>
-			prev.filter(link =>
+		getData("medialinks/all", (data) => {
+			const filtered = data.filter(link =>
 				["телеграм", "telegram", "інстаграм", "instagram", "фейсбук", "facebook", "ютуб", "youtube"]
 					.some(keyword => link.title.toLowerCase().includes(keyword))
-			)
-		);
+			);
+			setMediaLinks(filtered);
+		});
+	}, []);
 
-	}, [])
 
 	useEffect(() => {
 		if (id) {

@@ -18,6 +18,10 @@
 	overflow: visible;
 }
 
+.map--fullscreen .map__body {
+	padding: 0px 15px 30px 15px;
+}
+
 .leaflet-container {
 	border: 3px solid #fff6e5;
 }
@@ -118,9 +122,9 @@
 	animation: fullscreenEnter 0.4s ease-out forwards;
 }
 
-.map--fullscreen.map--closing {
+/* .map--fullscreen.map--closing {
 	animation: fullscreenExit 0.4s ease-in forwards;
-}
+} */
 
 @keyframes fullscreenEnter {
 	0% {

@@ -6,9 +6,8 @@
 }
 
 .lekala_container {
-	margin-top: 15px;
+	margin-top: 35px;
 	background-color: #fff6e5;
-    width: fit-content; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,6 +15,7 @@
     border-radius: 5px;
     border: 3px solid rgb(46, 46, 53); 
     box-shadow: 6.314px 4.82px 0px 0px rgba(0, 0, 0, 0.17);
+	width: 100%;
 }
 
 

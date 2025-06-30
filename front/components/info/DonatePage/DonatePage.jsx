@@ -158,7 +158,7 @@ const DonatePage = () => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="donate-left">
-          <img src="images/logo-rota.png" alt="Logo" />
+          <Image src="/images/logo-rota.png" width={500} height={500} alt="Logo" />
         </div>
         <div className="donate-right">
           <div className="donate-header-inline">

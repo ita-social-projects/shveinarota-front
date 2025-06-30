@@ -5,8 +5,9 @@
 	text-align: center;
 
 	padding: 40px 0 40px 0;
-  	z-index: 1;
-	margin-top: -20px; /* сдвигаем ближе, чтобы казалось что тень падает */
+	z-index: 1;
+	margin-top: -20px;
+	/* сдвигаем ближе, чтобы казалось что тень падает */
 }
 
 
@@ -32,6 +33,7 @@
 	display: flex;
 	justify-content: center;
 }
+
 .partners__line {
 	width: calc(100% + clamp(10px, 2vw, 30px));
 	max-width: 500px;
@@ -67,8 +69,10 @@
 }
 
 .partners__partner img {
-	width: clamp(100px, 12vw, 140px); /* Увеличил размер картинок */
-	height: clamp(100px, 12vw, 140px); /* Увеличил размер картинок */
+	width: clamp(100px, 12vw, 140px);
+	/* Увеличил размер картинок */
+	height: clamp(100px, 12vw, 140px);
+	/* Увеличил размер картинок */
 	object-fit: contain;
 	transition: transform 0.3s ease;
 }
@@ -87,38 +91,44 @@
 /* Адаптивность */
 @media (max-width: 1024px) {
 	.partners__row {
-		grid-template-columns: repeat(4, 1fr); /* 4 элемента в ряд */
-		gap: 10px; /* Уменьшил расстояние между картинками */
+		grid-template-columns: repeat(4, 1fr);
+		/* 4 элемента в ряд */
+		gap: 10px;
+		/* Уменьшил расстояние между картинками */
 	}
 
 	.partners__slider .slick-list {
-		height: clamp(150px, 10vw, 200px); /* Уменьшена высота слайдера */
+		height: clamp(150px, 10vw, 200px);
+		/* Уменьшена высота слайдера */
 	}
 
 }
 
 @media (max-width: 768px) {
 	.partners__row {
-		grid-template-columns: repeat(3, 1fr); /* 3 элемента в ряд */
-		gap: 8px; /* Уменьшил расстояние между картинками */
+		grid-template-columns: repeat(3, 1fr);
+		/* 3 элемента в ряд */
+		gap: 8px;
+		/* Уменьшил расстояние между картинками */
 	}
 
 
 	.partners__slider .slick-list {
-		height: clamp(140px, 9vw, 180px); /* Уменьшена высота слайдера */
+		height: clamp(140px, 9vw, 180px);
+		/* Уменьшена высота слайдера */
 	}
 }
 
 
 @media (max-width: 720px) {
 	.partners__line {
-
-}
+		width: 80%;
+	}
 
 	.partners__title {
-	font-size: 30px;
-	
-}
+		font-size: 30px;
+
+	}
 
 }
 
@@ -126,11 +136,14 @@
 
 @media (max-width: 480px) {
 	.partners__row {
-		grid-template-columns: repeat(2, 1fr); /* 2 элемента в ряд */
-		gap: 5px; /* Уменьшил расстояние между картинками */
+		grid-template-columns: repeat(2, 1fr);
+		/* 2 элемента в ряд */
+		gap: 5px;
+		/* Уменьшил расстояние между картинками */
 	}
 
 	.partners__slider .slick-list {
-		height: clamp(120px, 8vw, 160px); /* Уменьшена высота слайдера */
+		height: clamp(120px, 8vw, 160px);
+		/* Уменьшена высота слайдера */
 	}
 }

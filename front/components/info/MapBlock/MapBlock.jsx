@@ -32,19 +32,29 @@ const MapBlock = () => {
   const [markers, setMarkers] = useState([]);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false); // 🔹 додаємо стан
   const markersRef = useRef({});
   const { lang } = useLang();
+
+  // 🔹 Визначаємо, чи пристрій підтримує touch
+  useEffect(() => {
+    const checkTouch = () =>
+      setIsTouchDevice(
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0 ||
+        window.matchMedia('(pointer: coarse)').matches
+      );
+    checkTouch();
+    window.addEventListener('resize', checkTouch);
+    return () => window.removeEventListener('resize', checkTouch);
+  }, []);
 
   useEffect(() => {
     getData("markers", setMarkers);
   }, []);
 
   useEffect(() => {
-    if (isFullscreen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isFullscreen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
@@ -57,6 +67,13 @@ const MapBlock = () => {
       setIsClosing(false);
     }, 400);
   };
+
+  const handleOpenFullscreen = () => {
+    if (isTouchDevice) {
+      setIsFullscreen(true);
+    }
+  };
+
 
   const customIcon = L.icon({
     iconUrl: 'images/map/location.svg',
@@ -89,13 +106,12 @@ const MapBlock = () => {
     return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
   };
 
-  const mapClass = `map ${
-    isFullscreen
-      ? isClosing
-        ? "map--fullscreen map--closing"
-        : "map--fullscreen"
-      : ""
-  }`;
+  const mapClass = `map ${isFullscreen
+    ? isClosing
+      ? "map--fullscreen map--closing"
+      : "map--fullscreen"
+    : ""
+    }`;
 
   return (
     <div className={mapClass}>
@@ -111,18 +127,21 @@ const MapBlock = () => {
         )}
 
         <div className="map__body">
-          {!isFullscreen && (
+          {!isFullscreen && isTouchDevice && (
             <div
               className="map__fullscreen-overlay"
-              onClick={() => setIsFullscreen(true)}
+              onClick={handleOpenFullscreen}
               title={lang === 'ua' ? "Відкрити на весь екран" : "Open fullscreen"}
             ></div>
           )}
+
+
 
           <MapContainer
             center={[50.27, 30.31]}
             zoom={5}
             maxZoom={7}
+            scrollWheelZoom={!isFullscreen && !isTouchDevice} // ⬅️ дозволяє скролити на ПК у нормальному режимі
             style={{
               height: '100%',
               width: '100%',
@@ -130,6 +149,7 @@ const MapBlock = () => {
               position: 'relative'
             }}
           >
+
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
             {markers.map(marker => (

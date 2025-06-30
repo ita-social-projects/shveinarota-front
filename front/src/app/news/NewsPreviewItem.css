@@ -58,6 +58,7 @@
 .item-news__text {
 	font-family: 'unbounded';
 	font-size: 14px;
+	margin: 0px 0px 10px 0px;
 }
 
 .item-news__date {
