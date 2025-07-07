@@ -25,6 +25,7 @@ const Management = () => {
 					<ManagementElement title="Майстер-класи" number={statistic.Subcategory} addLink="dashboard/masterclass/add" link="dashboard/masterclass" />
 					<ManagementElement title="Наша команда" number={statistic.Team} addLink="dashboard/team/add" link="dashboard/team" />
 					<ManagementElement title="Способи підтримати" addLink="dashboard/payment/add" link="dashboard/payment" />
+					<ManagementElement title="Новини" addLink="dashboard/news/add" link="dashboard/news" />
 				</ul>
 			</div>
 		</>

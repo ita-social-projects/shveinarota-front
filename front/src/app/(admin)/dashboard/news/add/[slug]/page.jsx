@@ -1,312 +1,230 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useParams } from "next/navigation";
 import "$style/bootstrap.min.css";
 import "$style/admin/Admin.css";
 import dynamic from 'next/dynamic';
 const Bootstrap = dynamic(() => import('$component/guides/Bootstrap/Bootstrap'), { ssr: false });
 import Alert from "$component/dashboard/Alert/Alert";
-import { changeJsonData, getData, postData, postDataJson } from "api";
-import GDriveInput from "$component/dashboard/GDriveInput/GDriveInput";
-import { useParams } from "next/navigation";
+import { getData, changeJsonData } from "api";
 import ImageInput from "$component/dashboard/ImageInput/ImageInput";
-import AutoGrowTextarea from "$component/dashboard/AutoGrowTextarea/AutoGrowTextarea";
+import axios from "axios";
 
-export default function ChangePage() {
-	const [categories, setCategories] = useState([]);
-	const [formData, setFormData] = useState({
-		title: '',
-		title_en: '',
-		videoUrl: [''],
-		videoEnUrl: [''],
-		details: '',
-		details_en: '',
-		summary: '',
-		summary_en: '',
-		authors: [],
-		authors_en: [],
-		category: '',
-		category_en: ''
-	});
-	const [lekala, setLekala] = useState([{ path: "", text: "", text_en: "" }]);
-	const [examples, setExamples] = useState([{ path: "", text: "", text_en: "" }]);
-	const [preview, setPreview] = useState("");
-
-	const authors = useRef();
-	const authors_en = useRef();
-	const select = useRef();
-
-	const [element, setElement] = useState();
-
-	const params = useParams();
-	const { slug } = params
-
-	useEffect(() => {
-		getData("categories", setCategories);
-		getData(`subcategories/all/${slug}`, setElement);
-	}, []);
-
-	useEffect(() => {
-		if (element != undefined) {
-			setFormData({
-				title: element.subcategory,
-				title_en: element.subcategory_en,
-				videoUrl: element.url != null && Array.isArray(element.url) ? element.url : [""],
-				videoEnUrl: element.url_en != null && Array.isArray(element.url_en) ? element.url_en : [""],
-				details: element.details != null ? element.details : "",
-				details_en: element.details_en != null ? element.details_en : "",
-				summary: element.summary != null ? element.summary : "",
-				summary_en: element.summary_en != null ? element.summary_en : "",
-				authors: element.authors,
-				authors_en: element.authors_en,
-				category: element.categoryname,
-				category_en: element.categoryname_en
-			})
-			element.preview != null && setPreview(element.preview)
-			setLekala(element.lekala)
-			setExamples(element.example)
-			authors.current.value = element.authors.join(", ")
-			if (element.authors_en) {
-				authors_en.current.value = element.authors_en.join(", ")
-			}
-			select.current.value = element.categoryname
+function parseChildren(nodeList) {
+	const children = [];
+	nodeList.forEach(node => {
+		if (node.nodeType === Node.TEXT_NODE) {
+			children.push({ text: node.textContent, bold: false, italic: false });
+		} else if (node.nodeType === Node.ELEMENT_NODE) {
+			const tag = node.tagName;
+			const bold = tag === 'STRONG' || tag === 'B';
+			const italic = tag === 'EM' || tag === 'I';
+			const inner = parseChildren(Array.from(node.childNodes));
+			inner.forEach(seg => {
+				children.push({ text: seg.text, bold: bold || seg.bold, italic: italic || seg.italic });
+			});
 		}
-	}, [element]);
+	});
+	return children;
+}
+
+const ParagraphEditor = ({ block, onChange }) => {
+	const editorRef = useRef(null);
 
 	useEffect(() => {
-		console.log(formData);
-	}, [formData]);
+		if (editorRef.current && block.children) {
+			editorRef.current.innerHTML = block.children.map(child => {
+				let text = child.text;
+				if (child.bold) text = `<strong>${text}</strong>`;
+				if (child.italic) text = `<em>${text}</em>`;
+				return text;
+			}).join(" ");
+		}
+	}, [block]);
 
+	const exec = (cmd) => {
+		editorRef.current.focus();
+		document.execCommand(cmd, false);
+	};
+
+	const updateChildren = () => {
+		const html = editorRef.current.innerHTML;
+		const dom = document.createElement('div');
+		dom.innerHTML = html;
+		const children = parseChildren(Array.from(dom.childNodes));
+		onChange({ ...block, children });
+	};
+
+	return (
+		<div className="mb-3">
+			<div className="btn-group mb-1">
+				<button
+					type="button"
+					className="btn btn-sm btn-secondary"
+					onMouseDown={(e) => {
+						e.preventDefault();
+						exec('bold');
+					}}
+				>
+					<strong>B</strong>
+				</button>
+				<button
+					type="button"
+					className="btn btn-sm btn-secondary"
+					onMouseDown={(e) => {
+						e.preventDefault();
+						exec('italic');
+					}}
+				>
+					<em>I</em>
+				</button>
+			</div>
+			<div
+				ref={editorRef}
+				contentEditable
+				className="form-control"
+				style={{ minHeight: '80px', overflow: 'auto' }}
+				onBlur={updateChildren}
+			/>
+		</div>
+	);
+};
+
+
+export default function EditNews() {
+	const { slug } = useParams();
+	const [form, setForm] = useState({
+		tagsUk: [],
+		tagsEn: [],
+		titleUk: '',
+		titleEn: '',
+		createdAt: ''
+	});
+	const [content, setContent] = useState([]);
 	const [showAlert, setShowAlert] = useState(false);
+
+	useEffect(() => {
+		getData(`news/all/${slug}`, (data) => {
+			setForm({
+				tagsUk: data.tagsUk,
+				tagsEn: data.tagsEn,
+				titleUk: data.titleUk,
+				titleEn: data.titleEn,
+				createdAt: new Date(data.createdAt).toISOString().slice(0, 16),
+			});
+			setContent(data.contentUk || []);
+		});
+	}, [slug]);
+
+	useEffect(() => {
+		console.log(form);
+	}, [form]);
+
+	const handleTags = (e, lang) => {
+		const arr = e.target.value.split(',').map(s => s.trim()).filter(Boolean);
+		setForm(prev => ({ ...prev, [lang]: arr }));
+	};
+
+	const addImageBlock = () => {
+		setContent([...content, { type: 'image', url: '', alt: '' }]);
+	};
+
+	const addParagraphBlock = () => {
+		setContent([...content, { type: 'paragraph', children: [{ text: '', bold: false, italic: false }] }]);
+	};
+
+	const updateBlock = (idx, updated) => {
+		const newContent = [...content];
+		newContent[idx] = updated;
+		setContent(newContent);
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const requiredFields = [
-			"title", "title_en", "videoUrl", "details", "details_en",
-			"summary", "summary_en", "category"
-		];
-
-		const emptyFields = requiredFields.filter(field => !formData[field]);
-
-		if (emptyFields.length > 0) {
-			alert(`Будь ласка, заповніть всі поля! Пропущено: ${emptyFields.join(", ")}`);
+		if (!form.titleUk || !form.titleEn) {
+			alert("Заповніть заголовки");
 			return;
 		}
 
-		let error = false
-
-		formData.videoUrl.forEach(e => {
-			if (e == "") {
-				alert('Посилання на відео не має бути пустим')
-				error = true
-				return;
-			}
-		});
-
-		formData.videoEnUrl.forEach(e => {
-			if (e == "") {
-				alert('Посилання на відео не має бути пустим')
-				error = true
-				return;
-			}
-		});
-
-		if (error) {
-			return
-		}
-
-		if (preview.length == "") {
-			alert('Будь ласка, додайте зображення етикетки!');
-			return;
-		}
-
-		const data = {
-			subcategory: formData.title,
-			subcategory_en: formData.title_en,
-			details: formData.details,
-			details_en: formData.details_en,
-			summary: formData.summary,
-			summary_en: formData.summary_en,
-			url: formData.videoUrl.map((url) => url.trim()),
-			url_en: formData.videoEnUrl.map((url) => url.trim()),
-			authors: formData.authors.map((author) => author.trim()),
-			authors_en: formData.authors_en.map((author) => author.trim()),
-			lekala: lekala,
-			example: examples,
-			categoryname: formData.category,
-			categoryname_en: formData.category,
-			preview: preview
+		const payload = {
+			tagsUk: form.tagsUk,
+			tagsEn: form.tagsEn,
+			titleUk: form.titleUk,
+			titleEn: form.titleEn,
+			createdAt: new Date(form.createdAt).toISOString(),
+			contentUk: content,
+			contentEn: content
 		};
 
-		console.log(data);
-
-		changeJsonData("subcategories", slug, data, setShowAlert)
+		try {
+			await axios.patch(`${process.env.BACK_URL}news/${slug}`, payload, {
+				withCredentials: true,
+			});
+			setShowAlert(true);
+		} catch (error) {
+			console.error("Помилка при оновленні новини:", error);
+			alert("Не вдалося оновити новину.");
+		}
 	};
+
 
 	return (
 		<main className="main">
-			{showAlert && (
-				<Alert
-					message="Майстер-клас успішно змінений!"
-					onClose={() => setShowAlert(false)}
-				/>
-			)}
+			{showAlert && <Alert message="Новину оновлено!" onClose={() => setShowAlert(false)} />}
 			<div className="main__form container-lg mt-5 mb-5">
-				<h1 className="form-title admin-title mb-4">Додати майстре-клас</h1>
-				<form className="form needs-validation" onSubmit={handleSubmit}>
-					<div className="mb-3">
-						<label htmlFor="title" className="form-label">Заголовок</label>
-						<input onChange={(e) => setFormData({ ...formData, title: e.target.value })} value={formData.title} type="text" className="form-control" id="title" name="title" placeholder="Введіть заголовок" />
+				<h1 className="admin-title mb-4">Редагувати новину</h1>
+				<form onSubmit={handleSubmit}>
+					<div className="row mb-3">
+						<div className="col">
+							<label className="form-label">Теги (укр)</label>
+							<input type="text" className="form-control" value={form.tagsUk.join(', ')} onChange={(e) => handleTags(e, 'tagsUk')} />
+						</div>
+						<div className="col">
+							<label className="form-label">Теги (eng)</label>
+							<input type="text" className="form-control" value={form.tagsEn.join(', ')} onChange={(e) => handleTags(e, 'tagsEn')} />
+						</div>
 					</div>
 
 					<div className="mb-3">
-						<label htmlFor="title" className="form-label">Заголовок (англ)</label>
-						<input onChange={(e) => setFormData({ ...formData, title_en: e.target.value })} value={formData.title_en} type="text" className="form-control" id="title" name="title" placeholder="Введіть заголовок" />
+						<label className="form-label">Заголовок (укр)</label>
+						<input type="text" className="form-control" value={form.titleUk} onChange={(e) => setForm({ ...form, titleUk: e.target.value })} />
+					</div>
+					<div className="mb-3">
+						<label className="form-label">Заголовок (eng)</label>
+						<input type="text" className="form-control" value={form.titleEn} onChange={(e) => setForm({ ...form, titleEn: e.target.value })} />
+					</div>
+					<div className="mb-3">
+						<label className="form-label">Дата створення</label>
+						<input type="datetime-local" className="form-control" value={form.createdAt} onChange={(e) => setForm({ ...form, createdAt: e.target.value })} />
 					</div>
 
-					<ImageInput placeholder="Посилання на зображення етикетки виробу" image={preview} setImage={setPreview} />
-
 					<div className="mb-3">
-						<label className="form-label">Лекала</label>
-						<GDriveInput images={lekala} setImages={setLekala} />
-					</div>
-
-					<div className="mb-3">
-						<label className="form-label">Посилання на відео (embed)</label>
-						{formData.videoUrl.map((url, index) => (
-							<div key={index} className="input-group mb-2">
-								<input
-									type="url"
-									className="form-control"
-									placeholder="Введіть посилання на відео"
-									value={url}
-									onChange={(e) => {
-										const updatedUrls = [...formData.videoUrl];
-										updatedUrls[index] = e.target.value;
-										setFormData({ ...formData, videoUrl: updatedUrls });
-									}}
-								/>
-								<button
-									type="button"
-									className="btn btn-danger"
-									onClick={() => {
-										const updatedUrls = formData.videoUrl.filter((_, i) => i !== index);
-										setFormData({ ...formData, videoUrl: updatedUrls });
-									}}
-									disabled={formData.videoUrl.length === 1}
-								>
-									Видалити
+						<h5>Контент</h5>
+						{content.map((block, idx) => (
+							<div key={idx} className="mb-4">
+								{block.type === 'image' ? (
+									<ImageInput
+										placeholder="Посилання на зображення"
+										image={block.url}
+										setImage={(url) => updateBlock(idx, { ...block, url })}
+									/>
+								) : (
+									<ParagraphEditor block={block} onChange={(upd) => updateBlock(idx, upd)} />
+								)}
+								<button type="button" className="btn btn-danger btn-sm" onClick={() => setContent(content.filter((_, i) => i !== idx))}>
+									Видалити блок
 								</button>
 							</div>
 						))}
-						<button
-							type="button"
-							className="btn btn-secondary"
-							onClick={() => setFormData({ ...formData, videoUrl: [...formData.videoUrl, ''] })}
-						>
-							Додати посилання
-						</button>
+						<div className="btn-group">
+							<button type="button" className="btn btn-secondary me-2" onClick={addImageBlock}>Додати зображення</button>
+							<button type="button" className="btn btn-secondary" onClick={addParagraphBlock}>Додати параграф</button>
+						</div>
 					</div>
 
-					<div className="mb-3">
-						<label className="form-label">Посилання на відео англійською (embed)</label>
-						{formData.videoEnUrl.map((url, index) => (
-							<div key={index} className="input-group mb-2">
-								<input
-									type="url"
-									className="form-control"
-									placeholder="Введіть посилання на відео"
-									value={url}
-									onChange={(e) => {
-										const updatedUrls = [...formData.videoEnUrl];
-										updatedUrls[index] = e.target.value;
-										setFormData({ ...formData, videoEnUrl: updatedUrls });
-									}}
-								/>
-								<button
-									type="button"
-									className="btn btn-danger"
-									onClick={() => {
-										const updatedUrls = formData.videoEnUrl.filter((_, i) => i !== index);
-										setFormData({ ...formData, videoEnUrl: updatedUrls });
-									}}
-									disabled={formData.videoEnUrl.length === 1}
-								>
-									Видалити
-								</button>
-							</div>
-						))}
-						<button
-							type="button"
-							className="btn btn-secondary"
-							onClick={() => setFormData({ ...formData, videoEnUrl: [...formData.videoEnUrl, ''] })}
-						>
-							Додати посилання
-						</button>
-					</div>
-
-					<div className="mb-3">
-						<label className="form-label">Приклади готового виробу</label>
-						<GDriveInput images={examples} setImages={setExamples} />
-					</div>
-
-					<div className="input-group mb-3">
-						<span className="input-group-text">Деталі</span>
-						<AutoGrowTextarea
-							value={formData.details}
-							onChange={(val) => setFormData({ ...formData, details: val })}
-							ariaLabel="деталі"
-						/>
-					</div>
-
-					<div className="input-group mb-3">
-						<span className="input-group-text">Деталі (англ)</span>
-						<AutoGrowTextarea
-							value={formData.details_en}
-							onChange={(val) => setFormData({ ...formData, details_en: val })}
-							ariaLabel="деталі англійською"
-						/>
-					</div>
-
-					<div className="input-group mb-3">
-						<span className="input-group-text">Підсумок</span>
-						<AutoGrowTextarea
-							value={formData.summary}
-							onChange={(val) => setFormData({ ...formData, summary: val })}
-							ariaLabel="підсумок"
-						/>
-					</div>
-
-					<div className="input-group mb-3">
-						<span className="input-group-text">Підсумок (англ)</span>
-						<AutoGrowTextarea
-							value={formData.summary_en}
-							onChange={(val) => setFormData({ ...formData, summary_en: val })}
-							ariaLabel="підсумок англійською"
-						/>
-					</div>
-
-					<div className="mb-3">
-						<label htmlFor="title" className="form-label">Імена авторів через кому (,)</label>
-						<input ref={authors} onChange={e => setFormData({ ...formData, authors: e.target.value.split(",") })} type="text" className="form-control" id="title" name="title" placeholder="Введіть авторів" />
-					</div>
-
-					<div className="mb-3">
-						<label htmlFor="title" className="form-label">Імена авторів (англ)</label>
-						<input ref={authors_en} onChange={e => setFormData({ ...formData, authors_en: e.target.value.split(",") })} type="text" className="form-control" id="title" name="title" placeholder="Введіть авторів" />
-					</div>
-
-					<div className="input-group mb-3">
-						<label className="input-group-text" htmlFor="inputGroupSelect01">Категорія</label>
-						<select ref={select} defaultValue="DEFAULT" onChange={e => setFormData({ ...formData, category: e.target.value })} className="form-select" id="inputGroupSelect01">
-							<option value="DEFAULT" disabled>Оберіть категорію...</option>
-							{categories.map(cat =>
-								<option key={cat.id} value={cat.id}>{cat.category}</option>
-							)}
-						</select>
-					</div>
-					<button onClick={(e) => handleSubmit(e)} type="submit" className="btn btn-primary">Save</button>
+					<button type="submit" className="btn btn-primary">Зберегти</button>
 				</form>
 			</div>
 			<Bootstrap />

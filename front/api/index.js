@@ -146,3 +146,29 @@ export async function changeDataNoLang(type, id, data, setShowAlert) {
 		alert("Помилка при відправці даних.");
 	}
 }
+
+//=========================================================================================
+export async function getNewsBySlug(slug, setForm, setContent) {
+	try {
+		const response = await axios.get(`${process.env.BACK_URL}news/${slug}`, {
+			withCredentials: true
+		});
+
+		const data = response.data;
+
+		setForm({
+			tagsUk: Array.isArray(data.tagsUk) ? data.tagsUk : [],
+			tagsEn: Array.isArray(data.tagsEn) ? data.tagsEn : [],
+			titleUk: data.titleUk || '',
+			titleEn: data.titleEn || '',
+			createdAt: data.createdAt
+				? new Date(data.createdAt).toISOString().slice(0, 16)
+				: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16)
+		});
+
+		setContent(Array.isArray(data.contentUk) ? data.contentUk : []);
+	} catch (error) {
+		console.error("Помилка при завантаженні новини:", error);
+		alert("Не вдалося завантажити новину.");
+	}
+}
