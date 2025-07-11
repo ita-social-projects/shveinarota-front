@@ -111,15 +111,19 @@ const Aside = ({ categories }) => {
             className={`spoller__link ${activeLink === "main" ? "active" : ""}`} href="/guides/main">Головна</Link>
           <Link
             onClick={() => {
-              setActiveLink("cybercomplects");
+              setActiveLink("CyberComplects");
               closeAsideOnClick();
             }}
-            className={`spoller__link ${activeLink === "cybercomplects" ? "active" : ""}`}
-            href="/guides/cybercomplects"
+            className={`spoller__link ${activeLink === "CyberComplects" ? "active" : ""}`}
+            href="/guides/CyberComplects"
           >
             Кібернабір для пошиття
           </Link>
-          <Link onClick={() => closeAsideOnClick()} className="spoller__link" href="/guides/workshops">Самостійне пошиття</Link>
+          <Link onClick={() => {
+            setActiveLink("selfStyledSewing");
+            closeAsideOnClick()
+          }} className={`spoller__link ${activeLink === "selfStyledSewing" ? "active" : ""}`} href="/guides/selfStyledSewing">Самостійне пошиття</Link>
+          
           <Link onClick={() => {
             setActiveLink("workshops");
             closeAsideOnClick()
