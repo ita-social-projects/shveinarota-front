@@ -5,8 +5,9 @@ import "$style/bootstrap.min.css";
 import "$style/admin/Admin.css";
 import { getData, postDataJson } from "api";
 import ImageInput from "$component/dashboard/ImageInput/ImageInput";
+import Alert from "$component/dashboard/Alert/Alert";
+import Bootstrap from "$component/guides/Bootstrap/Bootstrap";
 
-// Helper to parse HTML into children segments with formatting flags
 function parseChildren(nodeList) {
   const children = [];
   nodeList.forEach(node => {
@@ -26,14 +27,23 @@ function parseChildren(nodeList) {
   return children;
 }
 
-// Paragraph editor with bold/italic toolbar
 const ParagraphEditor = ({ block, onChange }) => {
   const editorRef = useRef(null);
 
+  useEffect(() => {
+    if (editorRef.current && block.children) {
+      editorRef.current.innerHTML = block.children.map(child => {
+        let text = child.text;
+        if (child.bold) text = `<strong>${text}</strong>`;
+        if (child.italic) text = `<em>${text}</em>`;
+        return text;
+      }).join(" ");
+    }
+  }, [block]);
+
   const exec = (cmd) => {
+    editorRef.current.focus();
     document.execCommand(cmd, false);
-    // After formatting, update children
-    updateChildren();
   };
 
   const updateChildren = () => {
@@ -47,8 +57,26 @@ const ParagraphEditor = ({ block, onChange }) => {
   return (
     <div className="mb-3">
       <div className="btn-group mb-1">
-        <button type="button" className="btn btn-sm btn-secondary" onClick={() => exec('bold')}>B</button>
-        <button type="button" className="btn btn-sm btn-secondary" onClick={() => exec('italic')}>I</button>
+        <button
+          type="button"
+          className="btn btn-sm btn-secondary"
+          onMouseDown={(e) => {
+            e.preventDefault();
+            exec('bold');
+          }}
+        >
+          <strong>B</strong>
+        </button>
+        <button
+          type="button"
+          className="btn btn-sm btn-secondary"
+          onMouseDown={(e) => {
+            e.preventDefault();
+            exec('italic');
+          }}
+        >
+          <em>I</em>
+        </button>
       </div>
       <div
         ref={editorRef}
@@ -99,7 +127,6 @@ export default function AddNews() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Validate basic fields
     if (!form.titleUk || !form.titleEn) {
       alert('Заповніть заголовки');
       return;
@@ -112,7 +139,7 @@ export default function AddNews() {
       titleEn: form.titleEn,
       createdAt: new Date(form.createdAt).toISOString(),
       contentUk: content,
-      contentEn: content, // or separate state if needed
+      contentEn: content,
     };
     postDataJson('news', payload, setShowAlert);
   };
@@ -120,9 +147,10 @@ export default function AddNews() {
   return (
     <main className="main">
       {showAlert && (
-        <div className="alert alert-success" role="alert">
-          Новину додано успішно!
-        </div>
+        <Alert
+          message="Новина була успішно додана!"
+          onClose={() => setShowAlert(false)}
+        />
       )}
       <div className="main__form container-lg mt-5 mb-5">
         <h1 className="admin-title mb-4">Додати новину</h1>
@@ -172,10 +200,10 @@ export default function AddNews() {
               </div>
             ))}
             <div className="btn-group">
-              <button type="button" className="btn btn-secondary" style={{"marginRight": "15px", "borderRadius": "7px"}} onClick={addImageBlock}>
+              <button type="button" className="btn btn-secondary" style={{ "marginRight": "15px", "borderRadius": "7px" }} onClick={addImageBlock}>
                 Новий блок зображення
               </button>
-              <button type="button" className="btn btn-secondary" style={{"marginRight": "15px", "borderRadius": "7px"}} onClick={addParagraphBlock}>
+              <button type="button" className="btn btn-secondary" style={{ "marginRight": "15px", "borderRadius": "7px" }} onClick={addParagraphBlock}>
                 Новий блок параграф
               </button>
             </div>
@@ -184,6 +212,7 @@ export default function AddNews() {
           <button type="submit" className="btn btn-primary">Зберегти</button>
         </form>
       </div>
+      <Bootstrap />
     </main>
   );
 }

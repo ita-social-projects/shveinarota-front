@@ -11,6 +11,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { deleteDataById, getData } from "api";
 import { convertToId } from '@lib/utils';
+import ReorderablePartnersList from '$component/ReorderablePartnersList/ReorderablePartnersList';
 
 export default function CardsPage() {
 	const [partners, setPartners] = useState([]);
@@ -47,20 +48,7 @@ export default function CardsPage() {
 					</Link>
 				</div>
 				<div className="list-group">
-					{partners.map((partner, index) => (
-						<div key={partner.id} className='partner-row'>
-							<Image
-								src={
-									"http://drive.google.com/uc?export=view&id=" +
-									convertToId(partner.path)
-								}
-								width={75}
-								height={75}
-								alt="img"
-							/>
-							<DatabaseItem setSelectedId={setSelectedPartnerId} title={`Партнер`} link={`/dashboard/partners/add/${partner.id}`} id={partner.id} />
-						</div>
-					))}
+					<ReorderablePartnersList partners={partners} setPartners={setPartners} setSelectedId={setSelectedPartnerId} />
 				</div>
 			</div>
 			<Bootstrap />

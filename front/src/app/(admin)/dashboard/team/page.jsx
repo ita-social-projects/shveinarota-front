@@ -9,6 +9,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { deleteDataById, getData } from "api";
 import dynamic from 'next/dynamic';
+import ReorderableTeamList from '$component/dashboard/ReorderableTeamList/ReorderableTeamList';
 const Bootstrap = dynamic(() => import('$component/guides/Bootstrap/Bootstrap'), { ssr: false });
 
 export default function CardsPage() {
@@ -45,13 +46,10 @@ export default function CardsPage() {
 						<span className="_plus">+</span> Додати
 					</Link>
 				</div>
-				<div className="list-group">
-					{slides.map((slide) => (
-						<DatabaseItem setSelectedId={setSelectedMarkerId} key={slide.id} title={`Член команди (${slide.name})`} link={`/dashboard/team/add/${slide.id}`} id={slide.id} />
-					))}
-				</div>
+
+				<ReorderableTeamList members={slides} setMembers={setSlides} setSelectedId={setSelectedMarkerId} />
 			</div>
-			<Bootstrap/>
+			<Bootstrap />
 		</main>
 	);
 }

@@ -35,6 +35,7 @@ export default function AdminLayout({ children }) {
 										<li><Link className="dropdown-item" href="/dashboard/masterclass">Майстер-класи</Link></li>
 										<li><Link className="dropdown-item" href="/dashboard/team">Наша команда</Link></li>
 										<li><Link className="dropdown-item" href="/dashboard/payment">Способи підтримати</Link></li>
+										<li><Link className="dropdown-item" href="/dashboard/news">Новини</Link></li>
 									</ul>
 								</li>
 								<li className="nav-item">
