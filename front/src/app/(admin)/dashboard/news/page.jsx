@@ -9,6 +9,7 @@ import DatabaseItem from "$component/dashboard/DatabaseItem/DatabaseItem";
 import { useEffect, useRef, useState } from "react";
 import { getData } from 'api';
 import axios from 'axios';
+import { getPaginatedNews } from '@lib/utils';
 
 
 export default function CardsPage() {
@@ -16,7 +17,12 @@ export default function CardsPage() {
 	const [selectedCardId, setSelectedCardId] = useState(null);
 
 	useEffect(() => {
-		getData("news", setNews);
+		const fetchNews = async () => {
+			const result = await getPaginatedNews("uk", 1, 100);
+			setNews(result.data);
+		};
+
+		fetchNews();
 	}, []);
 
 
@@ -68,15 +74,15 @@ export default function CardsPage() {
 			</div>
 			<div className="main__items items container-md mt-5">
 				<div className="items__header mb-4">
-					<h1 className="admin-title">Новини ({news.data != undefined ? news.data.length : "-"})</h1>
+					<h1 className="admin-title">Новини ({news != undefined ? news.length : "-"})</h1>
 					<Link href="/dashboard/news/add" type="button" className="btn btn-success">
 						<span className="_plus">+</span> Додати
 					</Link>
 				</div>
 				<div className="list-group">
-					{news.data != undefined
+					{news != undefined
 						? <>
-							{news.data.map((item, index) =>
+							{news.map((item, index) =>
 								<DatabaseItem setSelectedId={setSelectedCardId} key={item.id} title={`Новина (${item.title})`} link={`/dashboard/news/add/${item.id}`} id={item.id} />)}
 						</>
 						: <div>Новини завантажуються</div>

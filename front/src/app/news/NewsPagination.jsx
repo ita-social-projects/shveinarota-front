@@ -21,7 +21,7 @@ const NewsPagination = ({ page, setPage, totalPages }) => {
 		<div className="news__pagination">
 			{page > 1 && (
 				<>
-					<span onClick={() => setPage(1)}>&laquo;</span>
+					<span onClick={() => {setPage(1); window.scrollTo({ top: 0 });}}>&laquo;</span>
 				</>
 			)}
 
@@ -40,7 +40,7 @@ const NewsPagination = ({ page, setPage, totalPages }) => {
 
 			{page < totalPages && (
 				<>
-					<span onClick={() => setPage(totalPages)}>&raquo;</span>
+					<span onClick={() => {setPage(totalPages); window.scrollTo({ top: 0 });}}>&raquo;</span>
 				</>
 			)}
 		</div>

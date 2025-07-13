@@ -7,6 +7,7 @@ import NewsPreview from './NewsPreviewItem';
 import CalendarFilter from './CalendarFilter';
 import { getPageCount, getPagesArray, getPaginatedNews } from '@lib/utils';
 import NewsPagination from './NewsPagination';
+import { getData } from 'api';
 
 const NewsPage = () => {
 	const [data, setData] = useState([]);
@@ -30,42 +31,52 @@ const NewsPage = () => {
 	const calendarRef = useRef(null);
 	const buttonRef = useRef(null);
 
-	const tags = [
-		"Допомога",
-		"Волонтерство",
-		"Освіта",
-		"Медична підтримка",
-		"Інфраструктура"
-	];
+	const [tags, setTags] = useState([]);
 
 	useEffect(() => {
-		const result = getPaginatedNews(page, limit);
-		setData(result.data);
-		setFilteredNews(result.data);
-		setIsLoading(false);
-
-		const newsAmount = 23;
-		setTotalPages(getPageCount(newsAmount, limit));
-	}, [page]);
+		getData("news/tags", setTags);
+	}, [])
 
 	useEffect(() => {
-		if (date) {
-			const formatted = new Date(date).toLocaleDateString('uk-UA');
-			setDateValue(formatted);
-			setIsCalendarOpen(false);
-			setCurrentTag("");
+		const fetchNews = async () => {
+			setIsLoading(true);
+			const result = await getPaginatedNews("uk", page, limit);
+			setData(result.data);
+			setFilteredNews(result.data);
 
-			const filtered = data.filter(news => {
-				const newsDate = new Date(news.createdAt).toLocaleDateString('uk-UA');
-				return newsDate === formatted;
-			});
-			setFilteredByDate(filtered);
-		} else {
-			setDateValue("Обрати дату");
-			setFilteredByDate([]);
-			setIsCalendarOpen(false);
-		}
-	}, [date]);
+			// Якщо бекенд повертає totalCount — розраховуємо кількість сторінок:
+			if (result.total) {
+				setTotalPages(getPageCount(result.total, limit));
+			} else {
+				setTotalPages(1); // fallback
+			}
+
+			setIsLoading(false);
+
+		};
+
+		fetchNews();
+	}, [page, limit]);
+
+
+	// useEffect(() => {
+	// 	if (date) {
+	// 		const formatted = new Date(date).toLocaleDateString('uk-UA');
+	// 		setDateValue(formatted);
+	// 		setIsCalendarOpen(false);
+	// 		setCurrentTag("");
+
+	// 		const filtered = data.filter(news => {
+	// 			const newsDate = new Date(news.createdAt).toLocaleDateString('uk-UA');
+	// 			return newsDate === formatted;
+	// 		});
+	// 		setFilteredByDate(filtered);
+	// 	} else {
+	// 		setDateValue("Обрати дату");
+	// 		setFilteredByDate([]);
+	// 		setIsCalendarOpen(false);
+	// 	}
+	// }, [date]);
 
 
 	useEffect(() => {
@@ -107,6 +118,11 @@ const NewsPage = () => {
 		};
 	}, [isCalendarOpen]);
 
+	const handleDateChange = (newDate) => {
+		setDate(newDate);
+		setCurrentTag("");
+	};
+
 	return (
 		<main className='news-main'>
 			<div className="news-main__news news">
@@ -124,7 +140,7 @@ const NewsPage = () => {
 							</div>
 						</button>
 						<div className="calendar-wrapper" ref={calendarRef}>
-							<CalendarFilter onDateChange={setDate} />
+							<CalendarFilter onDateChange={handleDateChange} />
 						</div>
 					</div>
 
@@ -132,14 +148,14 @@ const NewsPage = () => {
 						<div className='news__tags'>
 							{tags.map((el, i) =>
 								<button
-									key={i}
+									key={el.id}
 									onClick={() => {
-										setCurrentTag(prev => (prev === el ? "" : el));
+										setCurrentTag(prev => (prev === el.nameUk ? "" : el.nameUk));
 									}}
-									value={el}
-									className={el == currentTag ? 'news__tag tag-active' : 'news__tag'}
+									value={el.nameUk}
+									className={el.nameUk == currentTag ? 'news__tag tag-active' : 'news__tag'}
 								>
-									{el}
+									{el.nameUk}
 								</button>
 							)}
 						</div>

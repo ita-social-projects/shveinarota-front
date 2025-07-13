@@ -32,7 +32,7 @@ export function transliterate(text) {
 	transliteratedText = transliteratedText.toLowerCase();
 	transliteratedText = transliteratedText.replace(/[\s]+/g, '-');
 	transliteratedText = transliteratedText.replace(/[^a-z0-9-]/g, '');
-	
+
 	return transliteratedText;
 }
 
@@ -40,16 +40,28 @@ export const getPageCount = (totalCount, limit) => {
 	return Math.ceil(totalCount / limit);
 }
 
-export function getPaginatedNews(page = 1, pageSize = 5) {
-  const total = mockNews.length;
-  const start = (page - 1) * pageSize;
-  const end = start + pageSize;
-  const data = mockNews.slice(start, end);
+import axios from "axios";
 
-  return {
-    data: data,
-    total: total,
-    page: page,
-    pageSize: pageSize
-  };
-}
+export const getPaginatedNews = async (lang = 'uk', page = 1, limit = 10) => {
+	try {
+		const response = await axios.get(`${process.env.BACK_URL}news`, {
+			params: { page, limit }
+		});
+		return response.data;
+	} catch (error) {
+		console.error("Помилка при завантаженні новин:", error);
+		return { data: [], totalCount: 0 };
+	}
+};
+
+export const getNewsByDate = async (lang, date) => {
+	const res = await fetch(`${process.env.BACK_URL}/${lang}/news/data/${date}`, {
+		credentials: 'include',
+	});
+
+	if (!res.ok) {
+		throw new Error('Помилка при отриманні новин за датою');
+	}
+
+	return res.json();
+};

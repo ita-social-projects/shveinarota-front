@@ -6,7 +6,8 @@ import "$style/admin/Admin.css";
 import { getData, postDataJson } from "api";
 import ImageInput from "$component/dashboard/ImageInput/ImageInput";
 import Alert from "$component/dashboard/Alert/Alert";
-import Bootstrap from "$component/guides/Bootstrap/Bootstrap";
+import dynamic from 'next/dynamic';
+const Bootstrap = dynamic(() => import('$component/guides/Bootstrap/Bootstrap'), { ssr: false });
 
 function parseChildren(nodeList) {
   const children = [];
@@ -91,12 +92,12 @@ const ParagraphEditor = ({ block, onChange }) => {
 
 export default function AddNews() {
   const [form, setForm] = useState({
-    tagsUk: [],
-    tagsEn: [],
+    tags: [],
     titleUk: '',
     titleEn: '',
     createdAt: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16)
   });
+
   const [content, setContent] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -106,9 +107,13 @@ export default function AddNews() {
     setForm({ ...form, [lang]: arr });
   };
 
+  const [availableTags, setAvailableTags] = useState([]);
+  const [newTag, setNewTag] = useState({ nameUk: '', nameEn: '' });
+
   useEffect(() => {
-    console.log(content);
-  }, [content])
+    getData('news/tags', setAvailableTags);
+  }, []);
+
 
   // Add blocks
   const addImageBlock = () => {
@@ -131,18 +136,26 @@ export default function AddNews() {
       alert('Заповніть заголовки');
       return;
     }
-    // Build JSON payload
+
     const payload = {
-      tagsUk: form.tagsUk,
-      tagsEn: form.tagsEn,
       titleUk: form.titleUk,
       titleEn: form.titleEn,
       createdAt: new Date(form.createdAt).toISOString(),
       contentUk: content,
       contentEn: content,
+
+      // ключове:
+      tags: [
+        ...form.tags, // існуючі теги (з id)
+        ...(newTag.nameUk.trim() && newTag.nameEn.trim()
+          ? [{ nameUk: newTag.nameUk.trim(), nameEn: newTag.nameEn.trim() }]
+          : [])
+      ],
     };
+
     postDataJson('news', payload, setShowAlert);
   };
+
 
   return (
     <main className="main">
@@ -155,16 +168,112 @@ export default function AddNews() {
       <div className="main__form container-lg mt-5 mb-5">
         <h1 className="admin-title mb-4">Додати новину</h1>
         <form onSubmit={handleSubmit}>
-          <div className="row mb-3">
-            <div className="col">
-              <label className="form-label">Теги (укр, через коми)</label>
-              <input type="text" className="form-control" placeholder="Допомога армії, Волонтерство" onChange={(e) => handleTags(e, 'tagsUk')} />
+          <div className="mb-3">
+            <label className="form-label">Обрані теги</label>
+
+            <div className="d-flex flex-wrap gap-2 mb-2">
+              {form.tags.map((tag, index) => (
+                <span key={index} className="badge bg-primary d-flex align-items-center">
+                  {tag.nameUk} / {tag.nameEn}
+                  <button
+                    type="button"
+                    className="btn-close btn-close-white ms-2"
+                    onClick={() =>
+                      setForm({ ...form, tags: form.tags.filter(t => t.id !== tag.id) })
+                    }
+                    style={{ fontSize: '0.6rem' }}
+                  />
+                </span>
+              ))}
             </div>
-            <div className="col">
-              <label className="form-label">Теги (eng, через коми)</label>
-              <input type="text" className="form-control" placeholder="ArmySupport, Volunteering" onChange={(e) => handleTags(e, 'tagsEn')} />
+
+            <select
+              className="form-select"
+              onChange={(e) => {
+                const selectedId = Number(e.target.value);
+                const selectedTag = availableTags.find(tag => tag.id === selectedId);
+                if (selectedTag && !form.tags.some(t => t.id === selectedTag.id)) {
+                  setForm({ ...form, tags: [...form.tags, selectedTag] });
+                }
+                e.target.value = '';
+              }}
+              defaultValue=""
+            >
+              <option value="" disabled>Оберіть тег зі списку</option>
+              {availableTags
+                .filter(tag => !form.tags.some(t => t.id === tag.id))
+                .map(tag => (
+                  <option key={tag.id} value={tag.id}>
+                    {tag.nameUk} / {tag.nameEn}
+                  </option>
+                ))}
+            </select>
+          </div>
+
+
+          <div className="mb-3">
+            <label className="form-label">Додати новий тег</label>
+            <div className="row g-2 mb-2">
+              <div className="col">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Назва укр"
+                  value={newTag.nameUk}
+                  onChange={(e) => setNewTag({ ...newTag, nameUk: e.target.value })}
+                />
+              </div>
+              <div className="col">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Назва англ"
+                  value={newTag.nameEn}
+                  onChange={(e) => setNewTag({ ...newTag, nameEn: e.target.value })}
+                />
+              </div>
+              <div className="col-auto">
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  onClick={() => {
+                    const trimmedUk = newTag.nameUk.trim();
+                    const trimmedEn = newTag.nameEn.trim();
+
+                    if (!trimmedUk || !trimmedEn) {
+                      alert('Заповніть обидва поля');
+                      return;
+                    }
+
+                    const existsInForm = form.tags.some(
+                      tag =>
+                        tag.nameUk.toLowerCase() === trimmedUk.toLowerCase() ||
+                        tag.nameEn.toLowerCase() === trimmedEn.toLowerCase()
+                    );
+                    const existsInAvailable = availableTags.some(
+                      tag =>
+                        tag.nameUk.toLowerCase() === trimmedUk.toLowerCase() ||
+                        tag.nameEn.toLowerCase() === trimmedEn.toLowerCase()
+                    );
+
+                    if (existsInForm || existsInAvailable) {
+                      alert('Такий тег вже існує');
+                      return;
+                    }
+
+                    const newTagObj = { nameUk: trimmedUk, nameEn: trimmedEn };
+                    setForm({ ...form, tags: [...form.tags, newTagObj] });
+                    setNewTag({ nameUk: '', nameEn: '' });
+                  }}
+                >
+                  Додати
+                </button>
+              </div>
             </div>
           </div>
+
+
+
 
           <div className="mb-3">
             <label className="form-label">Заголовок (укр)</label>

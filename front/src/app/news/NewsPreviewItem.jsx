@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
 import "./NewsPreviewItem.css"
 import Link from 'next/link';
-import { transliterate } from '@lib/utils';
+import Image from 'next/image';
+import { convertToId, transliterate } from '@lib/utils';
 
 const NewsPreviewItem = ({ content, element }) => {
 	const firstParagraph = content.find(item => item.type === "paragraph");
 	const firstImage = content.find(item => item.type === "image");
+
+	console.log(firstImage);
+	console.log(firstParagraph);
+	console.log(convertToId(firstImage.url));
 
 	const maxTextLength = 189;
 
@@ -28,7 +33,7 @@ const NewsPreviewItem = ({ content, element }) => {
 		<Link href={{pathname: `/news/${transliterate(element.title.slice(0, 40))}`, query: { id: element.id }}} className="news__item item-news">
 			{firstImage &&
 				<div className="item-news__image">
-					<img src={firstImage.url} alt={firstImage.alt} />
+					<Image width={1920} height={1080} alt={firstImage.alt} src={'http://drive.google.com/uc?export=view&id=' + convertToId(firstImage.url)} />
 				</div>
 			}
 			<div className="item-news__body">
