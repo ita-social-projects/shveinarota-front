@@ -32,10 +32,9 @@ const CurrNewsPage = () => {
 
 	useEffect(() => {
 		if (id) {
-			const foundNews = mockNews.find(news => String(news.id) === id);
-			setCurrNews(foundNews);
+			getData("news/all/" + id, setCurrNews)
 		}
-	}, [id]);
+	}, []);
 
 	const formattedDate = new Date(currNews?.createdAt).toLocaleString("uk-UA", {
 		dateStyle: "medium",
@@ -55,7 +54,7 @@ const CurrNewsPage = () => {
 							</span>
 								До новин
 							</Link>
-							<h1 className="news-curr__title">{currNews.title}</h1>
+							<h1 className="news-curr__title">{currNews.titleUk}</h1>
 							<div className="news-curr__date">{formattedDate}</div>
 							<div className="news-curr__media">
 								{mediaLinks.map(link =>
@@ -72,7 +71,7 @@ const CurrNewsPage = () => {
 							</div>
 						</div>
 						<div className="news-curr__body">
-							{currNews.content.map((block, i) => {
+							{currNews.contentUk.map((block, i) => {
 								if (block.type === "paragraph") {
 									return (
 										<p className="news-curr__text" key={i}>
@@ -86,7 +85,7 @@ const CurrNewsPage = () => {
 									);
 								}
 								if (block.type === "image") {
-									return <img key={i} src={block.url} alt={block.alt} style={{ maxWidth: "100%", margin: "0px 0px 20px 0px" }} />;
+									return <Image width={1920} height={1080} key={i} src={'http://drive.google.com/uc?export=view&id=' + convertToId(block.url)} alt={block.alt} style={{ maxWidth: "100%", margin: "0px 0px 20px 0px" }} />;
 								}
 							})}
 						</div>
