@@ -10,7 +10,7 @@ import Link from "next/link";
 export default function QuestionsPage() {
 	return (
 		<main className='main'>
-			<div className="questions-wrapper">
+			<div className="questions-wrapper questions-page">
 				<div className="main__container">
 					<div className="main__title _main-title">Відповіді на часті запитання</div>
 					<div className="main__questions">

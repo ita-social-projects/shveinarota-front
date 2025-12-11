@@ -90,8 +90,9 @@ const Aside = ({ categories }) => {
 
   return (
     <aside
-      className={`aside ${isOpen ? "open" : "closed"} ${isNonActiveHovered ? "nonActiveHovered" : ""
-        }`}
+      className={`aside ${isOpen ? "open" : "closed"} ${
+        isNonActiveHovered ? "nonActiveHovered" : ""
+      }`}
     >
       {/* Кнопка сворачивания */}
       <button className="toggle-button" onClick={() => setIsOpen(!isOpen)}>
@@ -100,45 +101,6 @@ const Aside = ({ categories }) => {
 
       {/* Контейнер с прокруткой */}
       <div className="aside-content" ref={asideContentRef}>
-        <Spoller
-          title={"Навч. центр"}
-          isActiveCategory={true}
-        >
-          <Link onClick={() => {
-            setActiveLink("main");
-            closeAsideOnClick();
-          }}
-            className={`spoller__link ${activeLink === "main" ? "active" : ""}`} href="/guides/main">Головна</Link>
-          <Link
-            onClick={() => {
-              setActiveLink("CyberComplects");
-              closeAsideOnClick();
-            }}
-            className={`spoller__link ${activeLink === "CyberComplects" ? "active" : ""}`}
-            href="/guides/CyberComplects"
-          >
-            Кібернабір для пошиття
-          </Link>
-          <Link onClick={() => {
-            setActiveLink("selfStyledSewing");
-            closeAsideOnClick()
-          }} className={`spoller__link ${activeLink === "selfStyledSewing" ? "active" : ""}`} href="/guides/selfStyledSewing">Самостійне пошиття</Link>
-          
-          <Link onClick={() => {
-            setActiveLink("workshops");
-            closeAsideOnClick()
-          }} className={`spoller__link ${activeLink === "workshops" ? "active" : ""}`} href="/guides/workshops">Локальний воркшоп</Link>
-          <Link
-            onClick={() => {
-              setActiveLink("questions");
-              closeAsideOnClick();
-            }}
-            className={`spoller__link ${activeLink === "questions" ? "active" : ""}`}
-            href="/questions"
-          >
-            Часті питання
-          </Link>
-        </Spoller>
         {categories.map((category) => {
           const isActiveCategory = category.subcategories.some(
             (sub) => sub.id == activeLink
@@ -155,7 +117,7 @@ const Aside = ({ categories }) => {
                   key={sub.id}
                   href={`/guides/${sub.subcategory_en.toLowerCase()}/${sub.id}`}
                   className={`spoller__link ${activeLink == sub.id ? "active" : ""}`}
-                  onClick={() => { setActiveLink(sub.id); closeAsideOnClick() }}
+                  onClick={() => setActiveLink(sub.id)}
                   // Привязываем ref только к активной ссылке
                   ref={activeLink == sub.id ? activeLinkRef : null}
                   onMouseEnter={() => {

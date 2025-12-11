@@ -90,8 +90,9 @@ const AsideEn = ({ categories }) => {
 
   return (
     <aside
-      className={`aside ${isOpen ? "open" : "closed"} ${isNonActiveHovered ? "nonActiveHovered" : ""
-        }`}
+      className={`aside ${isOpen ? "open" : "closed"} ${
+        isNonActiveHovered ? "nonActiveHovered" : ""
+      }`}
     >
       {/* Кнопка сворачивания */}
       <button className="toggle-button" onClick={() => setIsOpen(!isOpen)}>
@@ -100,25 +101,6 @@ const AsideEn = ({ categories }) => {
 
       {/* Контейнер с прокруткой */}
       <div className="aside-content" ref={asideContentRef}>
-        <div className="aside__heading heading">
-          <Link onClick={() => closeAsideOnClick()} href="/guides/main" className="heading__title">Головна</Link>
-          <ul className="heading__body">
-            <li>
-              <Link
-                onClick={() => {
-                  setActiveLink("CyberComplects");
-                  closeAsideOnClick();
-                }}
-                className={`spoller__link ${activeLink === "CyberComplects" ? "active" : ""}`}
-                href="/guides/CyberComplects"
-              >
-                Cyborg
-              </Link>
-            </li>
-            <li><Link onClick={() => closeAsideOnClick()} className="spoller__link" href="/guides/cybercomplect">Самостійне пошиття</Link></li>
-            <li><Link onClick={() => closeAsideOnClick()} className="spoller__link" href="/guides/cybercomplect">Локальний воркшоп</Link></li>
-          </ul>
-        </div>
         {categories.map((category) => {
           const isActiveCategory = category.subcategories.some(
             (sub) => sub.id == activeLink
@@ -135,7 +117,7 @@ const AsideEn = ({ categories }) => {
                   key={sub.id}
                   href={`/guides/${sub.subcategory_en.toLowerCase()}/${sub.id}`}
                   className={`spoller__link ${activeLink == sub.id ? "active" : ""}`}
-                  onClick={() => {setActiveLink(sub.id); closeAsideOnClick()}}
+                  onClick={() => setActiveLink(sub.id)}
                   // Привязываем ref только к активной ссылке
                   ref={activeLink == sub.id ? activeLinkRef : null}
                   onMouseEnter={() => {
